@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using AutomotiveShop.Models;
+using AutomotiveShop.web.web.web.Models;
 
-namespace AutomotiveShop
+namespace AutomotiveShop.web.web.web.web.web
 {
     public class EmailService : IIdentityMessageService
     {

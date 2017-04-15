@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using AutomotiveShop.Models;
+using AutomotiveShop.web.web.web.Models;
 
-namespace AutomotiveShop
+namespace AutomotiveShop.web.web.web.web.web
 {
     public partial class Startup
     {

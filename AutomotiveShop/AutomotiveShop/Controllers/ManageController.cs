@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using AutomotiveShop.Models;
+using AutomotiveShop.web.web.web.Models;
 
-namespace AutomotiveShop.Controllers
+namespace AutomotiveShop.web.web.web.web.web.web.Controllers
 {
     [Authorize]
     public class ManageController : Controller

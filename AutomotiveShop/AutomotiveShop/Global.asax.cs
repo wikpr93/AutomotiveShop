@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace AutomotiveShop
+namespace AutomotiveShop.web.web.web.web.web
 {
     public class MvcApplication : System.Web.HttpApplication
     {

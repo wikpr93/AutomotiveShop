@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace AutomotiveShop
+namespace AutomotiveShop.web.web.web.web.web
 {
     public class FilterConfig
     {
