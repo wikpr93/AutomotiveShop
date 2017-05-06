@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutomotiveShop.model;
 
 namespace AutomotiveShop.web.Controllers
 {
@@ -10,7 +11,8 @@ namespace AutomotiveShop.web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            AutomotiveShopDbContext context = new AutomotiveShopDbContext();
+            return View(context.Categories.ToList());
         }
 
         public ActionResult About()

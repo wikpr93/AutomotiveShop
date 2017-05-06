@@ -31,6 +31,19 @@ namespace AutomotiveShop.model
             return new AutomotiveShopDbContext();
         }
 
+        public DbSet<CarDetails> CarsDetails { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+  
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductByCar> ProductsByCar  { get; set; }
+
+        public DbSet<ProductCopy> ProductCopies { get; set; }
+
+        public DbSet<ProductInOrder> ProductsInOrder { get; set; }
+
+        public DbSet<Subcategory> Subcategories { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace AutomotiveShop.web.Models
+namespace AutomotiveShop.service.ViewModels.Users
 {
     public class ExternalLoginConfirmationViewModel
     {
