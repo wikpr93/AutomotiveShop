@@ -11,8 +11,10 @@ namespace AutomotiveShop.model
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ProductId { get; set; }
-        public string Name { get; set; }
 
+        [Display(Name = "Product")]
+        public string Name { get; set; }
+        public double Price { get; set; }
         public virtual List<ProductCopy> Copies { get; set; }
 
         public virtual List<ProductByCar> CarsByProduct { get; set; }

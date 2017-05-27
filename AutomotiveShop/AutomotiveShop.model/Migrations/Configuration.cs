@@ -62,12 +62,12 @@ namespace AutomotiveShop.model.Migrations
             }
             var products = new List<Product>()
             {
-                new Product() {Name = "GENUINE BREMBO INTERNALLY VENTED FRONT BRAKE DISCS 09.5674.21 - Ø 276 mm", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Brake Discs")},
-                new Product() {Name = "Corsa VXR Front & Rear Dimpled Grooved Brake Discs & Mintex Pads", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Brake Discs")},
-                new Product() {Name = "GENUINE ASTRA ZAFIRA VECTRA SIGNUM WATER PUMP PIPE 1.9 8v DIESEL ENGINE 93194989", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Cooling")},
-                new Product() {Name = "2x Rear Replacement Gas Pressure Strut OE Quality Suspension Shock Absorber", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Suspension & Steering") },
-                new Product() {Name = "NEW FRONT LEFT OR RIGHT SUSPENSION TRACK CONTROL ARM BUSH 9443882", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Suspension & Steering")},
-                new Product() {Name = "1 x Genuine Range Rover Sport 2002-2013 Rear Suspension Toe Link LR019117", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Suspension & Steering") }
+                new Product() {Name = "GENUINE BREMBO INTERNALLY VENTED FRONT BRAKE DISCS 09.5674.21 - Ø 276 mm", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Brake Discs"), Price = 10.99},
+                new Product() {Name = "Corsa VXR Front & Rear Dimpled Grooved Brake Discs & Mintex Pads", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Brake Discs"), Price = 24.99},
+                new Product() {Name = "GENUINE ASTRA ZAFIRA VECTRA SIGNUM WATER PUMP PIPE 1.9 8v DIESEL ENGINE 93194989", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Cooling"), Price = 5.99},
+                new Product() {Name = "2x Rear Replacement Gas Pressure Strut OE Quality Suspension Shock Absorber", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Suspension & Steering"), Price = 9.99},
+                new Product() {Name = "NEW FRONT LEFT OR RIGHT SUSPENSION TRACK CONTROL ARM BUSH 9443882", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Suspension & Steering"), Price = 99.99},
+                new Product() {Name = "1 x Genuine Range Rover Sport 2002-2013 Rear Suspension Toe Link LR019117", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Suspension & Steering"), Price = 449.99}
             };
 
             products.ForEach(p => context.Products.Add(p));

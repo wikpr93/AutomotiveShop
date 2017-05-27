@@ -1,0 +1,22 @@
+﻿@model AutomotiveShop.model.Subcategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+
+<div>
+    <ul>
+        @foreach (var product in Model.Products)
+        {
+            <li>@Html.ActionLink(@product.Name, "Details", "Products", new {productId = product.ProductId}, null)</li>
+        }
+    </ul>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubcategoryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -14,7 +14,7 @@ namespace AutomotiveShop.model
 
         public bool IsCompleted { get; set; }
 
-        public virtual List<ProductInOrder> ProductsInOrder { get; set; }
+        public virtual List<ProductCopy> ProductsInOrder { get; set; }
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]
@@ -22,7 +22,7 @@ namespace AutomotiveShop.model
 
         public Order()
         {
-            ProductsInOrder = new List<ProductInOrder>();
+            ProductsInOrder = new List<ProductCopy>();
         }
     }
 }

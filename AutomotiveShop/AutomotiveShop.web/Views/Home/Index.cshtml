@@ -9,16 +9,16 @@
         @foreach (var category in Model)
         {
             <li>
-                @category.Name
+                @Html.ActionLink(@category.Name, "Details", "Categories", new { categoryId = category.CategoryId }, null)
                 <ul>
                     @foreach (var subcategory in category.Subcategories)
                     {
                         <li>
-                            @subcategory.Name
+                            @Html.ActionLink(@subcategory.Name, "Details", "Subcategories", new { subcategoryId = subcategory.SubcategoryId}, null)
                             <ul>
                                 @foreach (var product in subcategory.Products)
                                 {
-                                    <li>@product.Name</li>
+                                    <li>@Html.ActionLink(@product.Name, "Details", "Products", new {productId = product.ProductId}, null)</li>
                                 }
                             </ul>
                         </li>

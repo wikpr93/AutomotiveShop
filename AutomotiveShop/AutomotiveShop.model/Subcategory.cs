@@ -12,6 +12,7 @@ namespace AutomotiveShop.model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid SubcategoryId { get; set; }
 
+        [Display(Name = "Subcategory")]
         public string Name { get; set; }
 
         public virtual List<Product> Products { get; set; }

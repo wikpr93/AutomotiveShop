@@ -13,6 +13,8 @@ namespace AutomotiveShop.model
         public Guid CarDetailsId { get; set; }
         public string Producent { get; set; }
         public string Model { get; set; }
+
+        [Display(Name = "Year of production")]
         public int YearOfProduction { get; set; }
 
         public virtual List<ProductByCar> ProductsByCar { get; set; }

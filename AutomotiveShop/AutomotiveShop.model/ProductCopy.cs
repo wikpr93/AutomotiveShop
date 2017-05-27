@@ -18,11 +18,9 @@ namespace AutomotiveShop.model
 
         public virtual Product Product { get; set; }
 
-        public virtual List<ProductInOrder> OrdersByProduct { get; set; }
-
-        public ProductCopy()
-        {
-            OrdersByProduct = new List<ProductInOrder>();
-        }
+        [ForeignKey("Order")]
+        public Guid OrderId { get; set; }
+        public virtual Order Order { get; set; }
+        
     }
 }
