@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutomotiveShop.model;
+using AutomotiveShop.service.Service;
+using AutomotiveShop.service.ViewModels.Categories;
 
 namespace AutomotiveShop.web.Controllers
 {
     public class CategoriesController : Controller
     {
-        private AutomotiveShopDbContext db = new AutomotiveShopDbContext();
-
+        private CategoryService _categoryService = new CategoryService();
         // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            return View(_categoryService.GetCategories());
         }
 
         // GET: Categories/Details/5
@@ -27,7 +28,7 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(categoryId);
+            Category category = _categoryService.GetCategoryById(categoryId);
             if (category == null)
             {
                 return HttpNotFound();
@@ -46,17 +47,15 @@ namespace AutomotiveShop.web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoryId,Name")] Category category)
+        public ActionResult Create([Bind(Include = "CategoryId,Name")] NewCategoryViewModel categoryToCreate)
         {
             if (ModelState.IsValid)
             {
-                category.CategoryId = Guid.NewGuid();
-                db.Categories.Add(category);
-                db.SaveChanges();
+                _categoryService.Create(categoryToCreate);
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(categoryToCreate);
         }
 
         // GET: Categories/Edit/5
@@ -66,12 +65,19 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(categoryId);
+            Category category = _categoryService.GetCategoryById(categoryId);
+
             if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+
+            CategoryToEditViewModel categoryToEdit = new CategoryToEditViewModel()
+            {
+                CategoryId = category.CategoryId,
+                Name = category.Name
+            };
+            return View(categoryToEdit);
         }
 
         // POST: Categories/Edit/5
@@ -79,12 +85,11 @@ namespace AutomotiveShop.web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoryId,Name")] Category category)
+        public ActionResult Edit([Bind(Include = "CategoryId,Name")] CategoryToEditViewModel category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
+                _categoryService.Edit(category);
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -97,7 +102,7 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(categoryId);
+            Category category = _categoryService.GetCategoryById(categoryId);
             if (category == null)
             {
                 return HttpNotFound();
@@ -110,9 +115,8 @@ namespace AutomotiveShop.web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid categoryId)
         {
-            Category category = db.Categories.Find(categoryId);
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            Category category = _categoryService.GetCategoryById(categoryId);
+            _categoryService.Remove(category);
             return RedirectToAction("Index");
         }
 
@@ -120,7 +124,7 @@ namespace AutomotiveShop.web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _categoryService.Dispose();
             }
             base.Dispose(disposing);
         }

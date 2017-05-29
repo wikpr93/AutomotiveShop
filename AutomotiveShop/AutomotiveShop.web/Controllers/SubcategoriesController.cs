@@ -7,18 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutomotiveShop.model;
+using AutomotiveShop.service.Service;
+using AutomotiveShop.service.ViewModels.Categories;
+using AutomotiveShop.service.ViewModels.Subcategories;
 
 namespace AutomotiveShop.web.Controllers
 {
     public class SubcategoriesController : Controller
     {
-        private AutomotiveShopDbContext db = new AutomotiveShopDbContext();
+        private SubcategoryService _subcategoryService = new SubcategoryService();
+        private CategoryService _categoryService = new CategoryService();
 
         // GET: Subcategories
         public ActionResult Index()
         {
-            var subcategories = db.Subcategories.Include(s => s.Category);
-            return View(subcategories.ToList());
+            return View(_subcategoryService.GetSubcategories());
         }
 
         // GET: Subcategories/Details/5
@@ -28,7 +31,7 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subcategory subcategory = db.Subcategories.Find(subcategoryId);
+            Subcategory subcategory = _subcategoryService.GetSubcategoryById(subcategoryId);
             if (subcategory == null)
             {
                 return HttpNotFound();
@@ -37,9 +40,25 @@ namespace AutomotiveShop.web.Controllers
         }
 
         // GET: Subcategories/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid? categoryId)
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
+            if (categoryId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Category currentCategory = _categoryService.GetCategoryById(categoryId);
+            if (currentCategory == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                TempData["CurrentCategory"] = currentCategory.Name;
+            }
+            NewCategoryViewModel categoryToCreate = new NewCategoryViewModel()
+            {
+                CategoryId = currentCategory.CategoryId
+            };
             return View();
         }
 
@@ -48,18 +67,16 @@ namespace AutomotiveShop.web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SubcategoryId,Name,CategoryId")] Subcategory subcategory)
+        public ActionResult Create([Bind(Include = "SubcategoryId,Name,CategoryId")] NewSubcategoryViewModel subcategoryToCreate)
         {
             if (ModelState.IsValid)
             {
-                subcategory.SubcategoryId = Guid.NewGuid();
-                db.Subcategories.Add(subcategory);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                _subcategoryService.Create(subcategoryToCreate);
+                return RedirectToAction("Index", "Categories");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", subcategory.CategoryId);
-            return View(subcategory);
+            //ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", subcategory.CategoryId);
+            return View(subcategoryToCreate);
         }
 
         // GET: Subcategories/Edit/5
@@ -69,13 +86,19 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subcategory subcategory = db.Subcategories.Find(subcategoryId);
+            Subcategory subcategory = _subcategoryService.GetSubcategoryById(subcategoryId);
             if (subcategory == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", subcategory.CategoryId);
-            return View(subcategory);
+
+            SubcategoryToEditViewModel subcategoryToEdit = new SubcategoryToEditViewModel()
+            {
+                SubcategoryId = subcategory.SubcategoryId,
+                Name = subcategory.Name,
+                CategoryName = subcategory.Category.Name
+            };
+            return View(subcategoryToEdit);
         }
 
         // POST: Subcategories/Edit/5
@@ -83,16 +106,14 @@ namespace AutomotiveShop.web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SubcategoryId,Name,CategoryId")] Subcategory subcategory)
+        public ActionResult Edit([Bind(Include = "SubcategoryId,Name,CategoryId")] SubcategoryToEditViewModel subcategoryToEdit)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subcategory).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                _subcategoryService.Edit(subcategoryToEdit);
+                return RedirectToAction("Index", "Categories");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", subcategory.CategoryId);
-            return View(subcategory);
+            return View(subcategoryToEdit);
         }
 
         // GET: Subcategories/Delete/5
@@ -102,7 +123,7 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subcategory subcategory = db.Subcategories.Find(subcategoryId);
+            Subcategory subcategory = _subcategoryService.GetSubcategoryById(subcategoryId);
             if (subcategory == null)
             {
                 return HttpNotFound();
@@ -115,17 +136,16 @@ namespace AutomotiveShop.web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid subcategoryId)
         {
-            Subcategory subcategory = db.Subcategories.Find(subcategoryId);
-            db.Subcategories.Remove(subcategory);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Subcategory subcategory = _subcategoryService.GetSubcategoryById(subcategoryId);
+            _subcategoryService.Remove(subcategory);
+            return RedirectToAction("Index", "Categories");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _subcategoryService.Dispose();
             }
             base.Dispose(disposing);
         }

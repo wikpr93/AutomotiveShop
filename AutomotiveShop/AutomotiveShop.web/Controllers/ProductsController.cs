@@ -7,18 +7,22 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutomotiveShop.model;
+using AutomotiveShop.service.Service;
+using AutomotiveShop.service.ViewModels.Products;
 
 namespace AutomotiveShop.web.Controllers
 {
     public class ProductsController : Controller
     {
-        private AutomotiveShopDbContext db = new AutomotiveShopDbContext();
+        private ProductService _productService = new ProductService();
+        private CategoryService _categoryService = new CategoryService();
+        private SubcategoryService _subcategoryService = new SubcategoryService();
+
 
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Subcategory);
-            return View(products.ToList());
+            return View(_productService.GetProducts());
         }
 
         // GET: Products/Details/5
@@ -28,7 +32,8 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(productId);
+            Product product = _productService.GetProductById(productId);
+
             if (product == null)
             {
                 return HttpNotFound();
@@ -37,10 +42,34 @@ namespace AutomotiveShop.web.Controllers
         }
 
         // GET: Products/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid? subcategoryId)
         {
-            ViewBag.SubcategoryId = new SelectList(db.Subcategories, "SubcategoryId", "Name");
-            return View();
+            if (subcategoryId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Subcategory currentSubcategory = _subcategoryService.GetSubcategoryById(subcategoryId);
+            if (currentSubcategory == null)
+            {
+                return HttpNotFound();
+            }
+
+            Category currentCategory = _categoryService.GetCategoryById(currentSubcategory.Category.CategoryId);
+
+            if (currentCategory == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                TempData["CurrentCategory"] = currentCategory.Name;
+                TempData["CurrentSubcategory"] = currentSubcategory.Name;
+            }
+            NewProductViewModel productToCreate = new NewProductViewModel();
+
+            productToCreate.SubcategoryId = (Guid)subcategoryId;
+
+            return View(productToCreate);
         }
 
         // POST: Products/Create
@@ -48,17 +77,15 @@ namespace AutomotiveShop.web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,Name,SubcategoryId")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,Name,Price,ItemsAvailable,CategoryId,SubcategoryId")] NewProductViewModel product)
         {
             if (ModelState.IsValid)
             {
                 product.ProductId = Guid.NewGuid();
-                db.Products.Add(product);
-                db.SaveChanges();
+                _productService.Create(product);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SubcategoryId = new SelectList(db.Subcategories, "SubcategoryId", "Name", product.SubcategoryId);
             return View(product);
         }
 
@@ -69,13 +96,26 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(productId);
+            Product product = _productService.GetProductById(productId);
+
             if (product == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SubcategoryId = new SelectList(db.Subcategories, "SubcategoryId", "Name", product.SubcategoryId);
-            return View(product);
+
+            ProductToEditViewModel productToEdit = new ProductToEditViewModel()
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Price = product.Price,
+                ItemsAvailable = product.ItemsAvailable,
+                CategoryName = product.Subcategory.Category.Name,
+                SubcategoryName = product.Subcategory.Name
+
+            };
+            //ViewBag.SubcategoryId = new SelectList(db.Subcategories, "SubcategoryId", "Name", product.SubcategoryId);
+
+            return View(productToEdit);
         }
 
         // POST: Products/Edit/5
@@ -83,15 +123,14 @@ namespace AutomotiveShop.web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,Name,SubcategoryId")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductId,Name,Price,ItemsAvailable")] ProductToEditViewModel product)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+                _productService.Edit(product);
                 return RedirectToAction("Index");
             }
-            ViewBag.SubcategoryId = new SelectList(db.Subcategories, "SubcategoryId", "Name", product.SubcategoryId);
+            //ViewBag.SubcategoryId = new SelectList(db.Subcategories, "SubcategoryId", "Name", product.SubcategoryId);
             return View(product);
         }
 
@@ -102,7 +141,7 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(productId);
+            Product product = _productService.GetProductById(productId);
             if (product == null)
             {
                 return HttpNotFound();
@@ -115,9 +154,8 @@ namespace AutomotiveShop.web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid productId)
         {
-            Product product = db.Products.Find(productId);
-            db.Products.Remove(product);
-            db.SaveChanges();
+            Product product = _productService.GetProductById(productId);
+            _productService.Remove(product);
             return RedirectToAction("Index");
         }
 
@@ -125,9 +163,33 @@ namespace AutomotiveShop.web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _productService.Dispose();
             }
             base.Dispose(disposing);
         }
+
+
+        public ActionResult Buy(Guid? productId)
+        {
+            if (productId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product productToBuy = _productService.GetProductById(productId);
+
+            if (productToBuy == null)
+            {
+                return HttpNotFound();
+            }
+
+            _productService.Buy(productToBuy);
+
+            BoughtItemViewModel model = new BoughtItemViewModel()
+            {
+                Name = productToBuy.Name
+            };
+            return View("Bought", model);
+        }
+
     }
 }

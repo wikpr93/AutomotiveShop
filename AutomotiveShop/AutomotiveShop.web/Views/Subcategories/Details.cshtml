@@ -17,6 +17,8 @@
 
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SubcategoryId }) |
+    @Html.ActionLink("Create product", "Create", "Products", new {subcategoryId = Model.SubcategoryId}, null) |
+    @Html.ActionLink("Edit", "Edit", new { subcategoryId = Model.SubcategoryId }) |
+    @Html.ActionLink("Delete", "Delete", new { subcategoryId = Model.SubcategoryId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

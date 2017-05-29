@@ -109,6 +109,14 @@
     <Compile Include="Migrations\201705271758215_ProductCopyOrderRelationFix.Designer.cs">
       <DependentUpon>201705271758215_ProductCopyOrderRelationFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705290942042_ProductFix.cs" />
+    <Compile Include="Migrations\201705290942042_ProductFix.Designer.cs">
+      <DependentUpon>201705290942042_ProductFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705291129543_OrderFix.cs" />
+    <Compile Include="Migrations\201705291129543_OrderFix.Designer.cs">
+      <DependentUpon>201705291129543_OrderFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Product.cs" />
@@ -127,6 +135,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705271758215_ProductCopyOrderRelationFix.resx">
       <DependentUpon>201705271758215_ProductCopyOrderRelationFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705290942042_ProductFix.resx">
+      <DependentUpon>201705290942042_ProductFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705291129543_OrderFix.resx">
+      <DependentUpon>201705291129543_OrderFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

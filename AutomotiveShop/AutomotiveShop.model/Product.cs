@@ -15,6 +15,8 @@ namespace AutomotiveShop.model
         [Display(Name = "Product")]
         public string Name { get; set; }
         public double Price { get; set; }
+
+        public int ItemsAvailable { get; set; }
         public virtual List<ProductCopy> Copies { get; set; }
 
         public virtual List<ProductByCar> CarsByProduct { get; set; }
@@ -22,6 +24,8 @@ namespace AutomotiveShop.model
         [ForeignKey("Subcategory")]
         public Guid SubcategoryId { get; set; }
         public virtual Subcategory Subcategory { get; set; }
+
+
 
         public Product()
         {

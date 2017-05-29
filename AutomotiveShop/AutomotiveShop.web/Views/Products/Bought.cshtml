@@ -1,0 +1,30 @@
+﻿@model AutomotiveShop.service.ViewModels.Products.BoughtItemViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    Item bought
+
+</div>
+<div>
+    Pay here: todo
+
+</div>
+@*@Html.ActionLink("Pay for product", "Pay", "Products", new {productId = Model.ProductId}, null)*@
+
+

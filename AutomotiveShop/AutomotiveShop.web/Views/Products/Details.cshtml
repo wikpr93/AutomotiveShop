@@ -44,7 +44,7 @@
         </dt>
 
         <dd>
-            @Model.Copies.Count(c => c.Order != null)
+            @Model.Copies.Count()
             @Html.Raw(" user(s)")
         </dd>
         <dt>
@@ -52,11 +52,12 @@
         </dt>
 
         <dd>
-            @(Model.Copies.Any() ? Html.Raw("In stock (" + @Model.Copies.Count() + " copies)") : Html.Raw("Unavailable"))
+            @(Model.ItemsAvailable > 0 ? Html.Raw("In stock (" + @Model.ItemsAvailable + " items available)") : Html.Raw("Unavailable"))
         </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @(Model.ItemsAvailable > 0 ? Html.ActionLink("Buy", "Buy", "Products", new {productId = Model.ProductId}, null) : Html.Raw("Item unavailable")) |
+    @Html.ActionLink("Edit", "Edit", new {productId = Model.ProductId}) |
     @Html.ActionLink("Back to List", "Index")
 </p>

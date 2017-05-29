@@ -23,6 +23,7 @@
 </ul>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }) |
+    @Html.ActionLink("Create subcategory", "Create", "Subcategories", new {categoryId = Model.CategoryId}, null) |
+    @Html.ActionLink("Edit", "Edit", new {categoryId = Model.CategoryId}) |
     @Html.ActionLink("Back to List", "Index")
 </p>
