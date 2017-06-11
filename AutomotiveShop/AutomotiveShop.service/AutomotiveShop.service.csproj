@@ -134,6 +134,7 @@
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\SubcategoryService.cs" />
+    <Compile Include="Service\UserService.cs" />
     <Compile Include="ViewModels\Categories\CategoryToEditViewModel.cs" />
     <Compile Include="ViewModels\Categories\NewCategoryViewModel.cs" />
     <Compile Include="ViewModels\Products\BoughtItemViewModel.cs" />

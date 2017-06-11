@@ -12,11 +12,13 @@ using AutomotiveShop.service.ViewModels.Products;
 
 namespace AutomotiveShop.web.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private ProductService _productService = new ProductService();
         private CategoryService _categoryService = new CategoryService();
         private SubcategoryService _subcategoryService = new SubcategoryService();
+        private UserService _userService = new UserService();
 
 
         // GET: Products
@@ -26,6 +28,7 @@ namespace AutomotiveShop.web.Controllers
         }
 
         // GET: Products/Details/5
+        [AllowAnonymous]
         public ActionResult Details(Guid? productId)
         {
             if (productId == null)
@@ -182,7 +185,7 @@ namespace AutomotiveShop.web.Controllers
                 return HttpNotFound();
             }
 
-            _productService.Buy(productToBuy);
+            _productService.Buy(productToBuy, _userService.ReturnUserByUsername(User.Identity.Name));
 
             BoughtItemViewModel model = new BoughtItemViewModel()
             {

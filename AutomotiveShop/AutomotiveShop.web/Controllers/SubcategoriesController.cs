@@ -13,18 +13,21 @@ using AutomotiveShop.service.ViewModels.Subcategories;
 
 namespace AutomotiveShop.web.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class SubcategoriesController : Controller
     {
         private SubcategoryService _subcategoryService = new SubcategoryService();
         private CategoryService _categoryService = new CategoryService();
 
         // GET: Subcategories
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            return View(_subcategoryService.GetSubcategories());
+            return RedirectToAction("Index", "Categories");
         }
 
         // GET: Subcategories/Details/5
+        [AllowAnonymous]
         public ActionResult Details(Guid? subcategoryId)
         {
             if (subcategoryId == null)

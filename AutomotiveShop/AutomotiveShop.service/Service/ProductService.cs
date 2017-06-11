@@ -62,7 +62,7 @@ namespace AutomotiveShop.service.Service
             _dbContext.Dispose();
         }
 
-        public void Buy(Product productToBuy)
+        public void Buy(Product productToBuy, ApplicationUser user)
         {
             ProductCopy boughtItem = new ProductCopy()
             {
@@ -73,6 +73,19 @@ namespace AutomotiveShop.service.Service
             productToBuy.ItemsAvailable--;
             _dbContext.ProductCopies.Add(boughtItem);
             _dbContext.SaveChanges();
+
+            // todo shopping cart
+
+            Order newOrder = new Order();
+            List<ProductCopy> list = new List<ProductCopy>();
+            list.Add(boughtItem);
+            newOrder.OrderId = Guid.NewGuid();
+            newOrder.DateOfPurchase = DateTime.Now;
+            newOrder.ProductsInOrder = list;
+            newOrder.UserId = user.Id;
+            _dbContext.Orders.Add(newOrder);
+            _dbContext.SaveChanges();
+
 
         }
 

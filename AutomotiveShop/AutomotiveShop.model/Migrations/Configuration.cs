@@ -2,6 +2,8 @@
 
 namespace AutomotiveShop.model.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -73,6 +75,53 @@ namespace AutomotiveShop.model.Migrations
             products.ForEach(p => context.Products.Add(p));
             context.SaveChanges();
 
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+
+            string password = "P@ssw0rd";
+            foreach (var user in context.Users)
+            {
+                context.Users.Remove(user);
+            }
+            var admin = new ApplicationUser()
+            {
+                UserName = "admin@admin.com",
+                Email = "admin@admin.com"
+            };
+
+            var usr = new ApplicationUser()
+            {
+                UserName = "user@user.com",
+                Email = "user@user.com"
+            };
+
+            var createResult1 = userManager.Create(admin, password);
+            var createResult2 = userManager.Create(usr, password);
+
+            var roles = new List<string>
+            {
+                "Administrator",
+                "User"
+            };
+
+            foreach (var role in roles)
+            {
+                if (!roleManager.RoleExists(role))
+                {
+                    roleManager.Create(new IdentityRole(role));
+                }
+            }
+
+            if (createResult1.Succeeded)
+            {
+                userManager.AddToRole(admin.Id, roles[0]);
+            }
+
+            if (createResult2.Succeeded)
+            {
+                userManager.AddToRole(usr.Id, roles[1]);
+            }
         }
     }
 }

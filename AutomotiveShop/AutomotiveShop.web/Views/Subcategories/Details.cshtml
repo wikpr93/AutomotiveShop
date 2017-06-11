@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isAdministrator = User.IsInRole("Administrator");
 }
 
 <h2>@Model.Name</h2>
@@ -17,7 +18,11 @@
 
 </div>
 <p>
-    @Html.ActionLink("Create product", "Create", "Products", new {subcategoryId = Model.SubcategoryId}, null) |
+    @if (isAdministrator)
+    {
+        @Html.ActionLink("Create product", "Create", "Products", new { subcategoryId = Model.SubcategoryId }, null)
+        @Html.Raw(" |")
+    }
     @Html.ActionLink("Edit", "Edit", new { subcategoryId = Model.SubcategoryId }) |
     @Html.ActionLink("Delete", "Delete", new { subcategoryId = Model.SubcategoryId }) |
     @Html.ActionLink("Back to List", "Index")

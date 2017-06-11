@@ -12,16 +12,20 @@ using AutomotiveShop.service.ViewModels.Categories;
 
 namespace AutomotiveShop.web.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class CategoriesController : Controller
     {
         private CategoryService _categoryService = new CategoryService();
         // GET: Categories
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(_categoryService.GetCategories());
         }
 
         // GET: Categories/Details/5
+        [AllowAnonymous]
         public ActionResult Details(Guid? categoryId)
         {
             if (categoryId == null)
