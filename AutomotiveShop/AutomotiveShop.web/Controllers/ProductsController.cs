@@ -12,7 +12,7 @@ using AutomotiveShop.service.ViewModels.Products;
 
 namespace AutomotiveShop.web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class ProductsController : Controller
     {
         private ProductService _productService = new ProductService();
@@ -86,7 +86,7 @@ namespace AutomotiveShop.web.Controllers
             {
                 product.ProductId = Guid.NewGuid();
                 _productService.Create(product);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(product);

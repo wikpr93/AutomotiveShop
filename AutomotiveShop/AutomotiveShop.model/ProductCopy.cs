@@ -7,6 +7,7 @@ using System.Web;
 
 namespace AutomotiveShop.model
 {
+    [Table("ProductsCopies")]
     public class ProductCopy
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,7 +16,6 @@ namespace AutomotiveShop.model
         
         [ForeignKey("Product")]
         public Guid ProductId { get; set; }
-
         public virtual Product Product { get; set; }
 
         [ForeignKey("Order")]

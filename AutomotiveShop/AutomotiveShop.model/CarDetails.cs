@@ -7,6 +7,7 @@ using System.Web;
 
 namespace AutomotiveShop.model
 {
+    [Table("CarsDetails")]
     public class CarDetails
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

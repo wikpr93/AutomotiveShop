@@ -12,7 +12,7 @@ namespace AutomotiveShop.web.Controllers
         public ActionResult Index()
         {
             AutomotiveShopDbContext context = new AutomotiveShopDbContext();
-            return View(context.Categories.ToList());
+            return View(context.Categories?.ToList());
         }
 
         public ActionResult About()

@@ -64,15 +64,26 @@ namespace AutomotiveShop.service.Service
 
         public void Buy(Product productToBuy, ApplicationUser user)
         {
+            
+            Order order = new Order()
+            {
+                OrderId = Guid.NewGuid(),
+                IsCompleted = true,
+                DateOfPurchase = DateTime.Now,
+                UserId = user.Id
+            };
+            _dbContext.Orders.Add(order);
+            _dbContext.SaveChanges();
             ProductCopy boughtItem = new ProductCopy()
             {
                 ProductCopyId = Guid.NewGuid(),
                 ProductId = productToBuy.ProductId,
-                Price = productToBuy.Price
+                Price = productToBuy.Price,
+                OrderId = order.OrderId
             };
             productToBuy.ItemsAvailable--;
-            _dbContext.ProductCopies.Add(boughtItem);
-            _dbContext.SaveChanges();
+            _dbContext.ProductsCopies.Add(boughtItem);
+            
 
             // todo shopping cart
 
