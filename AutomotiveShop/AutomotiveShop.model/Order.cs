@@ -14,12 +14,14 @@ namespace AutomotiveShop.model
 
         public bool IsCompleted { get; set; }
 
-        public virtual List<ProductCopy> ProductsInOrder { get; set; }
-
         public DateTime DateOfPurchase { get; set; }
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
+
+        public virtual List<ProductCopy> ProductsInOrder { get; set; }
+
+        public virtual DelieveryAddress DelieveryAdress { get; set; }
 
         public Order()
         {

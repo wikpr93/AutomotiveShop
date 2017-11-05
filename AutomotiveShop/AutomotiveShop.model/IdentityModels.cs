@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutomotiveShop.model;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace AutomotiveShop.model
 {
@@ -17,6 +18,8 @@ namespace AutomotiveShop.model
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual List<DelieveryAddress> DelieveryAdresses { get; set; }
     }
 
     public class AutomotiveShopDbContext : IdentityDbContext<ApplicationUser>
@@ -44,5 +47,7 @@ namespace AutomotiveShop.model
         public DbSet<ProductCopy> ProductsCopies { get; set; }
 
         public DbSet<Subcategory> Subcategories { get; set; }
+
+        public DbSet<DelieveryAddress> DelieveryAddresses { get; set; }
     }
 }

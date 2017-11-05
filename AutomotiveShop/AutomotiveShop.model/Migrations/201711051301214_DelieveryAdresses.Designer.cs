@@ -7,13 +7,13 @@ namespace AutomotiveShop.model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class OrderFix : IMigrationMetadata
+    public sealed partial class DelieveryAdresses : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(OrderFix));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DelieveryAdresses));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705291129543_OrderFix"; }
+            get { return "201711051301214_DelieveryAdresses"; }
         }
         
         string IMigrationMetadata.Source

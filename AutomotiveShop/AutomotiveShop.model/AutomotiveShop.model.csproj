@@ -97,10 +97,15 @@
   <ItemGroup>
     <Compile Include="CarDetails.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="DelieveryAddress.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\201710301842205_Init.cs" />
     <Compile Include="Migrations\201710301842205_Init.Designer.cs">
       <DependentUpon>201710301842205_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711051301214_DelieveryAdresses.cs" />
+    <Compile Include="Migrations\201711051301214_DelieveryAdresses.Designer.cs">
+      <DependentUpon>201711051301214_DelieveryAdresses.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
@@ -113,6 +118,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710301842205_Init.resx">
       <DependentUpon>201710301842205_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051301214_DelieveryAdresses.resx">
+      <DependentUpon>201711051301214_DelieveryAdresses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
