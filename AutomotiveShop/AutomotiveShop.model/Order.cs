@@ -21,7 +21,7 @@ namespace AutomotiveShop.model
 
         public virtual List<ProductCopy> ProductsInOrder { get; set; }
 
-        public virtual DelieveryAddress DelieveryAdress { get; set; }
+        public virtual DeliveryAddress DeliveryAddress { get; set; }
 
         public Order()
         {

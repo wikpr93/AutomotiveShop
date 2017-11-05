@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201711051301214_DelieveryAdresses.Designer.cs">
       <DependentUpon>201711051301214_DelieveryAdresses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711051316317_MisspellingFix.cs" />
+    <Compile Include="Migrations\201711051316317_MisspellingFix.Designer.cs">
+      <DependentUpon>201711051316317_MisspellingFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Product.cs" />
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711051301214_DelieveryAdresses.resx">
       <DependentUpon>201711051301214_DelieveryAdresses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051316317_MisspellingFix.resx">
+      <DependentUpon>201711051316317_MisspellingFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

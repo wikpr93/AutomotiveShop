@@ -6,9 +6,9 @@ using System.Web;
 
 namespace AutomotiveShop.model
 {
-    public class DelieveryAddress
+    public class DeliveryAddress
     {
-        public Guid DelieveryAddressId { get; set; }
+        public Guid DeliveryAddressId { get; set; }
 
         public string CompanyName { get; set; }
 

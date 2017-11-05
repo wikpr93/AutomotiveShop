@@ -19,7 +19,7 @@ namespace AutomotiveShop.model
             return userIdentity;
         }
 
-        public virtual List<DelieveryAddress> DelieveryAdresses { get; set; }
+        public virtual List<DeliveryAddress> DeliveryAdresses { get; set; }
     }
 
     public class AutomotiveShopDbContext : IdentityDbContext<ApplicationUser>
@@ -48,6 +48,6 @@ namespace AutomotiveShop.model
 
         public DbSet<Subcategory> Subcategories { get; set; }
 
-        public DbSet<DelieveryAddress> DelieveryAddresses { get; set; }
+        public DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
     }
 }
