@@ -13,6 +13,7 @@ namespace AutomotiveShop.model
         public Guid CategoryId { get; set; }
 
         [Display(Name = "Category")]
+        [Required(ErrorMessage = "Category name is required")]
         public string Name { get; set; }
 
         public virtual List<Subcategory> Subcategories { get; set; }

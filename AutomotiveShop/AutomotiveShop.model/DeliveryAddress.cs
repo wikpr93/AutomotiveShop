@@ -17,11 +17,14 @@ namespace AutomotiveShop.model
         public string Name { get; set; }
 
         public string Surname { get; set; }
-
+        
+        [Required(ErrorMessage = "Number of the building is required")]
         public string StreetName { get; set; }
 
+        [Required(ErrorMessage = "Postcode is required")]
         public string Postcode { get; set; }
 
+        [Required(ErrorMessage = "City is required")]
         public string City { get; set; }
 
         public string PhoneNumber { get; set; }

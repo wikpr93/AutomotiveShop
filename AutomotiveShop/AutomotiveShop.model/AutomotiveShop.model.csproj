@@ -115,6 +115,10 @@
     <Compile Include="Migrations\201711080740202_OrderState.Designer.cs">
       <DependentUpon>201711080740202_OrderState.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711080752404_Annotations.cs" />
+    <Compile Include="Migrations\201711080752404_Annotations.Designer.cs">
+      <DependentUpon>201711080752404_Annotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Product.cs" />
@@ -135,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711080740202_OrderState.resx">
       <DependentUpon>201711080740202_OrderState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711080752404_Annotations.resx">
+      <DependentUpon>201711080752404_Annotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
