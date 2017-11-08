@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace AutomotiveShop.model
+namespace AutomotiveShop.service.ViewModels.DeliveryAddress
 {
-    public class DeliveryAddress
+    public class NewDeliveryAddressViewModel
     {
-        public Guid DeliveryAddressId { get; set; }
-
         public string CompanyName { get; set; }
 
         public string Name { get; set; }
@@ -25,9 +22,5 @@ namespace AutomotiveShop.model
         public string PhoneNumber { get; set; }
 
         public string AdditionalInfo { get; set; }
-
-        public string UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual ApplicationUser User { get; set; }
     }
 }

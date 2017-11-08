@@ -97,7 +97,7 @@
   <ItemGroup>
     <Compile Include="CarDetails.cs" />
     <Compile Include="Category.cs" />
-    <Compile Include="DelieveryAddress.cs" />
+    <Compile Include="DeliveryAddress.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\201710301842205_Init.cs" />
     <Compile Include="Migrations\201710301842205_Init.Designer.cs">

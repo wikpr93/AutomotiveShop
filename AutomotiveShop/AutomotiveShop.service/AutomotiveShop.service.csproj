@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -137,6 +138,7 @@
     <Compile Include="Service\UserService.cs" />
     <Compile Include="ViewModels\Categories\CategoryToEditViewModel.cs" />
     <Compile Include="ViewModels\Categories\NewCategoryViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryAddress\NewDeliveryAddressViewModel.cs" />
     <Compile Include="ViewModels\Products\BoughtItemViewModel.cs" />
     <Compile Include="ViewModels\Products\NewProductViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductToEditViewModel.cs" />
