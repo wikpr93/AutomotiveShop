@@ -68,7 +68,7 @@ namespace AutomotiveShop.service.Service
             Order order = new Order()
             {
                 OrderId = Guid.NewGuid(),
-                IsCompleted = true,
+                OrderState = OrderState.New,
                 DateOfPurchase = DateTime.Now,
                 UserId = user.Id
             };

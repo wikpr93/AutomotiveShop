@@ -12,7 +12,7 @@ namespace AutomotiveShop.model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid OrderId { get; set; }
 
-        public bool IsCompleted { get; set; }
+        public OrderState OrderState { get; set; }
 
         public DateTime DateOfPurchase { get; set; }
         public string UserId { get; set; }
@@ -27,5 +27,13 @@ namespace AutomotiveShop.model
         {
             ProductsInOrder = new List<ProductCopy>();
         }
+    }
+
+    public enum OrderState
+    {
+        New,
+        Sent,
+        Completed,
+        Cancelled
     }
 }
