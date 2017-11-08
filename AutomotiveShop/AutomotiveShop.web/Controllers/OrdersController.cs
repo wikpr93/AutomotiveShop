@@ -18,112 +18,24 @@ namespace AutomotiveShop.web.Controllers
         private OrderService _orderService = new OrderService();
         private ProductService _productService = new ProductService();
         private UserService _userService = new UserService();
-        private ISessionManager _sessionManager;
 
-        public OrdersController(ISessionManager session)
+        public OrdersController()
         {
-            _sessionManager = session;
+
         }
-
-        public List<ItemInCartViewModel> GetCart()
-        {
-            List<ItemInCartViewModel> cart;
-
-            if (_sessionManager.Get<List<ItemInCartViewModel>>(Consts.CartSessionKey) == null)
-            {
-                cart = new List<ItemInCartViewModel>();
-            }
-            else
-            {
-                cart = _sessionManager.Get<List<ItemInCartViewModel>>(Consts.CartSessionKey) as List<ItemInCartViewModel>;
-            }
-
-            return cart;
-        }
-
-        public void AddToCart(Guid productId)
-        {
-            List<ItemInCartViewModel> cart = GetCart();
-            ItemInCartViewModel item = cart.Find(p => p.Product.ProductId == productId);
-
-            if (item != null)
-            {
-                item.Quantity++;
-                item.Value += _productService.GetProductById(item.Product.ProductId).Price;
-            }
-            else
-            {
-                var productToAdd = _productService.GetProductById(productId);
-
-                if (productToAdd != null)
-                {
-                    ItemInCartViewModel newItem = new ItemInCartViewModel()
-                    {
-                        Product = productToAdd,
-                        Quantity = 1,
-                        Value = productToAdd.Price
-                    };
-                    cart.Add(newItem);
-                }
-            }
-
-            _sessionManager.Set(Consts.CartSessionKey, cart);
-        }
-
-        public int RemoveFromCart(Guid productId)
-        {
-            var cart = GetCart();
-            var item = cart.Find(p => p.Product.ProductId == productId);
-
-            if (item != null)
-            {
-                if (item.Quantity > 1)
-                {
-                    item.Quantity--;
-                    return item.Quantity;
-                }
-                else
-                {
-                    cart.Remove(item);
-                }
-            }
-
-            return 0;
-        }
-
-        public double GetCartValue()
-        {
-            var cart = GetCart();
-            return cart.Sum(i => i.Value);
-        }
-
-        public int GetNumberOfItemsInCart()
-        {
-            var cart = GetCart();
-            int quantity = cart.Sum(c => c.Quantity);
-            return quantity;
-        }
-
+       
         public ActionResult Create(DeliveryAddress deliveryAddress)
         {
-            List<Product> products = new List<Product>();
-            foreach(ItemInCartViewModel item in GetCart())
-            {
-                for(int i=0; i<item.Quantity; i++)
-                {
-                    products.Add(item.Product);
-                }
-            }
-            NewOrderViewModel orderToCreate = new NewOrderViewModel();
-            _orderService.Create(orderToCreate, _userService.ReturnUserByUsername(User.Identity.Name));
-
-            return null;
+            _orderService.Create(deliveryAddress, _userService.ReturnUserByUsername(User.Identity.Name));
+            return View("Index", "Home");
         }
-
-        public void PustyKoszyk()
+        
+        public ActionResult AddToCart(Guid productId)
         {
-            _sessionManager.Set<List<ItemInCartViewModel>>(Consts.CartSessionKey, null);
+            _orderService.AddToCart(productId);
+            return RedirectToAction("Details");
         }
+
         // GET: Orders
         public ActionResult Index()
         {
@@ -133,9 +45,15 @@ namespace AutomotiveShop.web.Controllers
         }
 
         // GET: Orders/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details()
         {
-            return null;
+            CartViewModel cart = new CartViewModel();
+            foreach(ItemInCartViewModel item in _orderService.GetCart())
+            {
+                cart.Items.Add(item);
+                cart.Price += item.Value;
+            }
+            return View(cart);
             //if (id == null)
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

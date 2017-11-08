@@ -57,7 +57,7 @@
     </dl>
 </div>
 <p>
-    @(Model.ItemsAvailable > 0 ? Html.ActionLink("Buy", "Buy", "Products", new {productId = Model.ProductId}, null) : Html.Raw("Item unavailable")) |
+    @(Model.ItemsAvailable > 0 ? Html.ActionLink("Add to cart", "AddToCart", "Orders", new {productId = Model.ProductId}, null) : Html.Raw("Item unavailable")) |
     @Html.ActionLink("Edit", "Edit", new {productId = Model.ProductId}) |
     @Html.ActionLink("Back to List", "Index")
 </p>

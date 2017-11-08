@@ -1,4 +1,5 @@
 ﻿using AutomotiveShop.model;
+using AutomotiveShop.model.Infrastructure;
 using AutomotiveShop.service.ViewModels.Orders;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,25 @@ namespace AutomotiveShop.service.Service
     public class OrderService
     {
         private AutomotiveShopDbContext _dbContext = new AutomotiveShopDbContext();
+        private SessionManager _sessionManager = new SessionManager();
+        private ProductService _productService = new ProductService();
 
-        public Guid Create(NewOrderViewModel orderToCreate, ApplicationUser user)
+        public Guid Create(DeliveryAddress deliveryAddress, ApplicationUser user)
         {
+            List<Product> products = new List<Product>();
+            foreach (ItemInCartViewModel item in GetCart())
+            {
+                for (int i = 0; i < item.Quantity; i++)
+                {
+                    products.Add(item.Product);
+                }
+            }
             Order newOrder = new Order();
             newOrder.OrderId = Guid.NewGuid();
             newOrder.DateOfPurchase = DateTime.Now;
-            newOrder.DeliveryAddress = orderToCreate.DeliveryAddress;
-            foreach(Product product in orderToCreate.Products)
+            newOrder.DeliveryAddress = deliveryAddress;
+            newOrder.User = user;
+            foreach(Product product in products)
             {
                 ProductCopy newCopy = new ProductCopy();
                 newCopy.ProductCopyId = Guid.NewGuid();
@@ -30,6 +42,90 @@ namespace AutomotiveShop.service.Service
             _dbContext.Orders.Add(newOrder);
             _dbContext.SaveChanges();
             return Guid.NewGuid();
+        }
+
+        public List<ItemInCartViewModel> GetCart()
+        {
+            List<ItemInCartViewModel> cart;
+
+            if (_sessionManager.Get<List<ItemInCartViewModel>>(Consts.CartSessionKey) == null)
+            {
+                cart = new List<ItemInCartViewModel>();
+            }
+            else
+            {
+                cart = _sessionManager.Get<List<ItemInCartViewModel>>(Consts.CartSessionKey) as List<ItemInCartViewModel>;
+            }
+
+            return cart;
+        }
+
+        public void AddToCart(Guid productId)
+        {
+            List<ItemInCartViewModel> cart = GetCart();
+            ItemInCartViewModel item = cart.Find(p => p.Product.ProductId == productId);
+
+            if (item != null)
+            {
+                item.Quantity++;
+                item.Value += _productService.GetProductById(item.Product.ProductId).Price;
+            }
+            else
+            {
+                var productToAdd = _productService.GetProductById(productId);
+
+                if (productToAdd != null)
+                {
+                    ItemInCartViewModel newItem = new ItemInCartViewModel()
+                    {
+                        Product = productToAdd,
+                        Quantity = 1,
+                        Value = productToAdd.Price
+                    };
+                    cart.Add(newItem);
+                }
+            }
+
+            _sessionManager.Set(Consts.CartSessionKey, cart);
+        }
+
+        public int RemoveFromCart(Guid productId)
+        {
+            var cart = GetCart();
+            var item = cart.Find(p => p.Product.ProductId == productId);
+
+            if (item != null)
+            {
+                if (item.Quantity > 1)
+                {
+                    item.Quantity--;
+                    return item.Quantity;
+                }
+                else
+                {
+                    cart.Remove(item);
+                }
+            }
+
+            return 0;
+        }
+
+        public double GetCartValue()
+        {
+            var cart = GetCart();
+            return cart.Sum(i => i.Value);
+        }
+
+        public int GetNumberOfItemsInCart()
+        {
+            var cart = GetCart();
+            int quantity = cart.Sum(c => c.Quantity);
+            return quantity;
+        }
+
+        public void PustyKoszyk()
+        {
+            _sessionManager.Set<List<ItemInCartViewModel>>(Consts.CartSessionKey, null);
         }
     }
 }

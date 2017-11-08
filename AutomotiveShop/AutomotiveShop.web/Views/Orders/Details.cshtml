@@ -1,4 +1,5 @@
-﻿@model AutomotiveShop.model.Order
+﻿@model AutomotiveShop.service.ViewModels.Orders.CartViewModel
+@using AutomotiveShop.model.Infrastructure
 
 @{
     ViewBag.Title = "Details";
@@ -7,36 +8,38 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </dt>
+    @if (Model.Items.Count > 0)
+    {
+        <table>
+            @foreach (var item in Model.Items)
+            {
+                <tr id="cart-row-@item.Product.ProductId">
+                    <td>
+                        @item.Product.Name
+                    </td>
+                    <td>
+                        |   @item.Quantity item(s) |
+                    </td>
+                    <td>
+                        @item.Value PLN (@item.Product.Price PLN each)
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    Total: @Model.Price PLN
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        @Html.Raw("Add something first")
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.User.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderState)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OrderState)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfPurchase)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateOfPurchase)
-        </dd>
-
-    </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Home")
 </p>

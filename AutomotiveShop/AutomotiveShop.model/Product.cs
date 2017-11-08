@@ -33,6 +33,7 @@ namespace AutomotiveShop.model
         {
             Copies = new List<ProductCopy>();
             CarsByProduct = new List<ProductByCar>();
+            ItemsAvailable = 0;
         }
     }
 }
