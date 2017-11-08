@@ -99,6 +99,9 @@
     <Compile Include="Category.cs" />
     <Compile Include="DeliveryAddress.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Infrastructure\Consts.cs" />
+    <Compile Include="Infrastructure\ISessionManager.cs" />
+    <Compile Include="Infrastructure\SessionManager.cs" />
     <Compile Include="Migrations\201710301842205_Init.cs" />
     <Compile Include="Migrations\201710301842205_Init.Designer.cs">
       <DependentUpon>201710301842205_Init.cs</DependentUpon>

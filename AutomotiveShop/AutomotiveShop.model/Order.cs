@@ -25,6 +25,7 @@ namespace AutomotiveShop.model
 
         public Order()
         {
+            
             ProductsInOrder = new List<ProductCopy>();
         }
     }

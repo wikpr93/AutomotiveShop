@@ -19,7 +19,14 @@ namespace AutomotiveShop.model
             return userIdentity;
         }
 
+        public virtual List<Order> Orders { get; set; }
         public virtual List<DeliveryAddress> DeliveryAdresses { get; set; }
+
+        public ApplicationUser()
+        {
+            Orders = new List<Order>();
+            DeliveryAdresses = new List<DeliveryAddress>();
+        }
     }
 
     public class AutomotiveShopDbContext : IdentityDbContext<ApplicationUser>

@@ -133,12 +133,15 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CategoryService.cs" />
+    <Compile Include="Service\OrderService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\SubcategoryService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="ViewModels\Categories\CategoryToEditViewModel.cs" />
     <Compile Include="ViewModels\Categories\NewCategoryViewModel.cs" />
     <Compile Include="ViewModels\DeliveryAddress\NewDeliveryAddressViewModel.cs" />
+    <Compile Include="ViewModels\Orders\ItemInCartViewModel.cs" />
+    <Compile Include="ViewModels\Orders\NewOrderViewModel.cs" />
     <Compile Include="ViewModels\Products\BoughtItemViewModel.cs" />
     <Compile Include="ViewModels\Products\NewProductViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductToEditViewModel.cs" />
