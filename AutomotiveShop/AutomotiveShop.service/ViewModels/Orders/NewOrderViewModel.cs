@@ -9,6 +9,6 @@ namespace AutomotiveShop.service.ViewModels.Orders
     public class NewOrderViewModel
     {
         public List<Product> Products { get; set; }
-        public AutomotiveShop.model.DeliveryAddress DeliveryAddress { get; set; }
+        public DeliveryAddress DeliveryAddress { get; set; }
     }
 }

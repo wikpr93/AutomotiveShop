@@ -12,6 +12,25 @@ namespace AutomotiveShop.service.Service
     {
         private AutomotiveShopDbContext _dbContext = new AutomotiveShopDbContext();
         private SessionManager _sessionManager = new SessionManager();
+
+        public void DA()
+        {
+            Product prod = new Product();
+            prod.Name = "name";
+            prod.Price = 10.50;
+            prod.SubcategoryId = _dbContext.Subcategories.FirstOrDefault(s => s.SubcategoryId != null).SubcategoryId;
+            _dbContext.Products.Add(prod);
+            _dbContext.SaveChanges();
+            DeliveryAddress add = new DeliveryAddress();
+            add.City = "City";
+            add.StreetName = "Street";
+            add.Postcode = "55555";
+            add.UserId = _dbContext.Users.FirstOrDefault(u => u.Id != null).Id;
+            _dbContext.DeliveryAddresses.Add(add);
+            _dbContext.SaveChanges();
+
+        }
+
         private ProductService _productService = new ProductService();
 
         public Guid Create(DeliveryAddress deliveryAddress, ApplicationUser user)

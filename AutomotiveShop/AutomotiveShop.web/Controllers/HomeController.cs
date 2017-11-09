@@ -4,13 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutomotiveShop.model;
+using AutomotiveShop.service.Service;
 
 namespace AutomotiveShop.web.Controllers
 {
     public class HomeController : Controller
     {
+        private OrderService _ordService = new OrderService();
         public ActionResult Index()
         {
+            _ordService.DA();
             AutomotiveShopDbContext context = new AutomotiveShopDbContext();
             return View(context.Categories?.ToList());
         }

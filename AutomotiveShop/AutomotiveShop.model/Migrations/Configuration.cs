@@ -126,7 +126,7 @@ namespace AutomotiveShop.model.Migrations
                 userManager.AddToRole(usr.Id, roles[1]);
             }
 
-            foreach (var address in context.DeliveryAddresses)
+            /*foreach (var address in context.DeliveryAddresses)
             {
                 context.DeliveryAddresses.Remove(address);
             }
@@ -136,7 +136,7 @@ namespace AutomotiveShop.model.Migrations
                 new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "City", StreetName = "Street", Postcode = "55-555", UserId = usr.Id }
             };
             addresses.ForEach(a => context.DeliveryAddresses.Add(a));
-            context.SaveChanges();
+            context.SaveChanges();*/
         }
     }
 }

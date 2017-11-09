@@ -20,12 +20,12 @@ namespace AutomotiveShop.model
         }
 
         public virtual List<Order> Orders { get; set; }
-        public virtual List<DeliveryAddress> DeliveryAdresses { get; set; }
+        public virtual List<DeliveryAddress> DeliveryAddresses { get; set; }
 
         public ApplicationUser()
         {
             Orders = new List<Order>();
-            DeliveryAdresses = new List<DeliveryAddress>();
+            DeliveryAddresses = new List<DeliveryAddress>();
         }
     }
 

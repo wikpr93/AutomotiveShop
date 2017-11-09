@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AutomotiveShop.service.ViewModels.DeliveryAddress
+namespace AutomotiveShop.service.ViewModels.DeliveryAddresses
 {
     public class NewDeliveryAddressViewModel
     {

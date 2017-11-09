@@ -139,7 +139,7 @@
     <Compile Include="Service\UserService.cs" />
     <Compile Include="ViewModels\Categories\CategoryToEditViewModel.cs" />
     <Compile Include="ViewModels\Categories\NewCategoryViewModel.cs" />
-    <Compile Include="ViewModels\DeliveryAddress\NewDeliveryAddressViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryAddresses\NewDeliveryAddressViewModel.cs" />
     <Compile Include="ViewModels\Orders\CartViewModel.cs" />
     <Compile Include="ViewModels\Orders\ItemInCartViewModel.cs" />
     <Compile Include="ViewModels\Orders\NewOrderViewModel.cs" />
