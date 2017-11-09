@@ -3,7 +3,7 @@ namespace AutomotiveShop.model.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -12,8 +12,8 @@ namespace AutomotiveShop.model.Migrations
                 c => new
                     {
                         CarDetailsId = c.Guid(nullable: false, identity: true),
-                        Producent = c.String(),
-                        Model = c.String(),
+                        Producent = c.String(nullable: false),
+                        Model = c.String(nullable: false),
                         YearOfProduction = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.CarDetailsId);
@@ -37,7 +37,7 @@ namespace AutomotiveShop.model.Migrations
                 c => new
                     {
                         ProductId = c.Guid(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         Price = c.Double(nullable: false),
                         ItemsAvailable = c.Int(nullable: false),
                         SubcategoryId = c.Guid(nullable: false),
@@ -66,11 +66,33 @@ namespace AutomotiveShop.model.Migrations
                 c => new
                     {
                         OrderId = c.Guid(nullable: false, identity: true),
-                        IsCompleted = c.Boolean(nullable: false),
+                        OrderState = c.Int(nullable: false),
                         DateOfPurchase = c.DateTime(nullable: false),
                         UserId = c.String(maxLength: 128),
+                        DeliveryAddress_DeliveryAddressId = c.Guid(),
                     })
                 .PrimaryKey(t => t.OrderId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .ForeignKey("dbo.DeliveryAddresses", t => t.DeliveryAddress_DeliveryAddressId)
+                .Index(t => t.UserId)
+                .Index(t => t.DeliveryAddress_DeliveryAddressId);
+            
+            CreateTable(
+                "dbo.DeliveryAddresses",
+                c => new
+                    {
+                        DeliveryAddressId = c.Guid(nullable: false, identity: true),
+                        CompanyName = c.String(),
+                        Name = c.String(),
+                        Surname = c.String(),
+                        StreetName = c.String(nullable: false),
+                        Postcode = c.String(nullable: false),
+                        City = c.String(nullable: false),
+                        PhoneNumber = c.String(),
+                        AdditionalInfo = c.String(),
+                        UserId = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.DeliveryAddressId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.UserId);
             
@@ -137,7 +159,7 @@ namespace AutomotiveShop.model.Migrations
                 c => new
                     {
                         SubcategoryId = c.Guid(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         CategoryId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.SubcategoryId)
@@ -149,7 +171,7 @@ namespace AutomotiveShop.model.Migrations
                 c => new
                     {
                         CategoryId = c.Guid(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.CategoryId);
             
@@ -173,9 +195,11 @@ namespace AutomotiveShop.model.Migrations
             DropForeignKey("dbo.Subcategories", "CategoryId", "dbo.Categories");
             DropForeignKey("dbo.ProductsCopies", "ProductId", "dbo.Products");
             DropForeignKey("dbo.ProductsCopies", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Orders", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Orders", "DeliveryAddress_DeliveryAddressId", "dbo.DeliveryAddresses");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Orders", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.DeliveryAddresses", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.ProductsByCars", "CarId", "dbo.CarsDetails");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
@@ -185,6 +209,8 @@ namespace AutomotiveShop.model.Migrations
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.DeliveryAddresses", new[] { "UserId" });
+            DropIndex("dbo.Orders", new[] { "DeliveryAddress_DeliveryAddressId" });
             DropIndex("dbo.Orders", new[] { "UserId" });
             DropIndex("dbo.ProductsCopies", new[] { "OrderId" });
             DropIndex("dbo.ProductsCopies", new[] { "ProductId" });
@@ -198,6 +224,7 @@ namespace AutomotiveShop.model.Migrations
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.DeliveryAddresses");
             DropTable("dbo.Orders");
             DropTable("dbo.ProductsCopies");
             DropTable("dbo.Products");

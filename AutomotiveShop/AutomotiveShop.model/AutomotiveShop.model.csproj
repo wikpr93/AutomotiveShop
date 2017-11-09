@@ -102,25 +102,9 @@
     <Compile Include="Infrastructure\Consts.cs" />
     <Compile Include="Infrastructure\ISessionManager.cs" />
     <Compile Include="Infrastructure\SessionManager.cs" />
-    <Compile Include="Migrations\201710301842205_Init.cs" />
-    <Compile Include="Migrations\201710301842205_Init.Designer.cs">
-      <DependentUpon>201710301842205_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711051301214_DelieveryAdresses.cs" />
-    <Compile Include="Migrations\201711051301214_DelieveryAdresses.Designer.cs">
-      <DependentUpon>201711051301214_DelieveryAdresses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711051316317_MisspellingFix.cs" />
-    <Compile Include="Migrations\201711051316317_MisspellingFix.Designer.cs">
-      <DependentUpon>201711051316317_MisspellingFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711080740202_OrderState.cs" />
-    <Compile Include="Migrations\201711080740202_OrderState.Designer.cs">
-      <DependentUpon>201711080740202_OrderState.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711080752404_Annotations.cs" />
-    <Compile Include="Migrations\201711080752404_Annotations.Designer.cs">
-      <DependentUpon>201711080752404_Annotations.cs</DependentUpon>
+    <Compile Include="Migrations\201711091027097_Initial.cs" />
+    <Compile Include="Migrations\201711091027097_Initial.Designer.cs">
+      <DependentUpon>201711091027097_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
@@ -131,20 +115,8 @@
     <Compile Include="Subcategory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710301842205_Init.resx">
-      <DependentUpon>201710301842205_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711051301214_DelieveryAdresses.resx">
-      <DependentUpon>201711051301214_DelieveryAdresses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711051316317_MisspellingFix.resx">
-      <DependentUpon>201711051316317_MisspellingFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711080740202_OrderState.resx">
-      <DependentUpon>201711080740202_OrderState.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711080752404_Annotations.resx">
-      <DependentUpon>201711080752404_Annotations.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711091027097_Initial.resx">
+      <DependentUpon>201711091027097_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
