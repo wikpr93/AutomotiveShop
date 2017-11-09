@@ -75,6 +75,9 @@ namespace AutomotiveShop.model.Migrations
             products.ForEach(p => context.Products.Add(p));
             context.SaveChanges();
 
+
+            
+
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
@@ -122,6 +125,18 @@ namespace AutomotiveShop.model.Migrations
             {
                 userManager.AddToRole(usr.Id, roles[1]);
             }
+
+            foreach (var address in context.DeliveryAddresses)
+            {
+                context.DeliveryAddresses.Remove(address);
+            }
+
+            var addresses = new List<DeliveryAddress>()
+            {
+                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "City", StreetName = "Street", Postcode = "55-555", UserId = usr.Id }
+            };
+            addresses.ForEach(a => context.DeliveryAddresses.Add(a));
+            context.SaveChanges();
         }
     }
 }

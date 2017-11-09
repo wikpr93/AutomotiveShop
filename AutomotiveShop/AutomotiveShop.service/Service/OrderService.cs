@@ -27,21 +27,28 @@ namespace AutomotiveShop.service.Service
             Order newOrder = new Order();
             newOrder.OrderId = Guid.NewGuid();
             newOrder.DateOfPurchase = DateTime.Now;
-            newOrder.DeliveryAddress = deliveryAddress;
-            newOrder.User = user;
-            foreach(Product product in products)
-            {
-                ProductCopy newCopy = new ProductCopy();
-                newCopy.ProductCopyId = Guid.NewGuid();
-                newCopy.ProductId = product.ProductId;
-                newCopy.Price = product.Price;
-                newOrder.ProductsInOrder.Add(newCopy);
-                _dbContext.ProductsCopies.Add(newCopy);
-                _dbContext.SaveChanges();
-            }
+            newOrder.DeliveryAddress = _dbContext.DeliveryAddresses.FirstOrDefault(da => da.DeliveryAddressId != null);
+            newOrder.UserId = user.Id;
             _dbContext.Orders.Add(newOrder);
+            foreach (Product product in products)
+            {
+                if(product.ItemsAvailable > 0)
+                {
+                    ProductCopy newCopy = new ProductCopy();
+                    newCopy.ProductCopyId = Guid.NewGuid();
+                    newCopy.ProductId = product.ProductId;
+                    newCopy.Price = product.Price;
+                    newCopy.OrderId = newOrder.OrderId;
+                    _dbContext.ProductsCopies.Add(newCopy);
+                    product.ItemsAvailable--;
+                }
+                else
+                {
+                    throw new Exception("Item unavailable");
+                }
+            }
             _dbContext.SaveChanges();
-            return Guid.NewGuid();
+            return newOrder.OrderId;
         }
 
         public List<ItemInCartViewModel> GetCart()

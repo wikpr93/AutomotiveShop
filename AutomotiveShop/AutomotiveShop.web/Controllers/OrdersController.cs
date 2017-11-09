@@ -13,6 +13,7 @@ using AutomotiveShop.service.ViewModels.Orders;
 
 namespace AutomotiveShop.web.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private OrderService _orderService = new OrderService();
@@ -24,12 +25,13 @@ namespace AutomotiveShop.web.Controllers
 
         }
        
-        public ActionResult Create(DeliveryAddress deliveryAddress)
+        public ActionResult Create(/*DeliveryAddress deliveryAddress*/)
         {
-            _orderService.Create(deliveryAddress, _userService.ReturnUserByUsername(User.Identity.Name));
+            _orderService.Create(new DeliveryAddress(), _userService.ReturnUserByUsername(User.Identity.Name));
             return View("Index", "Home");
         }
         
+        [AllowAnonymous]
         public ActionResult AddToCart(Guid productId)
         {
             _orderService.AddToCart(productId);
@@ -45,6 +47,7 @@ namespace AutomotiveShop.web.Controllers
         }
 
         // GET: Orders/Details/5
+        [AllowAnonymous]
         public ActionResult Details()
         {
             CartViewModel cart = new CartViewModel();

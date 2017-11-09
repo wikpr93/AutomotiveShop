@@ -5,7 +5,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Your cart</h2>
 
 <div>
     @if (Model.Items.Count > 0)
@@ -30,6 +30,13 @@
                 <td></td>
                 <td>
                     Total: @Model.Price PLN
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    @Html.ActionLink("Buy", "Create", "Orders")
                 </td>
             </tr>
         </table>
