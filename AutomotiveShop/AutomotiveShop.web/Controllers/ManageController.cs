@@ -74,7 +74,8 @@ namespace AutomotiveShop.web.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                Orders = _orderService.GetOrdersByUser(_userService.ReturnUserByUsername(User.Identity.Name))
+                Orders = _orderService.GetOrdersByUser(_userService.ReturnUserByUsername(User.Identity.Name)),
+                DeliveryAddresses = _orderService.GetDeliveryAddressesByUser(_userService.ReturnUserByUsername(User.Identity.Name))
             };
             return View(model);
         }

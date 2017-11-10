@@ -22,7 +22,6 @@
             }
             ]
         </dd>
-
         <dt>
             Your orders:
         </dt>
@@ -30,6 +29,26 @@
         {
             <dd>
                 @Html.ActionLink(order.DateOfPurchase.Year.ToString() + "-" + order.DateOfPurchase.Month.ToString() + "-" + order.DateOfPurchase.Day.ToString() + "-" + order.DateOfPurchase.Hour.ToString("00") + "-" + order.DateOfPurchase.Minute.ToString("00") + "-" + order.DateOfPurchase.Second.ToString("00") + "-" + order.DateOfPurchase.Millisecond.ToString("000"), "Details", "Orders", new { orderId = order.OrderId }, null)
+            </dd>
+        }
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            Your addresses:
+        </dt>
+        @foreach (var address in Model.DeliveryAddresses)
+        {
+            <dd>
+                @Html.Raw(address.StreetName)
+            </dd>
+            <dd>
+                @Html.Raw(address.Postcode)
+            </dd>
+            <dd>
+                @Html.Raw(address.City)
+            </dd>
+            <dd>
+                @Html.Raw(" ")
             </dd>
         }
     </dl>

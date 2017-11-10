@@ -133,7 +133,7 @@ namespace AutomotiveShop.model.Migrations
 
             var addresses = new List<DeliveryAddress>()
             {
-                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "City", StreetName = "Street", Postcode = "55-555", UserId = usr.Id }
+                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "City", StreetName = "Street", Postcode = "55-555", UserId = admin.Id }
             };
             addresses.ForEach(a => context.DeliveryAddresses.Add(a));
             context.SaveChanges();

@@ -77,6 +77,11 @@ namespace AutomotiveShop.service.Service
             return cart;
         }
 
+        public List<DeliveryAddress> GetDeliveryAddressesByUser(ApplicationUser user)
+        {
+            return _dbContext.DeliveryAddresses.Where(o => o.UserId == user.Id).ToList();
+        }
+
         public void AddToCart(Guid productId)
         {
             List<ItemInCartViewModel> cart = GetCart();

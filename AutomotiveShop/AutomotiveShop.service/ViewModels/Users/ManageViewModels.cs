@@ -14,6 +14,7 @@ namespace AutomotiveShop.service.ViewModels.Users
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public List<Order> Orders { get; set; }
+        public List<DeliveryAddress> DeliveryAddresses { get; set; }
     }
 
     public class ManageLoginsViewModel
