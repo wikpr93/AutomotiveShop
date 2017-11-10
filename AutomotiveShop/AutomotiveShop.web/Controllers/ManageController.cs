@@ -7,6 +7,7 @@ using AutomotiveShop.service.ViewModels.Users;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using AutomotiveShop.service.Service;
 
 namespace AutomotiveShop.web.Controllers
 {
@@ -15,6 +16,8 @@ namespace AutomotiveShop.web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private OrderService _orderService = new OrderService();
+        private UserService _userService = new UserService();
 
         public ManageController()
         {
@@ -70,7 +73,8 @@ namespace AutomotiveShop.web.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                Orders = _orderService.GetOrdersByUser(_userService.ReturnUserByUsername(User.Identity.Name))
             };
             return View(model);
         }

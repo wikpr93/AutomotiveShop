@@ -35,13 +35,19 @@ namespace AutomotiveShop.web.Controllers
         public ActionResult AddToCart(Guid productId)
         {
             _orderService.AddToCart(productId);
-            return RedirectToAction("Details");
+            return RedirectToAction("Index");
         }
 
         // GET: Orders
         public ActionResult Index()
         {
-            return null;
+            CartViewModel cart = new CartViewModel();
+            foreach (ItemInCartViewModel item in _orderService.GetCart())
+            {
+                cart.Items.Add(item);
+                cart.Price += item.Value;
+            }
+            return View(cart);
             //var orders = db.Orders.Include(o => o.User);
             //return View(orders.ToList());
         }
@@ -50,13 +56,7 @@ namespace AutomotiveShop.web.Controllers
         [AllowAnonymous]
         public ActionResult Details()
         {
-            CartViewModel cart = new CartViewModel();
-            foreach(ItemInCartViewModel item in _orderService.GetCart())
-            {
-                cart.Items.Add(item);
-                cart.Price += item.Value;
-            }
-            return View(cart);
+            return View();
             //if (id == null)
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

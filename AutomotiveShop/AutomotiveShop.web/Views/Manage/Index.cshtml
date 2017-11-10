@@ -1,13 +1,12 @@
 ﻿@model AutomotiveShop.service.ViewModels.Users.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "";
 }
 
 <h2>@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>Password:</dt>
@@ -24,7 +23,14 @@
             ]
         </dd>
 
-        <dt>@Html.Raw("List of bought products")</dt>
-        <dd>@Html.Raw("Todo")</dd>
+        <dt>
+            Your orders:
+        </dt>
+        @foreach (var order in Model.Orders)
+        {
+            <dd>
+                @Html.ActionLink(order.DateOfPurchase.Year.ToString() + "-" + order.DateOfPurchase.Month.ToString() + "-" + order.DateOfPurchase.Day.ToString() + "-" + order.DateOfPurchase.Hour.ToString("00") + "-" + order.DateOfPurchase.Minute.ToString("00") + "-" + order.DateOfPurchase.Second.ToString("00") + "-" + order.DateOfPurchase.Millisecond.ToString("000"), "Details", "Orders", new { orderId = order.OrderId }, null)
+            </dd>
+        }
     </dl>
 </div>

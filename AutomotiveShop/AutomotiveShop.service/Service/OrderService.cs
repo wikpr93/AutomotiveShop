@@ -3,6 +3,7 @@ using AutomotiveShop.model.Infrastructure;
 using AutomotiveShop.service.ViewModels.Orders;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -40,7 +41,8 @@ namespace AutomotiveShop.service.Service
             _dbContext.Orders.Add(newOrder);
             foreach (Product product in products)
             {
-                if (product.ItemsAvailable > 0)
+                Product tempProd = _dbContext.Products.FirstOrDefault(p => p.ProductId == product.ProductId);
+                if (tempProd.ItemsAvailable > 0)
                 {
                     ProductCopy newCopy = new ProductCopy();
                     newCopy.ProductCopyId = Guid.NewGuid();
@@ -48,10 +50,13 @@ namespace AutomotiveShop.service.Service
                     newCopy.Price = product.Price;
                     newCopy.OrderId = newOrder.OrderId;
                     _dbContext.ProductsCopies.Add(newCopy);
-                    product.ItemsAvailable--;
+                    tempProd.ItemsAvailable--;
+                    _dbContext.Entry(tempProd).Property(p => p.ItemsAvailable).IsModified = true;
+                    _dbContext.SaveChanges();
                 }
             }
             _dbContext.SaveChanges();
+            EmptyCart();
             return newOrder.OrderId;
 
         }
@@ -104,6 +109,11 @@ namespace AutomotiveShop.service.Service
             _sessionManager.Set(Consts.CartSessionKey, cart);
         }
 
+        public List<Order> GetOrdersByUser(ApplicationUser user)
+        {
+            return _dbContext.Orders.Where(o => o.UserId == user.Id).ToList();
+        }
+
         public int RemoveFromCart(Guid productId)
         {
             var cart = GetCart();
@@ -138,7 +148,7 @@ namespace AutomotiveShop.service.Service
             return quantity;
         }
 
-        public void PustyKoszyk()
+        public void EmptyCart()
         {
             _sessionManager.Set<List<ItemInCartViewModel>>(Consts.CartSessionKey, null);
         }

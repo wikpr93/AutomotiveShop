@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using AutomotiveShop.model;
 
 namespace AutomotiveShop.service.ViewModels.Users
 {
@@ -12,6 +13,7 @@ namespace AutomotiveShop.service.ViewModels.Users
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public List<Order> Orders { get; set; }
     }
 
     public class ManageLoginsViewModel

@@ -1,45 +1,52 @@
-﻿@model IEnumerable<AutomotiveShop.model.Order>
+﻿@model AutomotiveShop.service.ViewModels.Orders.CartViewModel
+@using AutomotiveShop.model.Infrastructure
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Details";
 }
 
-<h2>Index</h2>
+<h2>Your cart</h2>
 
+<div>
+    @if (Model.Items.Count > 0)
+    {
+        <table>
+            @foreach (var item in Model.Items)
+            {
+                <tr id="cart-row-@item.Product.ProductId">
+                    <td>
+                        @item.Product.Name
+                    </td>
+                    <td>
+                        |   @item.Quantity item(s) |
+                    </td>
+                    <td>
+                        @item.Value PLN (@item.Product.Price PLN each)
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    Total: @Model.Price PLN
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    @Html.ActionLink("Buy", "Create", "Orders")
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        @Html.Raw("Add something first")
+    }
+
+</div>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Back to List", "Index", "Home")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderState)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateOfPurchase)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderState)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfPurchase)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
-        </td>
-    </tr>
-}
-
-</table>
