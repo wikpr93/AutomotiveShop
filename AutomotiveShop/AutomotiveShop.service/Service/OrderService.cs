@@ -12,25 +12,6 @@ namespace AutomotiveShop.service.Service
     {
         private AutomotiveShopDbContext _dbContext = new AutomotiveShopDbContext();
         private SessionManager _sessionManager = new SessionManager();
-
-        public void DA()
-        {
-            Product prod = new Product();
-            prod.Name = "name";
-            prod.Price = 10.50;
-            prod.SubcategoryId = _dbContext.Subcategories.FirstOrDefault(s => s.SubcategoryId != null).SubcategoryId;
-            _dbContext.Products.Add(prod);
-            _dbContext.SaveChanges();
-            DeliveryAddress add = new DeliveryAddress();
-            add.City = "City";
-            add.StreetName = "Street";
-            add.Postcode = "55555";
-            add.UserId = _dbContext.Users.FirstOrDefault(u => u.Id != null).Id;
-            _dbContext.DeliveryAddresses.Add(add);
-            _dbContext.SaveChanges();
-
-        }
-
         private ProductService _productService = new ProductService();
 
         public Guid Create(DeliveryAddress deliveryAddress, ApplicationUser user)
@@ -38,20 +19,28 @@ namespace AutomotiveShop.service.Service
             List<Product> products = new List<Product>();
             foreach (ItemInCartViewModel item in GetCart())
             {
-                for (int i = 0; i < item.Quantity; i++)
+                if (item.Quantity <= item.Product.ItemsAvailable)
                 {
-                    products.Add(item.Product);
+                    for (int i = 0; i < item.Quantity; i++)
+                    {
+                        products.Add(item.Product);
+                    }
+                }
+                else
+                {
+                    throw new Exception("Not enough products in stock");
                 }
             }
             Order newOrder = new Order();
             newOrder.OrderId = Guid.NewGuid();
             newOrder.DateOfPurchase = DateTime.Now;
+            newOrder.OrderState = OrderState.New;
             newOrder.DeliveryAddress = _dbContext.DeliveryAddresses.FirstOrDefault(da => da.DeliveryAddressId != null);
             newOrder.UserId = user.Id;
             _dbContext.Orders.Add(newOrder);
             foreach (Product product in products)
             {
-                if(product.ItemsAvailable > 0)
+                if (product.ItemsAvailable > 0)
                 {
                     ProductCopy newCopy = new ProductCopy();
                     newCopy.ProductCopyId = Guid.NewGuid();
@@ -61,13 +50,10 @@ namespace AutomotiveShop.service.Service
                     _dbContext.ProductsCopies.Add(newCopy);
                     product.ItemsAvailable--;
                 }
-                else
-                {
-                    throw new Exception("Item unavailable");
-                }
             }
             _dbContext.SaveChanges();
             return newOrder.OrderId;
+
         }
 
         public List<ItemInCartViewModel> GetCart()
@@ -90,8 +76,11 @@ namespace AutomotiveShop.service.Service
         {
             List<ItemInCartViewModel> cart = GetCart();
             ItemInCartViewModel item = cart.Find(p => p.Product.ProductId == productId);
-
-            if (item != null)
+            if (item != null && item.Quantity >= _productService.GetProductById(productId).ItemsAvailable)
+            {
+                throw new Exception("Not enough items in stock");
+            }
+            else if (item != null)
             {
                 item.Quantity++;
                 item.Value += _productService.GetProductById(item.Product.ProductId).Price;

@@ -28,7 +28,7 @@ namespace AutomotiveShop.web.Controllers
         public ActionResult Create(/*DeliveryAddress deliveryAddress*/)
         {
             _orderService.Create(new DeliveryAddress(), _userService.ReturnUserByUsername(User.Identity.Name));
-            return View("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
         
         [AllowAnonymous]

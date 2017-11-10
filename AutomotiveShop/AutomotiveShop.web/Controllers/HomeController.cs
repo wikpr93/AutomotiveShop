@@ -13,7 +13,6 @@ namespace AutomotiveShop.web.Controllers
         private OrderService _ordService = new OrderService();
         public ActionResult Index()
         {
-            _ordService.DA();
             AutomotiveShopDbContext context = new AutomotiveShopDbContext();
             return View(context.Categories?.ToList());
         }
