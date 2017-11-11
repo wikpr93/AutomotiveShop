@@ -24,13 +24,13 @@ namespace AutomotiveShop.web.Controllers
         {
 
         }
-       
+
         public ActionResult Create(/*DeliveryAddress deliveryAddress*/)
         {
             _orderService.Create(new DeliveryAddress(), _userService.ReturnUserByUsername(User.Identity.Name));
             return RedirectToAction("Index", "Home");
         }
-        
+
         [AllowAnonymous]
         public ActionResult AddToCart(Guid productId)
         {
@@ -54,9 +54,48 @@ namespace AutomotiveShop.web.Controllers
 
         // GET: Orders/Details/5
         [AllowAnonymous]
-        public ActionResult Details()
+        public ActionResult Details(Guid orderId)
         {
-            return View();
+            Order order = _orderService.FindOrderById(orderId);
+            OrderDetailsViewModel model = new OrderDetailsViewModel()
+            {
+                OrderId = order.OrderId,
+                DateOfPurchase = order.DateOfPurchase,
+                OrderState = order.OrderState
+            };
+            switch((int)model.OrderState)
+            {
+                case 0: model.NextAction = "Pay for order";
+                    break;
+                case 1: model.NextAction = "Mark as sent";
+                    break;
+                case 2: model.NextAction = "Mark as received";
+                    break;
+                case 3: model.NextAction = "Cancel order";
+                    break;
+                default: model.NextAction = String.Empty;
+                    break;
+            }
+            foreach (ProductCopy copy in order.ProductsInOrder)
+            {
+                var item = model.Items.Find(c => c.Product.ProductId == copy.ProductId);
+                if (item != null)
+                {
+                    item.Quantity++;
+                    item.Value += copy.Price;
+                }
+                else
+                {
+                    model.Items.Add(new ItemInCartViewModel()
+                    {
+                        Product = copy.Product,
+                        Quantity = 1,
+                        Value = copy.Price
+                    });
+                }
+                model.Price += copy.Price;
+            }
+            return View(model);
             //if (id == null)
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -68,12 +107,18 @@ namespace AutomotiveShop.web.Controllers
             //}
             //return View(order);
         }
-        
+
         public ActionResult EmptyCart()
         {
             _orderService.EmptyCart();
             return RedirectToAction("Index", "Home");
 
+        }
+
+        public ActionResult ProcessOrder(Guid orderId, OrderState orderState)
+        {
+            _orderService.ProcessOrder(orderId, orderState);
+            return RedirectToAction("Details", new { orderId = orderId });
         }
 
         // POST: Orders/Create

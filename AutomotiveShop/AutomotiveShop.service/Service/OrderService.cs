@@ -15,6 +15,11 @@ namespace AutomotiveShop.service.Service
         private SessionManager _sessionManager = new SessionManager();
         private ProductService _productService = new ProductService();
 
+
+        public Order FindOrderById(Guid orderId)
+        {
+            return _dbContext.Orders.FirstOrDefault(o => o.OrderId == orderId);
+        }
         public Guid Create(DeliveryAddress deliveryAddress, ApplicationUser user)
         {
             List<Product> products = new List<Product>();
@@ -114,6 +119,18 @@ namespace AutomotiveShop.service.Service
             _sessionManager.Set(Consts.CartSessionKey, cart);
         }
 
+        public void ProcessOrder(Guid orderId, OrderState orderState)
+        {
+            // todo: processing state, not only incrementing
+            Order order = _dbContext.Orders.FirstOrDefault(o => o.OrderId == orderId);
+            if(order != null)
+            {
+                order.OrderState++;
+            }
+            _dbContext.Entry(order).Property(p => p.OrderState).IsModified = true;
+            _dbContext.SaveChanges();
+        }
+
         public List<Order> GetOrdersByUser(ApplicationUser user)
         {
             return _dbContext.Orders.Where(o => o.UserId == user.Id).ToList();
@@ -171,7 +188,7 @@ namespace AutomotiveShop.service.Service
             const int DAY = 24 * HOUR;
             const int MONTH = 30 * DAY;
 
-            var ts = new TimeSpan(DateTime.UtcNow.Ticks - date.Ticks);
+            var ts = new TimeSpan(DateTime.Now.Ticks - date.Ticks);
             double delta = Math.Abs(ts.TotalSeconds);
 
             if (delta < 1 * MINUTE)

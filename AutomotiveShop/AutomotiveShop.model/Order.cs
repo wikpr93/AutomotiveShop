@@ -33,6 +33,7 @@ namespace AutomotiveShop.model
     public enum OrderState
     {
         New,
+        Paid,
         Sent,
         Completed,
         Cancelled

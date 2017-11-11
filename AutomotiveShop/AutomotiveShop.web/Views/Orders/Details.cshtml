@@ -1,1 +1,32 @@
-﻿<h1>ToDo: Details view</h1>
+﻿@model AutomotiveShop.service.ViewModels.Orders.OrderDetailsViewModel
+<h1>@Model.DateOfPurchase.Day.ToString()-@Model.DateOfPurchase.Month.ToString()-@Model.DateOfPurchase.Year.ToString() @Model.DateOfPurchase.TimeOfDay.Hours.ToString():@Model.DateOfPurchase.TimeOfDay.Minutes.ToString()</h1>
+
+<table>
+    @foreach (var item in Model.Items)
+            {
+        <tr id="cart-row-@item.Product.ProductId">
+            <td>
+                @item.Product.Name
+            </td>
+            <td>
+                |   @item.Quantity item(s) |
+            </td>
+            <td>
+                @item.Value PLN (@item.Product.Price PLN each)
+            </td>
+        </tr>
+    }
+    <tr>
+        <td></td>
+        <td></td>
+        <td>
+            Total: @Model.Price PLN
+        </td>
+    </tr>
+</table>
+
+<h2>Status: @Model.OrderState</h2>
+@if (!Model.NextAction.IsEmpty())
+{
+    @Html.ActionLink(Model.NextAction, "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState }, null)
+}
