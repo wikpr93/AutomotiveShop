@@ -1,0 +1,10 @@
+﻿body {
+}
+
+#navBar {
+    background-color: #630098;
+}
+
+#cartButton > a{
+    color:white !important;
+}
