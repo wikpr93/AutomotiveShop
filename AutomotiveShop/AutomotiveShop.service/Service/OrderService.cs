@@ -236,5 +236,25 @@ namespace AutomotiveShop.service.Service
                 return years <= 1 ? "one year ago" : years + " years ago";
             }
         }
+
+        public void CreateDeliveryAddress(DeliveryAddress deliveryAddress)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DeliveryAddress FindDeliveryAddressesById(Guid? deliveryaddressId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditDeliveryAddress(DeliveryAddress deliveryAddress)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveDeliveryAddress(Guid deliveryAddresId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -286,5 +286,83 @@ namespace AutomotiveShop.web.Controllers
             //}
             //base.Dispose(disposing);
         }
+
+        // GET: DeliveryAddresses/Create
+        public ActionResult CreateDeliveryAddress()
+        {
+            return View();
+        }
+
+        // POST: DeliveryAddresses/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateDeliveryAddress([Bind(Include = "CompanyName,Name,Surname,StreetName,Postcode,City,PhoneNumber,AdditionalInfo,UserId")] DeliveryAddress deliveryAddress)
+        {
+            if (ModelState.IsValid)
+            {
+                _orderService.CreateDeliveryAddress(deliveryAddress);
+                return RedirectToAction("Index");
+            }
+            return View(deliveryAddress);
+        }
+
+        // GET: DeliveryAddresses/Edit/5
+        public ActionResult EditDeliveryAddress(Guid? deliveryaddressId)
+        {
+            if (deliveryaddressId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DeliveryAddress deliveryAddress = _orderService.FindDeliveryAddressesById(deliveryaddressId);
+            if (deliveryAddress == null)
+            {
+                return HttpNotFound();
+            }
+            return View(deliveryAddress);
+        }
+
+        // POST: DeliveryAddresses/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditDeliveryAddress([Bind(Include = "DeliveryAddressId,CompanyName,Name,Surname,StreetName,Postcode,City,PhoneNumber,AdditionalInfo,UserId")] DeliveryAddress deliveryAddress)
+        {
+            if (ModelState.IsValid)
+            {
+                _orderService.EditDeliveryAddress(deliveryAddress);
+                return RedirectToAction("Index");
+            }
+            return View(deliveryAddress);
+        }
+
+        // GET: DeliveryAddresses/Delete/5
+        public ActionResult DeleteDeliveryAddress(Guid? deliveryAddresId)
+        {
+            if (deliveryAddresId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DeliveryAddress deliveryAddress = _orderService.FindDeliveryAddressesById(deliveryAddresId);
+            if (deliveryAddress == null)
+            {
+                return HttpNotFound();
+            }
+            return View(deliveryAddress);
+        }
+
+        // POST: DeliveryAddresses/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmedDeliveryAddress(Guid deliveryAddresId)
+        {
+            _orderService.RemoveDeliveryAddress(deliveryAddresId);
+            return RedirectToAction("Index");
+        }
     }
+    
+
+    
 }
