@@ -33,6 +33,20 @@
 .orderCancelled {
     background-color: #dadada !important;
 }
+
+.newline{
+    height:0px !important;
+}
+
+#address {
+    width: 250px;
+    margin-top: 5px;
+}
+
+#address:first-child {
+    margin-top: 10px;
+}
+    
 #productList {
     padding-bottom: 20px;
     padding:0;

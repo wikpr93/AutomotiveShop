@@ -1,0 +1,56 @@
+﻿@model List<AutomotiveShop.service.ViewModels.Orders.DeliveryAddressViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1>Choose delivery address</h1>
+    @foreach (var address in Model)
+            {
+        <a href=@Url.Action("Create", "Orders", new { deliveryAddressId = address.DeliveryAddressId })>
+            <button id="address" type="button" class="btn center-block">
+                @if (!address.CompanyName.IsEmpty())
+                {
+                    <div>@address.CompanyName</div>
+                }
+                @if (!address.Name.IsEmpty())
+                {
+                    <div>@address.Name</div>
+                }
+                @if (!address.Surname.IsEmpty())
+                {
+                    <div>@address.Surname</div>
+                }
+                @if (!address.StreetName.IsEmpty())
+                {
+                    <div>@address.StreetName</div>
+                }
+                @if (!address.Postcode.IsEmpty())
+                {
+                    <div>@address.Postcode</div>
+                }
+                @if (!address.City.IsEmpty())
+                {
+                    <div>@address.City</div>
+                }
+                @if (!address.PhoneNumber.IsEmpty())
+                {
+                    <div>@address.PhoneNumber</div>
+                }
+                @if (!address.AdditionalInfo.IsEmpty())
+                {
+                    <div>@address.AdditionalInfo</div>
+                }
+            </button>
+        </a>
+                    <div class="newline">
+                        &nbsp;
+                    </div>
+    }
+    @*@foreach(var address in Model)
+         {
+             @Html.ActionLink(address, "Index", "Home", new { @class = "btn btn-default", @id="address" })
+         <div class="newline">&nbsp;</div>
+        }*@
+
+</div>

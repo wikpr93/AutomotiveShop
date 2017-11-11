@@ -106,6 +106,10 @@
     <Compile Include="Migrations\201711091027097_Initial.Designer.cs">
       <DependentUpon>201711091027097_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711112058372_DeliveryAddressFix.cs" />
+    <Compile Include="Migrations\201711112058372_DeliveryAddressFix.Designer.cs">
+      <DependentUpon>201711112058372_DeliveryAddressFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Product.cs" />
@@ -117,6 +121,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711091027097_Initial.resx">
       <DependentUpon>201711091027097_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711112058372_DeliveryAddressFix.resx">
+      <DependentUpon>201711112058372_DeliveryAddressFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

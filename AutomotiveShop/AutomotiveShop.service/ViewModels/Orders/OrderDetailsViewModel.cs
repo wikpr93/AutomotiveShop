@@ -14,9 +14,11 @@ namespace AutomotiveShop.service.ViewModels.Orders
         public double Price { get; set; }
         public OrderState OrderState { get; set; }
         public string NextAction { get; set; }
+        public DeliveryAddressViewModel DeliveryAddress { get; set; }
         public OrderDetailsViewModel()
         {
             Items = new List<ItemInCartViewModel>();
+            DeliveryAddress = new DeliveryAddressViewModel();
         }
 
     }

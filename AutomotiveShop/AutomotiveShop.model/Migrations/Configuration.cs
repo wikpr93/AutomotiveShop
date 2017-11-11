@@ -76,7 +76,7 @@ namespace AutomotiveShop.model.Migrations
             context.SaveChanges();
 
 
-            
+
 
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
@@ -133,7 +133,9 @@ namespace AutomotiveShop.model.Migrations
 
             var addresses = new List<DeliveryAddress>()
             {
-                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "City", StreetName = "Street", Postcode = "55-555", UserId = admin.Id }
+                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "City", StreetName = "Street", Postcode = "55-555", UserId = admin.Id },
+                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "City2", StreetName = "Street2", Postcode = "66-666", UserId = admin.Id }
+
             };
             addresses.ForEach(a => context.DeliveryAddresses.Add(a));
             context.SaveChanges();

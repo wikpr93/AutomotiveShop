@@ -12,16 +12,22 @@ namespace AutomotiveShop.model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid OrderId { get; set; }
 
+        [Required]
         public OrderState OrderState { get; set; }
 
+        [Required]
         public DateTime DateOfPurchase { get; set; }
+
+        [Required]
         public string UserId { get; set; }
+
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
 
         public virtual List<ProductCopy> ProductsInOrder { get; set; }
 
-        public DeliveryAddress DeliveryAddress { get; set; }
+        [Required]
+        public Guid DeliveryAddressId { get; set; }
 
         public Order()
         {

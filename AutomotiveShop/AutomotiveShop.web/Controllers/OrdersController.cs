@@ -10,6 +10,7 @@ using AutomotiveShop.model;
 using AutomotiveShop.model.Infrastructure;
 using AutomotiveShop.service.Service;
 using AutomotiveShop.service.ViewModels.Orders;
+using System.Web.WebPages;
 
 namespace AutomotiveShop.web.Controllers
 {
@@ -25,9 +26,68 @@ namespace AutomotiveShop.web.Controllers
 
         }
 
-        public ActionResult Create(/*DeliveryAddress deliveryAddress*/)
+        public ActionResult ChooseDeliveryAddress()
         {
-            _orderService.Create(new DeliveryAddress(), _userService.ReturnUserByUsername(User.Identity.Name));
+            List<DeliveryAddressViewModel> model = new List<DeliveryAddressViewModel>();
+            foreach (DeliveryAddress address in _userService.ReturnUserByUsername(User.Identity.Name).DeliveryAddresses.ToList())
+            {
+                model.Add(new DeliveryAddressViewModel()
+                {
+                    DeliveryAddressId = address.DeliveryAddressId,
+                    CompanyName = address.CompanyName,
+                    Name = address.Name,
+                    Surname = address.Surname,
+                    StreetName = address.StreetName,
+                    Postcode = address.Postcode,
+                    City = address.City,
+                    PhoneNumber = address.PhoneNumber,
+                    AdditionalInfo = address.PhoneNumber
+                });
+            }
+            //List<string> model = new List<string>();
+            //foreach (DeliveryAddress address in _userService.ReturnUserByUsername(User.Identity.Name).DeliveryAddresses.ToList())
+            //{
+            //    string add = "";
+            //    if (!address.CompanyName.IsEmpty())
+            //    {
+            //        add += address.CompanyName + Environment.NewLine;
+            //    }
+            //    if (!address.Name.IsEmpty())
+            //    {
+            //        add += address.Name + Environment.NewLine;
+            //    }
+            //    if (!address.Surname.IsEmpty())
+            //    {
+            //        add += address.Surname + Environment.NewLine;
+            //    }
+            //    if (!address.StreetName.IsEmpty())
+            //    {
+            //        add += address.StreetName + Environment.NewLine + "<br />";
+            //    }
+            //    if (!address.Postcode.IsEmpty())
+            //    {
+            //        add += address.Postcode + Environment.NewLine;
+            //    }
+            //    if (!address.City.IsEmpty())
+            //    {
+            //        add += address.City + Environment.NewLine;
+            //    }
+            //    if (!address.PhoneNumber.IsEmpty())
+            //    {
+            //        add += address.PhoneNumber + Environment.NewLine;
+            //    }
+            //    if (!address.AdditionalInfo.IsEmpty())
+            //    {
+            //        add += address.AdditionalInfo + Environment.NewLine;
+            //    }
+            //    model.Add(add);
+            //}
+            return View("DeliveryAddress", model);
+        }
+
+        public ActionResult Create(Guid deliveryAddressId)
+        {
+            _orderService.Create(deliveryAddressId, _userService.ReturnUserByUsername(User.Identity.Name));
             return RedirectToAction("Index", "Home");
         }
 
@@ -63,17 +123,31 @@ namespace AutomotiveShop.web.Controllers
                 DateOfPurchase = order.DateOfPurchase,
                 OrderState = order.OrderState
             };
-            switch((int)model.OrderState)
+            DeliveryAddress address = _orderService.FindDeliveryAddressById(order.DeliveryAddressId);
+            model.DeliveryAddress.CompanyName = address.CompanyName;
+            model.DeliveryAddress.Name = address.Name;
+            model.DeliveryAddress.Surname = address.Surname;
+            model.DeliveryAddress.StreetName = address.StreetName;
+            model.DeliveryAddress.Postcode = address.Postcode;
+            model.DeliveryAddress.City = address.City;
+            model.DeliveryAddress.PhoneNumber = address.PhoneNumber;
+            model.DeliveryAddress.AdditionalInfo = address.AdditionalInfo;
+            switch ((int)model.OrderState)
             {
-                case 0: model.NextAction = "Pay for order";
+                case 0:
+                    model.NextAction = "Pay for order";
                     break;
-                case 1: model.NextAction = "Mark as sent";
+                case 1:
+                    model.NextAction = "Mark as sent";
                     break;
-                case 2: model.NextAction = "Mark as received";
+                case 2:
+                    model.NextAction = "Mark as received";
                     break;
-                case 3: model.NextAction = "Cancel order";
+                case 3:
+                    model.NextAction = "Cancel order";
                     break;
-                default: model.NextAction = String.Empty;
+                default:
+                    model.NextAction = String.Empty;
                     break;
             }
             foreach (ProductCopy copy in order.ProductsInOrder)

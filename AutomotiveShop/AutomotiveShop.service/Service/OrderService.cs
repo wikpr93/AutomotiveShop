@@ -20,7 +20,13 @@ namespace AutomotiveShop.service.Service
         {
             return _dbContext.Orders.FirstOrDefault(o => o.OrderId == orderId);
         }
-        public Guid Create(DeliveryAddress deliveryAddress, ApplicationUser user)
+
+        public DeliveryAddress FindDeliveryAddressById(Guid deliveryAddressId)
+        {
+            return _dbContext.DeliveryAddresses.FirstOrDefault(da => da.DeliveryAddressId == deliveryAddressId);
+        }
+
+        public Guid Create(Guid deliveryAddressId, ApplicationUser user)
         {
             List<Product> products = new List<Product>();
             foreach (ItemInCartViewModel item in GetCart())
@@ -41,7 +47,7 @@ namespace AutomotiveShop.service.Service
             newOrder.OrderId = Guid.NewGuid();
             newOrder.DateOfPurchase = DateTime.Now;
             newOrder.OrderState = OrderState.New;
-            newOrder.DeliveryAddress = _dbContext.DeliveryAddresses.FirstOrDefault(da => da.DeliveryAddressId != null);
+            newOrder.DeliveryAddressId = deliveryAddressId;
             newOrder.UserId = user.Id;
             _dbContext.Orders.Add(newOrder);
             foreach (Product product in products)

@@ -25,6 +25,50 @@
     </tr>
 </table>
 
+<table>
+    <tr>Delivery address:</tr>
+    @if (!Model.DeliveryAddress.CompanyName.IsEmpty())
+    {
+        <dd>@Model.DeliveryAddress.CompanyName</dd>
+    }
+    @if (!Model.DeliveryAddress.Name.IsEmpty())
+    {
+        <dd>@Model.DeliveryAddress.Name</dd>
+    }
+
+    @if (!Model.DeliveryAddress.Surname.IsEmpty())
+    {
+        <dd>@Model.DeliveryAddress.Surname</dd>
+    }
+
+    @if (!Model.DeliveryAddress.StreetName.IsEmpty())
+    {
+        <dd>@Model.DeliveryAddress.StreetName</dd>
+    }
+
+    @if (!Model.DeliveryAddress.Postcode.IsEmpty())
+    {
+        <dd>@Model.DeliveryAddress.Postcode</dd>
+    }
+
+    @if (!Model.DeliveryAddress.City.IsEmpty())
+    {
+        <dd>@Model.DeliveryAddress.City</dd>
+    }
+
+    @if (!Model.DeliveryAddress.PhoneNumber.IsEmpty())
+    {
+        <dd>@Model.DeliveryAddress.PhoneNumber</dd>
+    }
+
+    @if (!Model.DeliveryAddress.AdditionalInfo.IsEmpty())
+    {
+        <dd>@Model.DeliveryAddress.AdditionalInfo</dd>
+    }
+
+
+</table>
+
 <h2>Status: @Model.OrderState</h2>
 @if (!Model.NextAction.IsEmpty() && Model.OrderState != AutomotiveShop.model.OrderState.Completed)
 {
