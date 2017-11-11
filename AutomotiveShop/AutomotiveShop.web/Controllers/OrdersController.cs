@@ -115,9 +115,9 @@ namespace AutomotiveShop.web.Controllers
 
         }
 
-        public ActionResult ProcessOrder(Guid orderId, OrderState orderState)
+        public ActionResult ProcessOrder(Guid orderId, OrderState orderState, bool toCancellation)
         {
-            _orderService.ProcessOrder(orderId, orderState);
+            _orderService.ProcessOrder(orderId, orderState, toCancellation);
             return RedirectToAction("Details", new { orderId = orderId });
         }
 

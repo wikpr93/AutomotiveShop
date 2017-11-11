@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutomotiveShop.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,5 +11,6 @@ namespace AutomotiveShop.service.ViewModels.Users
         public Guid OrderId { get; set; }
         public string OrderNumber { get; set; }
         public string RelativeTime { get; set; }
+        public OrderState OrderState { get; set; }
     }
 }

@@ -2,9 +2,45 @@
 }
 
 #navBar {
-    background-color: #630098;
+    background-color: #000580;
 }
 
-#cartButton > a{
-    color:white !important;
+#cartButton > a {
+    color: white !important;
+    font-weight: bold;
 }
+
+.summary {
+    font-weight: bold;
+}
+
+.itemUnavailable{
+    opacity: 0.5;
+}
+
+.orderPaid {
+    background-color: #ccceff !important;
+}
+
+.orderSent {
+    background-color: #aeb0ff !important;
+}
+
+.orderCompleted {
+    background-color: #b6ffb6 !important;
+}
+
+.orderCancelled {
+    background-color: #dadada !important;
+}
+#productList {
+    padding-bottom: 20px;
+    padding:0;
+    border: 1px;
+    border-style: solid;
+    margin-top: 20px;
+}
+
+    #productList a {
+        color: black !important;
+    }

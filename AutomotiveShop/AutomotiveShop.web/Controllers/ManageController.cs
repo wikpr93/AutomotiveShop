@@ -85,7 +85,8 @@ namespace AutomotiveShop.web.Controllers
                 {
                     OrderId = order.OrderId,
                     OrderNumber = _orderService.GetOrderNumberFromDate(order.DateOfPurchase),
-                    RelativeTime = _orderService.GetRelativeTime(order.DateOfPurchase)
+                    RelativeTime = _orderService.GetRelativeTime(order.DateOfPurchase),
+                    OrderState = order.OrderState
                 });
             }
             model.Orders = model.Orders.OrderBy(o => o.OrderNumber).ToList();

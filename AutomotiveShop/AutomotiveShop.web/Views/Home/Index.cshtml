@@ -4,7 +4,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron" style="background-color:white">
+<div id="productList" class="jumbotron" style="background-color:white">
     <ul>
         @foreach (var category in Model)
         {
@@ -14,17 +14,20 @@
                     @foreach (var subcategory in category.Subcategories)
                     {
                         <li>
-                            @Html.ActionLink(@subcategory.Name, "Details", "Subcategories", new { subcategoryId = subcategory.SubcategoryId}, null)
+                            @Html.ActionLink(@subcategory.Name, "Details", "Subcategories", new { subcategoryId = subcategory.SubcategoryId }, null)
                             <ul>
                                 @foreach (var product in subcategory.Products)
                                 {
                                     if (product.ItemsAvailable > 0)
                                     {
-                                        <li style="color:white">@Html.ActionLink(@product.Name, "Details", "Products", new { productId = product.ProductId }, null)</li>
+                                        <li>@Html.ActionLink(@product.Name, "Details", "Products", new { productId = product.ProductId }, null)</li>
                                     }
                                     else
                                     {
-                                        <li>@Html.ActionLink(@product.Name, "Details", "Products", new { productId = product.ProductId }, null)</li>
+                                        <li class="itemUnavailable">
+                                            @Html.ActionLink(@product.Name, "Details", "Products", new { productId = product.ProductId }, null)
+                                            @Html.Raw("(unavailable)")
+                                        </li>
                                     }
                                 }
                             </ul>

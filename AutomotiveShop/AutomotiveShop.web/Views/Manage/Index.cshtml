@@ -9,19 +9,6 @@
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
         <dt>
             Your orders:
         </dt>
@@ -34,7 +21,26 @@
         @foreach (var order in Model.Orders)
         {
             <dd>
-                @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, null)
+                @switch (order.OrderState)
+                {
+                case AutomotiveShop.model.OrderState.New:
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default" })
+                        break;
+                    case AutomotiveShop.model.OrderState.Paid:
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderPaid" })
+                        break;
+                    case AutomotiveShop.model.OrderState.Sent:
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderSent" })
+                        break;
+                    case AutomotiveShop.model.OrderState.Completed:
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderCompleted" })
+                        break;
+                    case AutomotiveShop.model.OrderState.Cancelled:
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderCancelled" })
+                        break;
+                }
+
+                
                 (@Html.Raw(order.RelativeTime))
             </dd>
         }
@@ -62,5 +68,18 @@
                 @Html.Raw(" ")
             </dd>
         }
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
     </dl>
 </div>

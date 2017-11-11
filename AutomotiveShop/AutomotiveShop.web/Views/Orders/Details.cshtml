@@ -19,14 +19,19 @@
     <tr>
         <td></td>
         <td></td>
-        <td>
+        <td class="summary">
             Total: @Model.Price PLN
         </td>
     </tr>
 </table>
 
 <h2>Status: @Model.OrderState</h2>
-@if (!Model.NextAction.IsEmpty())
+@if (!Model.NextAction.IsEmpty() && Model.OrderState != AutomotiveShop.model.OrderState.Completed)
 {
-    @Html.ActionLink(Model.NextAction, "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState }, null)
+    @Html.ActionLink(Model.NextAction, "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState, toCancellation = false }, null)
+    <div></div>
+}
+@if (Model.OrderState != AutomotiveShop.model.OrderState.Cancelled)
+{
+    @Html.ActionLink("Cancel order", "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState, toCancellation = true }, null)
 }

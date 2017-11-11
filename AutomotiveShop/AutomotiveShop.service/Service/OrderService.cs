@@ -119,13 +119,20 @@ namespace AutomotiveShop.service.Service
             _sessionManager.Set(Consts.CartSessionKey, cart);
         }
 
-        public void ProcessOrder(Guid orderId, OrderState orderState)
+        public void ProcessOrder(Guid orderId, OrderState orderState, bool toCancellation)
         {
             // todo: processing state, not only incrementing
             Order order = _dbContext.Orders.FirstOrDefault(o => o.OrderId == orderId);
             if(order != null)
             {
-                order.OrderState++;
+                if(toCancellation)
+                {
+                    order.OrderState = OrderState.Cancelled;
+                }
+                else
+                {
+                    order.OrderState++;
+                }
             }
             _dbContext.Entry(order).Property(p => p.OrderState).IsModified = true;
             _dbContext.SaveChanges();
