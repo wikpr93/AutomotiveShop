@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AutomotiveShop.service.Service;
+using System.Collections.Generic;
 
 namespace AutomotiveShop.web.Controllers
 {
@@ -35,9 +36,9 @@ namespace AutomotiveShop.web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -74,9 +75,20 @@ namespace AutomotiveShop.web.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                Orders = _orderService.GetOrdersByUser(_userService.ReturnUserByUsername(User.Identity.Name)),
                 DeliveryAddresses = _orderService.GetDeliveryAddressesByUser(_userService.ReturnUserByUsername(User.Identity.Name))
             };
+
+            model.Orders = new List<OrderIndexViewModel>();
+            foreach(var order in _orderService.GetOrdersByUser(_userService.ReturnUserByUsername(User.Identity.Name)))
+            {
+                model.Orders.Add(new OrderIndexViewModel()
+                {
+                    OrderId = order.OrderId,
+                    OrderNumber = _orderService.GetOrderNumberFromDate(order.DateOfPurchase),
+                    RelativeTime = _orderService.GetRelativeTime(order.DateOfPurchase)
+                });
+            }
+            model.Orders = model.Orders.OrderBy(o => o.OrderNumber).ToList();
             return View(model);
         }
 
@@ -338,7 +350,7 @@ namespace AutomotiveShop.web.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -389,6 +401,6 @@ namespace AutomotiveShop.web.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

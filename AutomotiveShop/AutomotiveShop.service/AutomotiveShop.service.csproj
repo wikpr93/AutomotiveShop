@@ -150,6 +150,7 @@
     <Compile Include="ViewModels\Subcategories\SubcategoryToEditViewModel.cs" />
     <Compile Include="ViewModels\Users\AccountViewModels.cs" />
     <Compile Include="ViewModels\Users\ManageViewModels.cs" />
+    <Compile Include="ViewModels\Users\OrderIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AutomotiveShop.model\AutomotiveShop.model.csproj">

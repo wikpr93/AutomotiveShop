@@ -13,8 +13,13 @@ namespace AutomotiveShop.service.ViewModels.Users
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
-        public List<Order> Orders { get; set; }
+        public List<OrderIndexViewModel> Orders { get; set; }
         public List<DeliveryAddress> DeliveryAddresses { get; set; }
+        public IndexViewModel()
+        {
+            Orders = new List<OrderIndexViewModel>();
+            DeliveryAddresses = new List<DeliveryAddress>();
+        }
     }
 
     public class ManageLoginsViewModel

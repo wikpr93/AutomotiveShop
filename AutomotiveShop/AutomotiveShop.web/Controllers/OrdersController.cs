@@ -69,6 +69,12 @@ namespace AutomotiveShop.web.Controllers
             //return View(order);
         }
         
+        public ActionResult EmptyCart()
+        {
+            _orderService.EmptyCart();
+            return RedirectToAction("Index", "Home");
+
+        }
 
         // POST: Orders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

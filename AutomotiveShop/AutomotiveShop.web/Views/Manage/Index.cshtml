@@ -25,17 +25,28 @@
         <dt>
             Your orders:
         </dt>
+        @if(Model.Orders.Count == 0)
+        {
+            <dd>
+                You don't have any orders
+            </dd>
+        }
         @foreach (var order in Model.Orders)
         {
             <dd>
-                @Html.ActionLink(order.DateOfPurchase.Year.ToString() + "-" + order.DateOfPurchase.Month.ToString() + "-" + order.DateOfPurchase.Day.ToString() + "-" + order.DateOfPurchase.Hour.ToString("00") + "-" + order.DateOfPurchase.Minute.ToString("00") + "-" + order.DateOfPurchase.Second.ToString("00") + "-" + order.DateOfPurchase.Millisecond.ToString("000"), "Details", "Orders", new { orderId = order.OrderId }, null)
+                @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, null)
+                (@Html.Raw(order.RelativeTime))
             </dd>
         }
-    </dl>
-    <dl class="dl-horizontal">
         <dt>
             Your addresses:
         </dt>
+        @if (Model.Orders.Count == 0)
+        {
+            <dd>
+                You don't have any addresses
+            </dd>
+        }
         @foreach (var address in Model.DeliveryAddresses)
         {
             <dd>
