@@ -7,6 +7,8 @@ namespace AutomotiveShop.service.ViewModels.Orders
 {
     public class NewDeliveryAddressViewModel
     {
+        public Guid DeliveryAddressId { get; set; }
+
         public string CompanyName { get; set; }
 
         public string Name { get; set; }

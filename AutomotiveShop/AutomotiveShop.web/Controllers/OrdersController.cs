@@ -298,12 +298,12 @@ namespace AutomotiveShop.web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateDeliveryAddress([Bind(Include = "CompanyName,Name,Surname,StreetName,Postcode,City,PhoneNumber,AdditionalInfo,UserId")] DeliveryAddress deliveryAddress)
+        public ActionResult CreateDeliveryAddress([Bind(Include = "CompanyName,Name,Surname,StreetName,Postcode,City,PhoneNumber,AdditionalInfo")] NewDeliveryAddressViewModel deliveryAddress)
         {
             if (ModelState.IsValid)
             {
-                _orderService.CreateDeliveryAddress(deliveryAddress);
-                return RedirectToAction("Index");
+                _orderService.CreateDeliveryAddress(deliveryAddress, _userService.ReturnUserByUsername(User.Identity.Name));
+                return RedirectToAction("ChooseDeliveryAddress");
             }
             return View(deliveryAddress);
         }

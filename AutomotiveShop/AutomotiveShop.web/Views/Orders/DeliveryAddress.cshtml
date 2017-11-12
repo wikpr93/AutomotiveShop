@@ -8,7 +8,7 @@
     @foreach (var address in Model)
             {
         <a href=@Url.Action("Create", "Orders", new { deliveryAddressId = address.DeliveryAddressId })>
-            <button id="address" type="button" class="btn center-block">
+            <button class="addressButton" class="btn btn-default center-block">
                 @if (!address.CompanyName.IsEmpty())
                 {
                     <div>@address.CompanyName</div>
@@ -43,10 +43,11 @@
                 }
             </button>
         </a>
-                    <div class="newline">
-                        &nbsp;
-                    </div>
+        <div class="newline">
+            &nbsp;
+        </div>
     }
+    <button class="addressButton" type="button" class="btn center-block">@Html.ActionLink("Add new", "CreateDeliveryAddress")</button>
     @*@foreach(var address in Model)
          {
              @Html.ActionLink(address, "Index", "Home", new { @class = "btn btn-default", @id="address" })

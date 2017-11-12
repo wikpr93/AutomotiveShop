@@ -237,9 +237,22 @@ namespace AutomotiveShop.service.Service
             }
         }
 
-        public void CreateDeliveryAddress(DeliveryAddress deliveryAddress)
+        public void CreateDeliveryAddress(NewDeliveryAddressViewModel deliveryAddress, ApplicationUser user)
         {
-            throw new NotImplementedException();
+            DeliveryAddress newAddress = new DeliveryAddress()
+            {
+                CompanyName = deliveryAddress.CompanyName,
+                Name = deliveryAddress.CompanyName,
+                Surname = deliveryAddress.Surname,
+                StreetName = deliveryAddress.StreetName,
+                Postcode = deliveryAddress.Postcode,
+                City = deliveryAddress.City,
+                PhoneNumber = deliveryAddress.PhoneNumber,
+                AdditionalInfo = deliveryAddress.AdditionalInfo,
+                UserId = user.Id
+            };
+            _dbContext.DeliveryAddresses.Add(newAddress);
+            _dbContext.SaveChanges();
         }
 
         public DeliveryAddress FindDeliveryAddressesById(Guid? deliveryaddressId)
