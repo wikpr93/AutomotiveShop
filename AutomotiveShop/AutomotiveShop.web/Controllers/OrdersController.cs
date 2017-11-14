@@ -99,6 +99,7 @@ namespace AutomotiveShop.web.Controllers
         }
 
         // GET: Orders
+        [AllowAnonymous]
         public ActionResult Index()
         {
             CartViewModel cart = new CartViewModel();
@@ -113,7 +114,6 @@ namespace AutomotiveShop.web.Controllers
         }
 
         // GET: Orders/Details/5
-        [AllowAnonymous]
         public ActionResult Details(Guid orderId)
         {
             Order order = _orderService.FindOrderById(orderId);
