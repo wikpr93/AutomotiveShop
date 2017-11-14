@@ -13,9 +13,9 @@
         <table>
             @foreach (var item in Model.Items)
             {
-                <tr id="cart-row-@item.Product.ProductId">
-                    <td>
-                        @item.Product.Name
+                <tr>
+                    <td class="itemInCart">
+                        @Html.ActionLink(item.Product.Name, "Details", "Products", new {productId = item.Product.ProductId}, null)
                     </td>
                     <td>
                         |   @item.Quantity item(s) |

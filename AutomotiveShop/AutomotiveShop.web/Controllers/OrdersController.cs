@@ -121,6 +121,7 @@ namespace AutomotiveShop.web.Controllers
             {
                 OrderId = order.OrderId,
                 DateOfPurchase = order.DateOfPurchase,
+                DisplayedDateOfPurchase = order.DateOfPurchase.Year.ToString("0000") + "-" + order.DateOfPurchase.Month.ToString("00") + "-" + order.DateOfPurchase.Day.ToString("00") + " " + order.DateOfPurchase.Hour.ToString("00") + ":" + order.DateOfPurchase.Minute.ToString("00"),
                 OrderState = order.OrderState
             };
             DeliveryAddress address = _orderService.FindDeliveryAddressById(order.DeliveryAddressId);
@@ -362,7 +363,7 @@ namespace AutomotiveShop.web.Controllers
             return RedirectToAction("Index");
         }
     }
-    
 
-    
+
+
 }

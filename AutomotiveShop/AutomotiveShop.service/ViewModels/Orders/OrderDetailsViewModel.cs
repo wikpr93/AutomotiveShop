@@ -10,6 +10,7 @@ namespace AutomotiveShop.service.ViewModels.Orders
     {
         public Guid OrderId { get; set; }
         public DateTime DateOfPurchase { get; set; }
+        public string DisplayedDateOfPurchase { get; set; }
         public List<ItemInCartViewModel> Items { get; set; }
         public double Price { get; set; }
         public OrderState OrderState { get; set; }

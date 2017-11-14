@@ -10,6 +10,10 @@
     font-weight: bold;
 }
 
+.itemInCart a{
+    color:black;
+}
+
 .summary {
     font-weight: bold;
 }
@@ -20,10 +24,6 @@
 
 .orderPaid {
     background-color: #ccceff !important;
-}
-
-.orderSent {
-    background-color: #aeb0ff !important;
 }
 
 .orderCompleted {

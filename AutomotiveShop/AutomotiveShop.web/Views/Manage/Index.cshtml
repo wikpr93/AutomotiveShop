@@ -30,7 +30,7 @@
                         @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderPaid" })
                         break;
                     case AutomotiveShop.model.OrderState.Sent:
-                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderSent" })
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, null)
                         break;
                     case AutomotiveShop.model.OrderState.Completed:
                         @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderCompleted" })

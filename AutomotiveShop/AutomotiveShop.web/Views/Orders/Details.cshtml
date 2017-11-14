@@ -1,5 +1,5 @@
 ﻿@model AutomotiveShop.service.ViewModels.Orders.OrderDetailsViewModel
-<h1>@Model.DateOfPurchase.Day.ToString()-@Model.DateOfPurchase.Month.ToString()-@Model.DateOfPurchase.Year.ToString() @Model.DateOfPurchase.TimeOfDay.Hours.ToString():@Model.DateOfPurchase.TimeOfDay.Minutes.ToString()</h1>
+<h1>@Model.DisplayedDateOfPurchase</h1>
 
 <table>
     @foreach (var item in Model.Items)
