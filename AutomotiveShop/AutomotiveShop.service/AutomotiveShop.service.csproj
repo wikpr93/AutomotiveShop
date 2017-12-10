@@ -145,6 +145,7 @@
     <Compile Include="ViewModels\Orders\ItemInCartViewModel.cs" />
     <Compile Include="ViewModels\Orders\NewOrderViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Orders\ParcelLockerAddressViewModel.cs" />
     <Compile Include="ViewModels\Products\BoughtItemViewModel.cs" />
     <Compile Include="ViewModels\Products\NewProductViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductToEditViewModel.cs" />

@@ -47,7 +47,11 @@
             &nbsp;
         </div>
     }
-    <button class="addressButton" type="button" class="btn center-block">@Html.ActionLink("Add new", "CreateDeliveryAddress")</button>
+    <div>
+        <button class="addressButton" type="button" class="btn center-block">@Html.ActionLink("Parcel locker", "ChooseParcelLocker")</button>
+    </div>
+        <button class="addressButton" type="button" class="btn center-block">@Html.ActionLink("Add new", "CreateDeliveryAddress")</button>
+    </div>
     @*@foreach(var address in Model)
          {
              @Html.ActionLink(address, "Index", "Home", new { @class = "btn btn-default", @id="address" })

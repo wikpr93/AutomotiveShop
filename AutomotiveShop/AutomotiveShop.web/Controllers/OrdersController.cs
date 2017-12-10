@@ -11,6 +11,7 @@ using AutomotiveShop.model.Infrastructure;
 using AutomotiveShop.service.Service;
 using AutomotiveShop.service.ViewModels.Orders;
 using System.Web.WebPages;
+using System.IO;
 
 namespace AutomotiveShop.web.Controllers
 {
@@ -83,6 +84,51 @@ namespace AutomotiveShop.web.Controllers
             //    model.Add(add);
             //}
             return View("DeliveryAddress", model);
+        }
+
+        public ActionResult ChooseParcelLocker()
+        {
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://api.paczkomaty.pl/?do=listmachines_csv");
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+
+            StreamReader sr = new StreamReader(resp.GetResponseStream());
+
+            string fileList = "";
+            string[] tempStr;
+
+            List<ParcelLockerAddressViewModel> model = new List<ParcelLockerAddressViewModel>();
+            while (sr.Peek() >= 0)
+            {
+                fileList = sr.ReadLine();
+                ParcelLockerAddressViewModel address = new ParcelLockerAddressViewModel();
+                tempStr = fileList.Split(';');
+                for (int i = 0; i < tempStr.Length; i++)
+                {
+                    if (i >= 1 && i <= 4 && string.IsNullOrEmpty(tempStr[i]))
+                    {
+                        continue;
+                    }
+                    switch (i)
+                    {
+                        case 1:
+                            address.Street = tempStr[i];
+                            break;
+                        case 2:
+                            address.Street += " " + tempStr[i];
+                            break;
+                        case 3:
+                            address.Postcode = tempStr[i];
+                            break;
+                        case 4:
+                            address.City = tempStr[i];
+                            break;
+                    }
+                }
+                model.Add(address);
+            }
+
+            sr.Close();
+            return View("ChooseParcelLocker", model);
         }
 
         public ActionResult Create(Guid deliveryAddressId)
