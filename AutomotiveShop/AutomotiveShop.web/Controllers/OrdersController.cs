@@ -29,10 +29,10 @@ namespace AutomotiveShop.web.Controllers
 
         public ActionResult ChooseDeliveryAddress()
         {
-            List<DeliveryAddressViewModel> model = new List<DeliveryAddressViewModel>();
+            AddressesToChooseViewModel model = new AddressesToChooseViewModel();
             foreach (DeliveryAddress address in _userService.ReturnUserByUsername(User.Identity.Name).DeliveryAddresses.ToList())
             {
-                model.Add(new DeliveryAddressViewModel()
+                model.Addresses.Add(new DeliveryAddressViewModel()
                 {
                     DeliveryAddressId = address.DeliveryAddressId,
                     CompanyName = address.CompanyName,
@@ -45,49 +45,7 @@ namespace AutomotiveShop.web.Controllers
                     AdditionalInfo = address.PhoneNumber
                 });
             }
-            //List<string> model = new List<string>();
-            //foreach (DeliveryAddress address in _userService.ReturnUserByUsername(User.Identity.Name).DeliveryAddresses.ToList())
-            //{
-            //    string add = "";
-            //    if (!address.CompanyName.IsEmpty())
-            //    {
-            //        add += address.CompanyName + Environment.NewLine;
-            //    }
-            //    if (!address.Name.IsEmpty())
-            //    {
-            //        add += address.Name + Environment.NewLine;
-            //    }
-            //    if (!address.Surname.IsEmpty())
-            //    {
-            //        add += address.Surname + Environment.NewLine;
-            //    }
-            //    if (!address.StreetName.IsEmpty())
-            //    {
-            //        add += address.StreetName + Environment.NewLine + "<br />";
-            //    }
-            //    if (!address.Postcode.IsEmpty())
-            //    {
-            //        add += address.Postcode + Environment.NewLine;
-            //    }
-            //    if (!address.City.IsEmpty())
-            //    {
-            //        add += address.City + Environment.NewLine;
-            //    }
-            //    if (!address.PhoneNumber.IsEmpty())
-            //    {
-            //        add += address.PhoneNumber + Environment.NewLine;
-            //    }
-            //    if (!address.AdditionalInfo.IsEmpty())
-            //    {
-            //        add += address.AdditionalInfo + Environment.NewLine;
-            //    }
-            //    model.Add(add);
-            //}
-            return View("DeliveryAddress", model);
-        }
-
-        public ActionResult ChooseParcelLocker()
-        {
+            
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://api.paczkomaty.pl/?do=listmachines_csv");
             HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
 
@@ -95,17 +53,18 @@ namespace AutomotiveShop.web.Controllers
 
             string fileList = "";
             string[] tempStr;
-
-            List<ParcelLockerAddressViewModel> model = new List<ParcelLockerAddressViewModel>();
+            bool correct;
             while (sr.Peek() >= 0)
             {
+                correct = true;
                 fileList = sr.ReadLine();
                 ParcelLockerAddressViewModel address = new ParcelLockerAddressViewModel();
                 tempStr = fileList.Split(';');
                 for (int i = 0; i < tempStr.Length; i++)
                 {
-                    if (i >= 1 && i <= 4 && string.IsNullOrEmpty(tempStr[i]))
+                    if (tempStr.Length < 16 || (i >= 1 && i <= 4 && string.IsNullOrEmpty(tempStr[i])))
                     {
+                        correct = false;
                         continue;
                     }
                     switch (i)
@@ -124,11 +83,15 @@ namespace AutomotiveShop.web.Controllers
                             break;
                     }
                 }
-                model.Add(address);
+                if (correct)
+                {
+                    address.Displayed = address.City + ", " + address.Street;
+                    model.ParcelLockers.Add(address);
+                }
             }
-
             sr.Close();
-            return View("ChooseParcelLocker", model);
+            model.ParcelLockers = model.ParcelLockers.OrderBy(o => o.City).ToList();
+            return View("DeliveryAddress", model);
         }
 
         public ActionResult Create(Guid deliveryAddressId)

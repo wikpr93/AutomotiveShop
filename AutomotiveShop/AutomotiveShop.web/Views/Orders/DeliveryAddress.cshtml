@@ -1,11 +1,12 @@
-﻿@model List<AutomotiveShop.service.ViewModels.Orders.DeliveryAddressViewModel>
+﻿@model AutomotiveShop.service.ViewModels.Orders.AddressesToChooseViewModel
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="text-center">
     <h1>Choose delivery address</h1>
-    @foreach (var address in Model)
+    @foreach (var address in Model.Addresses)
             {
         <a href=@Url.Action("Create", "Orders", new { deliveryAddressId = address.DeliveryAddressId })>
             <button class="addressButton" class="btn btn-default center-block">
@@ -48,7 +49,11 @@
         </div>
     }
     <div>
-        <button class="addressButton" type="button" class="btn center-block">@Html.ActionLink("Parcel locker", "ChooseParcelLocker")</button>
+        @Html.DropDownList(
+            "Name",
+            new SelectList(Model.ParcelLockers, "Displayed", "Displayed"),
+            "Select parcel locker",
+            new { @class = "center-block" })
     </div>
         <button class="addressButton" type="button" class="btn center-block">@Html.ActionLink("Add new", "CreateDeliveryAddress")</button>
     </div>

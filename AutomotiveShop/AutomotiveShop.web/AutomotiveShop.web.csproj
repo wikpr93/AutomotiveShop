@@ -263,7 +263,6 @@
     <Content Include="Views\Orders\CreateDeliveryAddress.cshtml" />
     <Content Include="Views\Orders\DeleteDeliveryAddress.cshtml" />
     <Content Include="Views\Orders\EditDeliveryAddress.cshtml" />
-    <Content Include="Views\Orders\ChooseParcelLocker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

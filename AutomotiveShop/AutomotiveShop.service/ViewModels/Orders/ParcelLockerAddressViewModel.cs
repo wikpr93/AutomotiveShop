@@ -14,5 +14,6 @@ namespace AutomotiveShop.service.ViewModels.Orders
         public string Postcode { get; set; }
         [Display(Name = "City")]
         public string City { get; set; }
+        public string Displayed { get; set; }
     }
 }
