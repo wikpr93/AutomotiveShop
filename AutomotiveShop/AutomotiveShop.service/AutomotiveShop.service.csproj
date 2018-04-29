@@ -149,6 +149,7 @@
     <Compile Include="ViewModels\Orders\ParcelLockerAddressViewModel.cs" />
     <Compile Include="ViewModels\Products\BoughtItemViewModel.cs" />
     <Compile Include="ViewModels\Products\NewProductViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductToBuyViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductToEditViewModel.cs" />
     <Compile Include="ViewModels\Subcategories\NewSubcategoryViewModel.cs" />
     <Compile Include="ViewModels\Subcategories\SubcategoryToEditViewModel.cs" />
@@ -173,7 +174,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50781</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

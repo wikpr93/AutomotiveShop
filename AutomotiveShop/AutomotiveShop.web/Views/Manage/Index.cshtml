@@ -17,6 +17,9 @@
             <dd>
                 You don't have any orders
             </dd>
+            <dd>
+                @Html.ActionLink("Check our products and buy something to fill this section!", "Index", "Home")
+            </dd>
         }
         @foreach (var order in Model.Orders)
         {

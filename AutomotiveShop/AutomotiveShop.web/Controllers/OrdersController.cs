@@ -12,6 +12,7 @@ using AutomotiveShop.service.Service;
 using AutomotiveShop.service.ViewModels.Orders;
 using System.Web.WebPages;
 using System.IO;
+using AutomotiveShop.service.ViewModels.Products;
 
 namespace AutomotiveShop.web.Controllers
 {
@@ -101,9 +102,14 @@ namespace AutomotiveShop.web.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult AddToCart(Guid productId)
+        [HttpPost]
+        public ActionResult AddToCart(Guid? productId, int copiesToBuy)
         {
-            _orderService.AddToCart(productId);
+            if (productId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            _orderService.AddToCart(productId, copiesToBuy);
             return RedirectToAction("Index");
         }
 
@@ -202,7 +208,7 @@ namespace AutomotiveShop.web.Controllers
         public ActionResult ProcessOrder(Guid orderId, OrderState orderState, bool toCancellation)
         {
             _orderService.ProcessOrder(orderId, orderState, toCancellation);
-            return RedirectToAction("Details", new { orderId = orderId });
+            return RedirectToAction("Details", new { orderId });
         }
 
         // POST: Orders/Create

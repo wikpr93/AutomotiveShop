@@ -24,7 +24,7 @@ namespace AutomotiveShop.web.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(_productService.GetProducts());
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Products/Details/5
@@ -41,7 +41,18 @@ namespace AutomotiveShop.web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+
+            ProductToBuyViewModel model = new ProductToBuyViewModel()
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                CategoryName = product.Subcategory.Category.Name,
+                SubcategoryName = product.Subcategory.Name,
+                Price = product.Price,
+                ItemsAvailable = product.ItemsAvailable,
+                AlreadyBought = product.Copies.Count
+            };
+            return View(model);
         }
 
         // GET: Products/Create

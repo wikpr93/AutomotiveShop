@@ -93,32 +93,46 @@ namespace AutomotiveShop.service.Service
             return _dbContext.DeliveryAddresses.Where(o => o.UserId == user.Id).ToList();
         }
 
-        public void AddToCart(Guid productId)
+        public void AddToCart(Guid? productId, int newQuantity)
         {
+            if (productId == null)
+            {
+                return;
+            }
+
+            bool newItem = false;
+
             List<ItemInCartViewModel> cart = GetCart();
             ItemInCartViewModel item = cart.Find(p => p.Product.ProductId == productId);
-            if (item != null && item.Quantity >= _productService.GetProductById(productId).ItemsAvailable)
+
+            if (item == null)
+            {
+                newItem = true;
+                item = new ItemInCartViewModel()
+                {
+                    Product = _productService.GetProductById(productId),
+                    Quantity = 0,
+                    Value = 0
+                };
+
+                if(item.Product == null)
+                {
+                    return;
+                }
+            }
+
+            if (item != null && item.Quantity + newQuantity>= _productService.GetProductById(productId).ItemsAvailable)
             {
                 throw new Exception("Not enough items in stock");
             }
             else if (item != null)
             {
-                item.Quantity++;
-                item.Value += _productService.GetProductById(item.Product.ProductId).Price;
-            }
-            else
-            {
-                var productToAdd = _productService.GetProductById(productId);
+                item.Quantity+= newQuantity;
+                item.Value += newQuantity * _productService.GetProductById(item.Product.ProductId).Price;
 
-                if (productToAdd != null)
+                if(newItem)
                 {
-                    ItemInCartViewModel newItem = new ItemInCartViewModel()
-                    {
-                        Product = productToAdd,
-                        Quantity = 1,
-                        Value = productToAdd.Price
-                    };
-                    cart.Add(newItem);
+                    cart.Add(item);
                 }
             }
 
