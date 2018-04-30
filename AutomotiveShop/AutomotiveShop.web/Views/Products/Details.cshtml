@@ -13,7 +13,6 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Name)
             </dt>
-
             <dd>
                 @Html.DisplayFor(model => model.Name)
             </dd>
@@ -21,39 +20,37 @@
             <dt>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </dt>
-
             <dd>
                 @Html.DisplayFor(model => model.CategoryName)
             </dd>
 
-
             <dt>
                 @Html.DisplayNameFor(model => model.SubcategoryName)
             </dt>
-
             <dd>
                 @Html.DisplayFor(model => model.SubcategoryName)
             </dd>
+
             <dt>
                 @Html.DisplayNameFor(model => model.Price)
             </dt>
-
             <dd>
                 @Html.DisplayFor(model => model.Price)
             </dd>
+
             <dt>
-                @Html.Raw("Bought")
+                @Html.DisplayNameFor(model => model.AlreadyBought)
             </dt>
 
             <dd>
-                @Model.AlreadyBought
+                @Html.DisplayFor(model => model.AlreadyBought)
             </dd>
+
             <dt>
                 @Html.Raw("Availability")
             </dt>
-
             <dd>
-                @(Model.ItemsAvailable > 0 ? Html.Raw("In stock (" + @Model.ItemsAvailable + " item(s) available)") : Html.Raw("Unavailable"))
+                @(Model.ItemsAvailable > 0 ? Html.Raw("In stock (" + @Model.ItemsAvailable + " item(s) available" + ((Model.ItemsInCart > 0)?(", " + Model.ItemsInCart + " in your cart"):("")) + ")"): Html.Raw("Unavailable"))
             </dd>
         </dl>
     </div>

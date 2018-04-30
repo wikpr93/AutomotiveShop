@@ -121,7 +121,7 @@ namespace AutomotiveShop.service.Service
                 }
             }
 
-            if (item != null && item.Quantity + newQuantity>= _productService.GetProductById(productId).ItemsAvailable)
+            if (item != null && item.Quantity + newQuantity > _productService.GetProductById(productId).ItemsAvailable)
             {
                 throw new Exception("Not enough items in stock");
             }

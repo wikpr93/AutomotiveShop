@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutomotiveShop.model;
 using AutomotiveShop.service.Service;
+using AutomotiveShop.service.ViewModels.Orders;
 using AutomotiveShop.service.ViewModels.Products;
 
 namespace AutomotiveShop.web.Controllers
@@ -18,6 +19,7 @@ namespace AutomotiveShop.web.Controllers
         private ProductService _productService = new ProductService();
         private CategoryService _categoryService = new CategoryService();
         private SubcategoryService _subcategoryService = new SubcategoryService();
+        private OrderService _orderService = new OrderService();
         private UserService _userService = new UserService();
 
 
@@ -42,6 +44,9 @@ namespace AutomotiveShop.web.Controllers
                 return HttpNotFound();
             }
 
+            List<ItemInCartViewModel> cart = _orderService.GetCart();
+            ItemInCartViewModel item = cart.Find(p => p.Product.ProductId == productId);
+
             ProductToBuyViewModel model = new ProductToBuyViewModel()
             {
                 ProductId = product.ProductId,
@@ -50,6 +55,7 @@ namespace AutomotiveShop.web.Controllers
                 SubcategoryName = product.Subcategory.Name,
                 Price = product.Price,
                 ItemsAvailable = product.ItemsAvailable,
+                ItemsInCart = (item != null)?item.Quantity:0,
                 AlreadyBought = product.Copies.Count
             };
             return View(model);
