@@ -23,7 +23,7 @@
         @Html.ActionLink("Create product", "Create", "Products", new { subcategoryId = Model.SubcategoryId }, null)
         @Html.Raw(" |")
     }
-    @Html.ActionLink("Edit", "Edit", new { subcategoryId = Model.SubcategoryId }) |
-    @Html.ActionLink("Delete", "Delete", new { subcategoryId = Model.SubcategoryId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Delete", "Delete", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-primary btn-xs" })
 </p>

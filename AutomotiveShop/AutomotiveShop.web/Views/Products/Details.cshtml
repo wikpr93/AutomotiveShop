@@ -77,8 +77,8 @@ else
     @Html.Raw("|")
 }
 
-        @Html.ActionLink("Edit", "Edit", new { productId = Model.ProductId }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Edit", "Edit", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
+        @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-primary btn-xs" })
     </p>
 }
 

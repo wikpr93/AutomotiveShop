@@ -36,7 +36,7 @@
                 <td></td>
                 <td></td>
                 <td>
-                    @Html.ActionLink("Buy", "ChooseDeliveryAddress", "Orders")
+                    @Html.ActionLink("Buy", "ChooseDeliveryAddress", "Orders", null, new { @class = "btn btn-primary btn-xs" })
                 </td>
             </tr>
         </table>
@@ -48,6 +48,6 @@
 
 </div>
 <p>
-    @Html.ActionLink("Empty cart", "EmptyCart") |
-    @Html.ActionLink("Back to List", "Index", "Home")
+    @Html.ActionLink("Empty cart", "EmptyCart", null, new { @class = "btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Back to list", "Index", "Home", null, new { @class = "btn btn-primary btn-xs" })
 </p>
