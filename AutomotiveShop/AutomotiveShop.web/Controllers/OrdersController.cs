@@ -97,8 +97,8 @@ namespace AutomotiveShop.web.Controllers
 
         public ActionResult Create(Guid deliveryAddressId)
         {
-            _orderService.Create(deliveryAddressId, _userService.ReturnUserByUsername(User.Identity.Name));
-            return RedirectToAction("Index", "Home");
+            ;
+            return RedirectToAction("Details", new { @orderId = _orderService.Create(deliveryAddressId, _userService.ReturnUserByUsername(User.Identity.Name)) });
         }
 
         [AllowAnonymous]
@@ -154,10 +154,10 @@ namespace AutomotiveShop.web.Controllers
                     model.NextAction = "Pay for order";
                     break;
                 case 1:
-                    model.NextAction = "Mark as sent";
+                    model.NextAction = "Mark as sent (as a administrator)";
                     break;
                 case 2:
-                    model.NextAction = "Mark as received";
+                    model.NextAction = "Mark as received (as a client)";
                     break;
                 case 3:
                     model.NextAction = "Cancel order";

@@ -3,7 +3,7 @@
 
 <table>
     @foreach (var item in Model.Items)
-            {
+    {
         <tr id="cart-row-@item.Product.ProductId">
             <td>
                 @item.Product.Name
@@ -72,10 +72,11 @@
 <h2>Status: @Model.OrderState</h2>
 @if (!Model.NextAction.IsEmpty() && Model.OrderState != AutomotiveShop.model.OrderState.Completed)
 {
-    @Html.ActionLink(Model.NextAction, "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState, toCancellation = false }, null)
+    @Html.ActionLink(Model.NextAction, "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState, toCancellation = false }, new { @class = "btn btn-primary" })
     <div></div>
 }
+
 @if (Model.OrderState != AutomotiveShop.model.OrderState.Cancelled)
 {
-    @Html.ActionLink("Cancel order", "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState, toCancellation = true }, null)
+    @Html.ActionLink("Cancel order", "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState, toCancellation = true }, new { @class = "btn btn-default btn-xs" })
 }
