@@ -1,6 +1,13 @@
 ﻿@model AutomotiveShop.service.ViewModels.Orders.OrderDetailsViewModel
 <h1>@Model.DisplayedDateOfPurchase</h1>
 
+@if (TempData["ItemsBought"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["ItemsBought"]
+    </div>
+}
+
 <table>
     @foreach (var item in Model.Items)
     {

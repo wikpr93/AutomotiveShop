@@ -97,8 +97,16 @@ namespace AutomotiveShop.web.Controllers
 
         public ActionResult Create(Guid deliveryAddressId)
         {
-            ;
-            return RedirectToAction("Details", new { @orderId = _orderService.Create(deliveryAddressId, _userService.ReturnUserByUsername(User.Identity.Name)) });
+            Guid orderId = _orderService.Create(deliveryAddressId, _userService.ReturnUserByUsername(User.Identity.Name));
+
+            if(orderId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            TempData["ItemsBought"] = "Thank you for your purchase. You can pay for items now";
+
+            return RedirectToAction("Details", new { orderId });
         }
 
         [AllowAnonymous]

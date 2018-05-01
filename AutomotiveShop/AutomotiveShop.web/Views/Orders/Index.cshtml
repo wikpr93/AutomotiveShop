@@ -43,11 +43,18 @@
     }
     else
     {
-        @Html.Raw("Add something first")
+        @Html.Raw("Cart is empty")
+        <div>
+            &nbsp;
+        </div>
     }
 
 </div>
 <p>
-    @Html.ActionLink("Empty cart", "EmptyCart", null, new { @class = "btn btn-primary btn-xs" }) |
+    @if (Model.Items.Count > 0)
+    {
+        @Html.ActionLink("Empty cart", "EmptyCart", null, new { @class = "btn btn-primary btn-xs" }) 
+        @Html.Raw(" | ")
+    }
     @Html.ActionLink("Back to list", "Index", "Home", null, new { @class = "btn btn-primary btn-xs" })
 </p>

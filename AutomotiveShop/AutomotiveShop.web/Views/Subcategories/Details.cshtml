@@ -20,7 +20,7 @@
 <p>
     @if (isAdministrator)
     {
-        @Html.ActionLink("Create product", "Create", "Products", new { subcategoryId = Model.SubcategoryId }, null)
+        @Html.ActionLink("Create product", "Create", "Products", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" })
         @Html.Raw(" |")
     }
     @Html.ActionLink("Edit", "Edit", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
