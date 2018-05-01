@@ -154,7 +154,7 @@ namespace AutomotiveShop.web.Controllers
                     model.NextAction = "Pay for order";
                     break;
                 case 1:
-                    model.NextAction = "Mark as sent (as a administrator)";
+                    model.NextAction = "Mark as sent (as an administrator)";
                     break;
                 case 2:
                     model.NextAction = "Mark as received (as a client)";
