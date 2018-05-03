@@ -1,40 +1,33 @@
-﻿@model List<AutomotiveShop.model.Category>
+﻿@model List<AutomotiveShop.service.ViewModels.Products.ProductViewModel>
 
 @{
     ViewBag.Title = "Home Page";
 }
 
-<div id="productList" class="jumbotron" style="background-color:white">
-    <ul>
-        @foreach (var category in Model)
-        {
-            <li>
-                @Html.ActionLink(@category.Name, "Details", "Categories", new { categoryId = category.CategoryId }, null)
-                <ul>
-                    @foreach (var subcategory in category.Subcategories)
-                    {
-                        <li>
-                            @Html.ActionLink(@subcategory.Name, "Details", "Subcategories", new { subcategoryId = subcategory.SubcategoryId }, null)
-                            <ul>
-                                @foreach (var product in subcategory.Products)
-                                {
-                                    if (product.ItemsAvailable > 0)
-                                    {
-                                        <li>@Html.ActionLink(@product.Name, "Details", "Products", new { productId = product.ProductId }, null)</li>
-                                    }
-                                    else
-                                    {
-                                        <li class="itemUnavailable">
-                                            @Html.ActionLink(@product.Name, "Details", "Products", new { productId = product.ProductId }, null)
-                                            @Html.Raw("(unavailable)")
-                                        </li>
-                                    }
-                                }
-                            </ul>
-                        </li>
-                    }
-                </ul>
-            </li>
-        }
-    </ul>
-</div>
+<div id="index" class="jumbotron" style="background-color:transparent">
+    @foreach (var product in Model)
+    {
+        <a href="#">
+            <div style="height: 200px; width: 100%; align-content:center; color:white; font-size: 20px;">
+                <div style="height:200px; width:20%; border: solid 1px black; float:left">
+
+                </div>
+                <div style="padding-left: 10px; padding-right: 10px; height: 150px; width:70%; border: solid 1px black; float:left">
+                    <span>@product.Name</span>
+                </div>
+                <div style="padding-right: 10px; height: 150px; width:10%; border: solid 1px black; float:left; text-align:right;">
+                    <span>@product.Price</span>
+                </div>
+                <a href="#">
+                    <div style="padding-left: 10px; padding-right: 10px; height: 50px; width: 80%; border: solid 1px black;font-size: 10px; float:left;">
+                        <span>@product.CategoryName, @product.SubcategoryName</span>
+                    </div>
+                </a>
+                <div style="clear:both"></div>
+            </div>
+            </a>
+            <div style="height:30px">
+
+            </div>
+            }
+    </div>

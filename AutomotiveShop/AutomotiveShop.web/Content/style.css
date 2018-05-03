@@ -1,4 +1,5 @@
 ﻿body {
+    background-color: #660000 !important;
 }
 
 
@@ -17,14 +18,15 @@
     font-size: 48px;
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid;
 }
 
 
 #nav {
     width: 100%;
     padding: 5px 0;
-    font-family: 'Lato', sans-serif;
-    background-color: #1c3b6d;
+    font-family: 'Patua One', cursive;
+    background-color: black;
     border-top: 1px solid #0e65f1;
     border-bottom: 1px solid #0e65f1;
     opacity: 0.9;
@@ -83,24 +85,19 @@
         float: left;
         width: 100px;
         height: 30px;
-        border-right: 1px dashed #87b2f8;
+        padding-top:2px;
     }
-
-        #nav > #menu > div > ol > li:first-child,
-        #nav > #menu > div > form > ol > li:first-child {
-            border-left: 1px dashed #87b2f8;
-        }
 
 
         #nav > #menu > div > ol > li:hover,
         #nav > #menu > div > form > ol > li:hover {
-            background-color: #87b2f8;
+            background-color: #660000;
         }
 
             #nav > #menu > div > ol > li:hover > a,
             #nav > #menu > div > form > ol > li:hover > a,
             #nav > #menu > div > form > ol > li:hover > input {
-                color: #2674f2;
+                color: black;
             }
 
         #nav > #menu > div > ol > li > ul,
@@ -197,8 +194,7 @@
 
 
 #cartButton > a {
-    color: white !important;
-    font-weight: bold;
+    border: 1px dashed #660000;
 }
 
 .itemInCart a{

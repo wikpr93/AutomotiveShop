@@ -14,7 +14,7 @@ namespace AutomotiveShop.service.Service
 
         public List<Product> GetProducts()
         {
-            return _dbContext.Products.ToList();
+            return _dbContext.Products?.ToList();
         }
 
         public Product GetProductById(Guid? productId)

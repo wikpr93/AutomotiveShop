@@ -151,6 +151,7 @@
     <Compile Include="ViewModels\Products\NewProductViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductToBuyViewModel.cs" />
     <Compile Include="ViewModels\Products\ProductToEditViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductViewModel.cs" />
     <Compile Include="ViewModels\Subcategories\NewSubcategoryViewModel.cs" />
     <Compile Include="ViewModels\Subcategories\SubcategoryToEditViewModel.cs" />
     <Compile Include="ViewModels\Users\AccountViewModels.cs" />
