@@ -1,9 +1,200 @@
 ﻿body {
 }
 
-#navBar {
-    background-color: #000580;
+
+#container {
+    width: 100%;
 }
+
+#header {
+    width: 100%;
+    padding: 40px 0;
+}
+
+#logo {
+    font-family: 'Bungee', cursive;
+    width: 700px;
+    font-size: 48px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#nav {
+    width: 100%;
+    padding: 5px 0;
+    font-family: 'Lato', sans-serif;
+    background-color: #1c3b6d;
+    border-top: 1px solid #0e65f1;
+    border-bottom: 1px solid #0e65f1;
+    opacity: 0.9;
+}
+
+    #nav:hover {
+        opacity: 1;
+    }
+
+#menu {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 30px;
+}
+
+#nav > #menu > #leftmenu,
+#nav > #menu > #login {
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+    #nav > #menu > #leftmenu > ol {
+        width: 600px;
+    }
+
+    #nav > #menu > #login > ol,
+    #nav > #menu > #login > form > ol { /* wyrownanie listy z menu uzytkownika do prawej*/
+        float: right;
+    }
+
+#nav > #menu > div > ol,
+#nav > #menu > div > form > ol {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 18px;
+    height: 30px;
+    line-height: 150%;
+    text-align: center;
+}
+
+
+
+    #nav > #menu > div > ol a,
+    #nav > #menu > div > form > ol a,
+    #nav > #menu > div > form > ol input {
+        color: #ffffff;
+        text-decoration: none;
+        display: block;
+    }
+
+    #nav > #menu > div > ol > li,
+    #nav > #menu > div > form > ol > li {
+        float: left;
+        width: 100px;
+        height: 30px;
+        border-right: 1px dashed #87b2f8;
+    }
+
+        #nav > #menu > div > ol > li:first-child,
+        #nav > #menu > div > form > ol > li:first-child {
+            border-left: 1px dashed #87b2f8;
+        }
+
+
+        #nav > #menu > div > ol > li:hover,
+        #nav > #menu > div > form > ol > li:hover {
+            background-color: #87b2f8;
+        }
+
+            #nav > #menu > div > ol > li:hover > a,
+            #nav > #menu > div > form > ol > li:hover > a,
+            #nav > #menu > div > form > ol > li:hover > input {
+                color: #2674f2;
+            }
+
+        #nav > #menu > div > ol > li > ul,
+        #nav > #menu > div > form > ol > li > ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            margin-left: -100px;
+            height: 40px;
+            text-align: left;
+            display: none;
+            width: 300px;
+        }
+
+        #nav > #menu > div > ol > li:hover > ul,
+        #nav > #menu > div > form > ol > li:hover > ul {
+            display: block;
+        }
+
+        #nav > #menu > div > form > ol > li > input {
+            background-color: transparent;
+            border: 0;
+        }
+
+        #nav > #menu > div > ol > li > ul > li,
+        #nav > #menu > div > form > ol > li > ul > li,
+        #nav > #menu > div > form > ol > li > ul > li > input {
+            background-color: #87b2f8;
+            position: relative;
+            z-index: 100;
+            border-top: 1px dashed #0e65f1;
+            padding-left: 10px;
+        }
+
+            #nav > #menu > div > ol > li > ul > li:hover,
+            #nav > #menu > div > form > ol > li > ul > li:hover,
+            #nav > #menu > div > form > ol > li > ul > li > input:hover {
+                background-color: #0b51c1;
+            }
+
+            #nav > #menu > div > form > ol > li > ul > li:first-child:hover {
+                background-color: #87b2f8;
+            }
+
+            #nav > #menu > div > ol > li > ul > li:hover > a,
+            #nav > #menu > div > form > ol > li > ul > li:hover > a {
+                color: #6ea3f7;
+            }
+
+#leftmenu {
+    float: left;
+    width: 600px;
+}
+
+
+
+#login {
+    float: left;
+    width: 400px;
+}
+
+
+
+#content {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+    padding-top: 10px;
+}
+
+#nav > div > #login > ul {
+    float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #cartButton > a {
     color: white !important;
@@ -64,3 +255,4 @@
     #productList a {
         color: black !important;
     }
+

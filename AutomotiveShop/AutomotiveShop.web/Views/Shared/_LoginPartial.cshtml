@@ -1,25 +1,44 @@
 ﻿@using Microsoft.AspNet.Identity
 
+
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
+        <ol>
+            @{
+                string linkStyle = User.IsInRole("Administrator") ? "color: #00ff00;" : "color:#ffffff";
+            }
+            <li style="width: 290px;">
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = @linkStyle })
+                @if (User.IsInRole("Administrator"))
+                {
+                    <ul>
+                        <li style="border-top: 2px solid black; border-bottom: 2px solid black;">
+                            @Html.Raw("Manage:")
+                        </li>
+                        <li style="border-top: none;">
+                            
+                        </li>
+                        <li>
+                            
+                        </li>
+                    </ul>
 
-<ul class="nav navbar-nav navbar-right">
-    <li>
-        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-    </li>
-    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    <li id="cartButton">@Html.ActionLink("Your cart", "Index", "Orders")</li>
-</ul>
+                }
+            </li>
+            <li>
+                <input type="submit" value="Log out" style="width: 100px" />
+            </li>
+        </ol>
     }
 }
 else
 {
-<ul class="nav navbar-nav navbar-right">
-    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    <li id="cartButton">@Html.ActionLink("Your cart", "Index", "Orders")</li>
-</ul>
+    <ol>
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li id="cartButton">@Html.ActionLink("Your cart", "Index", "Orders")</li>
+    </ol>
 }
