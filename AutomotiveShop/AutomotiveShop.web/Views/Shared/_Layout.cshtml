@@ -34,7 +34,8 @@
 
 
 </head>
-<body>
+<body onload="scrollFunction()">
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Back to the top</button>
     <div id="container">
         <div id="header">
             <div id="logo">
@@ -76,6 +77,22 @@
         <div id="footer"></div>
     </div>
 
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+        
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
