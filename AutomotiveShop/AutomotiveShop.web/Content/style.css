@@ -3,6 +3,10 @@
     color: white !important;
 }
 
+a{
+    text-decoration: none !important;
+    color: white !important;
+}
 
 #container {
     width: 100%;
@@ -252,4 +256,3 @@
     #productList a {
         color: black !important;
     }
-

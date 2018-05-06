@@ -7,7 +7,7 @@
 <div id="index" class="jumbotron" style="background-color:transparent">
     @foreach (var product in Model)
     {
-        <a href="#">
+        <a href="~/Products/Details/?productId=@product.ProductId">
             <div style="height: 200px; width: 100%; align-content:center; color:white; font-size: 20px;">
                 <div style="height:200px; width:20%; border: solid 1px black; float:left">
                 </div>
@@ -20,7 +20,7 @@
                     <span>@product.Price</span>
                 </div>
 
-                <a href="#">
+                <a href="~/Subcategories/Details/?subcategoryId=@product.SubcategoryId">
                     <div style="padding-left: 10px; padding-right: 10px; height: 50px; width: 80%; border: solid 1px black;font-size: 10px; float:left;">
                         <span>@product.CategoryName, @product.SubcategoryName</span>
                     </div>
