@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 using AutomotiveShop.model;
 using AutomotiveShop.service.Service;
 using AutomotiveShop.service.ViewModels.Categories;
+using AutomotiveShop.service.ViewModels.Products;
 using AutomotiveShop.service.ViewModels.Subcategories;
 
 namespace AutomotiveShop.web.Controllers
@@ -39,7 +41,28 @@ namespace AutomotiveShop.web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(subcategory);
+
+            SubcategoryDetailsViewModel model = new SubcategoryDetailsViewModel()
+            {
+                SubcategoryId = subcategory.SubcategoryId,
+                SubcategoryName = subcategory.Name
+            };
+
+            subcategory.Products.ForEach(p =>
+            {
+                model.Products.Add(new ProductViewModel()
+                {
+                    ProductId = p.ProductId,
+                    Name = p.Name,
+                    Price = p.Price.ToString("C", new CultureInfo("en-GB")),
+                    CategoryId = p.Subcategory.Category.CategoryId,
+                    CategoryName = p.Subcategory.Category.Name,
+                    SubcategoryId = p.Subcategory.SubcategoryId,
+                    SubcategoryName = p.Subcategory.Name
+                });
+            });
+
+            return View(model);
         }
 
         // GET: Subcategories/Create

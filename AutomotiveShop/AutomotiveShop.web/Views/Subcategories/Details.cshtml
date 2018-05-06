@@ -1,4 +1,4 @@
-﻿@model AutomotiveShop.model.Subcategory
+﻿@model AutomotiveShop.service.ViewModels.Subcategories.SubcategoryDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -6,16 +6,38 @@
     bool isAdministrator = User.IsInRole("Administrator");
 }
 
-<h2>@Model.Name</h2>
+<h2>@Model.SubcategoryName</h2>
 
-<div>
-    <ul>
-        @foreach (var product in Model.Products)
-        {
-            <li>@Html.ActionLink(@product.Name, "Details", "Products", new {productId = product.ProductId}, null)</li>
-        }
-    </ul>
+<div id="index" class="jumbotron" style="background-color:transparent">
+    @foreach (var product in Model.Products)
+    {
+        <a href="#">
+            <div style="height: 200px; width: 100%; align-content:center; color:white; font-size: 20px;">
+                <div style="height:200px; width:20%; border: solid 1px black; float:left">
+                </div>
 
+                <div style="padding-left: 10px; padding-right: 10px; height: 150px; width:70%; border: solid 1px black; float:left">
+                    <span>@product.Name</span>
+                </div>
+
+                <div style="padding-right: 10px; height: 150px; width:10%; border: solid 1px black; float:left; text-align:right;">
+                    <span>@product.Price</span>
+                </div>
+
+                <a href="#">
+                    <div style="padding-left: 10px; padding-right: 10px; height: 50px; width: 80%; border: solid 1px black;font-size: 10px; float:left;">
+                        <span>@product.CategoryName, @product.SubcategoryName</span>
+                    </div>
+                </a>
+
+                <div style="clear:both"></div>
+
+            </div>
+        </a>
+        <div style="height:30px">
+
+        </div>
+    }
 </div>
 <p>
     @if (isAdministrator)
