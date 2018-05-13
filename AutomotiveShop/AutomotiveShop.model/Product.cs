@@ -21,6 +21,8 @@ namespace AutomotiveShop.model
 
         public int ItemsAvailable { get; set; }
 
+        public byte[] Image { get; set; }
+
         public virtual List<ProductCopy> Copies { get; set; }
 
         public virtual List<ProductByCar> CarsByProduct { get; set; }

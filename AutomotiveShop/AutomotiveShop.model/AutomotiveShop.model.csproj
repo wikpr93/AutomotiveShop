@@ -110,6 +110,10 @@
     <Compile Include="Migrations\201711112058372_DeliveryAddressFix.Designer.cs">
       <DependentUpon>201711112058372_DeliveryAddressFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805131229573_ProductImage.cs" />
+    <Compile Include="Migrations\201805131229573_ProductImage.Designer.cs">
+      <DependentUpon>201805131229573_ProductImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Product.cs" />
@@ -125,6 +129,9 @@
     <EmbeddedResource Include="Migrations\201711112058372_DeliveryAddressFix.resx">
       <DependentUpon>201711112058372_DeliveryAddressFix.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131229573_ProductImage.resx">
+      <DependentUpon>201805131229573_ProductImage.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -137,7 +144,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50797</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
