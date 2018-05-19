@@ -38,15 +38,15 @@ namespace AutomotiveShop.model.Migrations
             }
             var categories = new List<Category>()
             {
-                new Category() {Name = "Air Conditioning & Heating Parts"},
-                new Category() {Name = "Brakes & Brake Parts"},
-                new Category() {Name = "Electrical Components"},
-                new Category() {Name = "Emission Systems"},
-                new Category() {Name = "Engine Cooling"},
-                new Category() {Name = "Engines & Engine Parts"},
-                new Category() {Name = "External Lights & Indicators"},
-                new Category() {Name = "Ignition Parts"},
-                new Category() {Name = "Suspension & Steering Parts"}
+                new Category() {Name = "Części karoserii"},
+                new Category() {Name = "Ogrzewanie, wentylacja, klimatyzacja"},
+                new Category() {Name = "Układ elektryczny, zapłon"},
+                new Category() {Name = "Tuning mechaniczny"},
+                new Category() {Name = "Układ hamulcowy"},
+                new Category() {Name = "Układ kierowniczy"},
+                new Category() {Name = "Układ napędowy"},
+                new Category() {Name = "Układ paliwowy"},
+                new Category() {Name = "Układ zawieszenia"}
             };
 
             categories.ForEach(c => context.Categories.Add(c));
@@ -58,38 +58,38 @@ namespace AutomotiveShop.model.Migrations
             }
             var subcategories = new List<Subcategory>()
             {
-                new Subcategory() {Name = "A/C Compressors & Clutches", Category = context.Categories.FirstOrDefault(c => c.Name == "Air Conditioning & Heating Parts")},
-                new Subcategory() {Name = "Heater Parts", Category = context.Categories.FirstOrDefault(c => c.Name == "Air Conditioning & Heating Parts")},
+                new Subcategory() {Name = "Maski", Category = context.Categories.FirstOrDefault(c => c.Name == "Części karoserii")},
+                new Subcategory() {Name = "Zderzaki", Category = context.Categories.FirstOrDefault(c => c.Name == "Części karoserii")},
 
-                new Subcategory() {Name = "Brake Discs", Category = context.Categories.FirstOrDefault(c => c.Name == "Brakes & Brake Parts") },
-                new Subcategory() {Name = "Brake Drums", Category = context.Categories.FirstOrDefault(c => c.Name == "Brakes & Brake Parts") },
-                new Subcategory() {Name = "Break Pads", Category = context.Categories.FirstOrDefault(c => c.Name == "Brakes & Brake Parts") },
-                new Subcategory() {Name = "Break Shoes", Category = context.Categories.FirstOrDefault(c => c.Name == "Brakes & Brake Parts") },
+                new Subcategory() {Name = "Klimatyzacja", Category = context.Categories.FirstOrDefault(c => c.Name == "Ogrzewanie, wentylacja, klimatyzacja") },
+                new Subcategory() {Name = "Ogrzewanie postojowe", Category = context.Categories.FirstOrDefault(c => c.Name == "Ogrzewanie, wentylacja, klimatyzacja") },
+                new Subcategory() {Name = "Ogrzewanie", Category = context.Categories.FirstOrDefault(c => c.Name == "Ogrzewanie, wentylacja, klimatyzacja") },
+                new Subcategory() {Name = "Wentylacja", Category = context.Categories.FirstOrDefault(c => c.Name == "Ogrzewanie, wentylacja, klimatyzacja") },
 
-                new Subcategory() {Name = "Batteries", Category = context.Categories.FirstOrDefault(c => c.Name == "Electrical Components")},
-                new Subcategory() {Name = "Horns", Category = context.Categories.FirstOrDefault(c => c.Name == "Electrical Components")},
-                new Subcategory() {Name = "Wires & Cabling", Category = context.Categories.FirstOrDefault(c => c.Name == "Electrical Components")},
+                new Subcategory() {Name = "Akumulatory", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ elektryczny, zapłon")},
+                new Subcategory() {Name = "Przekaźniki", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ elektryczny, zapłon")},
+                new Subcategory() {Name = "Świece", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ elektryczny, zapłon")},
 
-                new Subcategory() {Name = "Air Bypass Valves", Category = context.Categories.FirstOrDefault(c => c.Name == "Emission Systems")},
-                new Subcategory() {Name = "Smog & Air Pumps", Category = context.Categories.FirstOrDefault(c => c.Name == "Emission Systems")},
+                new Subcategory() {Name = "Układ wydechowy", Category = context.Categories.FirstOrDefault(c => c.Name == "Tuning mechaniczny")},
+                new Subcategory() {Name = "Układ zawieszenia", Category = context.Categories.FirstOrDefault(c => c.Name == "Tuning mechaniczny")},
 
-                new Subcategory() {Name = "Engine Fans & Fan Parts", Category = context.Categories.FirstOrDefault(c => c.Name == "Engine Cooling")},
-                new Subcategory() {Name = "Radiators", Category = context.Categories.FirstOrDefault(c => c.Name == "Engine Cooling")},
-                new Subcategory() {Name = "Water Pumps", Category = context.Categories.FirstOrDefault(c => c.Name == "Engine Cooling")},
+                new Subcategory() {Name = "Czujniki ABS", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ hamulcowy")},
+                new Subcategory() {Name = "Czujniki ESP", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ hamulcowy")},
+                new Subcategory() {Name = "Pompy hamulcowe", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ hamulcowy")},
 
-                new Subcategory() {Name = "Engine Chains", Category = context.Categories.FirstOrDefault(c => c.Name == "Engines & Engine Parts")},
-                new Subcategory() {Name = "Engine Valves", Category = context.Categories.FirstOrDefault(c => c.Name == "Engines & Engine Parts")},
+                new Subcategory() {Name = "Przekładnie kierownicze", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ kierowniczy")},
+                new Subcategory() {Name = "Pompy wspomagania", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ kierowniczy")},
 
-                new Subcategory() {Name = "Headlight Assemblies", Category = context.Categories.FirstOrDefault(c => c.Name == "External Lights & Indicators")},
-                new Subcategory() {Name = "Indicator Assemblies", Category = context.Categories.FirstOrDefault(c => c.Name == "External Lights & Indicators")},
-                new Subcategory() {Name = "Number Plate Lights", Category = context.Categories.FirstOrDefault(c => c.Name == "External Lights & Indicators")},
-                new Subcategory() {Name = "Side Marker Lights", Category = context.Categories.FirstOrDefault(c => c.Name == "External Lights & Indicators")},
+                new Subcategory() {Name = "Dyferencjały", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ napędowy")},
+                new Subcategory() {Name = "Mosty", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ napędowy")},
+                new Subcategory() {Name = "Skrzynie biegów", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ napędowy")},
+                new Subcategory() {Name = "Sprzęgła", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ napędowy")},
 
-                new Subcategory() {Name = "Electronic Ignition Kits", Category = context.Categories.FirstOrDefault(c => c.Name == "Ignition Parts")},
-                new Subcategory() {Name = "Spark Plugs", Category = context.Categories.FirstOrDefault(c => c.Name == "Ignition Parts")},
+                new Subcategory() {Name = "Gaźniki", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ paliwowy")},
+                new Subcategory() {Name = "Pompy paliwa", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ paliwowy")},
 
-                new Subcategory() {Name = "Control Arms & Parts", Category = context.Categories.FirstOrDefault(c => c.Name == "Suspension & Steering Parts")},
-                new Subcategory() {Name = "Steering Columns", Category = context.Categories.FirstOrDefault(c => c.Name == "Suspension & Steering Parts")}
+                new Subcategory() {Name = "Sprężyny zawieszenia", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ zawieszenia")},
+                new Subcategory() {Name = "Wahacze", Category = context.Categories.FirstOrDefault(c => c.Name == "Układ zawieszenia")}
 
             };
 
@@ -103,103 +103,103 @@ namespace AutomotiveShop.model.Migrations
             
             var products = new List<Product>()
             {
-                new Product() {Name = "Car A/C Refrigeration Air Conditioning AC Diagnostic Manifold Gauge Tool Set RB", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "A/C Compressors & Clutches"), Price = 11.32, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Air Conditioning A/C Delphi Compressor 5N0820803 Seat Skoda VW Repair Fix Kit", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "A/C Compressors & Clutches"), Price = 23.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "FORD/AUDI/VW/SEAT/SKODA Air Con Compressor And Clutch A/C Assembly", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "A/C Compressors & Clutches"), Price = 99.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "MASKA PRZOD PRZEDNIA AUDI Q7 S-LINE LIFT 4L0", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Maski"), Price = 2250.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "FIAT 500 KOMPLETNY PRZÓD BENZYNA MASKA ZDERZAK PAS", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Maski"), Price = 3100.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Maska Opel Signum Vectra C 03-05", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Maski"), Price = 250.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
 
-                new Product() {Name = "Heater Control Valve For Ford Fiesta KA Puma Street Transit Mazda 121", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Heater parts"), Price = 11.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "SmartSense Heater/Blower Motor Resistor for Vauxhall/Opel Astra G/H, Zafira-A", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Heater parts"), Price = 9.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "KRATKA ATRAPA ZDERZAKA SEAT TOLEDO LEON 1M PRAWA", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Zderzaki"), Price = 36.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "VW GOLF 4 IV KRATKI ZAŚLEPKI ATRAPY ZDERZAKA PRZÓD", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Zderzaki"), Price = 20.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
 
-                new Product() {Name = "FORD FIESTA MK7 1.25 1.4 1.6 & TDCi 2008-2014 FRONT 2 VENTED BRAKE DISCS & PADS", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Brake Discs"), Price = 44.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "BMW E36 E46 316i-328i REAR DISC BRAKE BACK PLATE RIGHT & LEFT HAND A885", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Brake Discs"), Price = 20.85, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "vauxhall astra vectra corsa front brake disc retaining screw m6 stainless steel", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Brake Discs"), Price = 2.89, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "CHŁODNICA KLIMATYZACJI PEUGEOT 407 2004-2011 NOWA", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Klimatyzacja"), Price = 195.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "KLIMATYZACJA SAMOCHODOWA KLIMATYZATOR KLIMA 12V", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Klimatyzacja"), Price = 44.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "PRZEWÓD WĄŻ KLIMATYZACJI CITROEN C2 C3 Oryginał", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Klimatyzacja"), Price = 156.50, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
 
-                new Product() {Name = "FORD FOCUS MK2 1.4 1.6 1.8 TDCi REAR 2 BRAKE DRUMS & SHOES SET & FITTING KIT", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Brake Drums"), Price = 89.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "VAUXHALL CORSA C REAR HAND DELPHI BRAKE SHOES 2000 - 2006 1.0 1.2 1.4 1.3 CDTI", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Brake Drums"), Price = 16.60, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "GRZEJNIK WEBASTO DMUCHAWA NAGRZEWNICA 12V 160W", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Ogrzewanie postojowe"), Price = 43.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Nagrzewnica na szybę,grzejnik samochodowy 12V 150W", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Ogrzewanie postojowe"), Price = 39.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
 
-                new Product() {Name = "GFord Transit TDCi MK7 SWB FWD Rear Brake Discs Pads with ABS RINGS and SENSORS", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Break Pads"), Price = 69.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "RENAULT CLIO RS 197 200 SPORT (05-12) FRONT BRAKE PAD PIN KIT BREMBO BPF1848D", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Break Pads"), Price = 12.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "FORD FIESTA MK6 1.25 1.4 1.6 FRONT BRAKE DISCS & PADS SET 258mm ZETEC 2002-2008", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Break Pads"), Price = 34.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "NAGRZEWNICA AUDI A6 C4 94-97 / 100 C2 C3 C4 76-94", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Ogrzewanie"), Price = 29.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "NAGRZEWNICA Audi 80 B3 B4 86-94", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Ogrzewanie"), Price = 34.90, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "NAGRZEWNICA JEEP GRAND CHEROKEE WJ WG 1999-2004", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Ogrzewanie"), Price = 194.00    , ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
 
-                new Product() {Name = "VOLVO XC90 (2002->2013) HANDBRAKE SHOE ADJUSTER KIT BBA219K", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Break Shoes"), Price = 16.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "VAUXHALL VECTRA C (2002>2008) REAR BRAKE CALIPER RETURN SPRINGS PAIR WHC0139X2A", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Break Shoes"), Price = 8.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "DMUCHAWA WENTYLATOR NAWIEWU Sprinter VW LT 95-06", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Wentylacja"), Price = 123.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "WIATRAK WENTYLATOR SAMOCHODOWY OBROTOWY 12V 5'' ", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Wentylacja"), Price = 19.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
 
-                new Product() {Name = "BMW LION 075 027 065 CAR BATTERY 60AH 520 CCA 12V HEAVY DUTY O.E.", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Batteries"), Price = 54.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "RENAULT VAUXHALL VOLVO VOLKAWAGEN (VW) Car / Van Battery TYPE 019 -SuperBatt 019", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Batteries"), Price = 69.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "AKUMULATOR CENTRA FUTURA 77AH 760A NOWY MODEL", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Akumulatory"), Price = 274.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "AKUMULATOR BOSCH SILVER S5 74AH 750A NAJŚWIEŻSZE", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Akumulatory"), Price = 294.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "NEW 150 PSI AIR COMPRESSOR WITH 6 LITER TANK FOR AIR HORN TRAIN TRUCK RV PICK UP", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Horns"), Price = 54.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "12V Loud Dual Tone Twin air Snail Horns Car Fittings Truck Van Boat Universal", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Horns"), Price = 6.69, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "BRAND NEW O.E. SNAIL HOOTER HORN & BRACKET FORD TRANSIT MK6 2000-2006", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Horns"), Price = 8.24, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "PRZEKAŹNIK SAMOCHODOWY 12V 70A 4 PIN HONGFA 9,5mm", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Przekaźniki"), Price = 17.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "BERU STEROWNIK ŚWIEC ŻAROWYCH BMW E46 E60 E90 E87 (7222241513)", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Przekaźniki"), Price = 188.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Świece Iskra 01U Golf I II Octavia Passat Polo", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Przekaźniki"), Price = 11.50, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
 
-                new Product() {Name = "10m Red Battery Welding Cable 16mm² 110a - Flexible Marine Boat Automotive Wire", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Wires & Cabling"), Price = 27.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Land Rover Discovery 2 TD5 & V8 Indicator Bulb Holder to 02 - Bearmach - XBP180", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Wires & Cabling"), Price = 4.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "25mm2 Red Flexible PVC Battery Welding Cable 170 A Amps 1M 1 M Lengths Car Auto", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Wires & Cabling"), Price = 3.42, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "25 x LARGE YELLOW FEMALE SPADE CRIMP CONNECTORS Wire Alternator Starter Terminal", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Wires & Cabling"), Price = 2.49, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "NGK 4 X ŚWIECE PFR6D-10G SAAB 9-3 B207 1.8T 2.0T", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Świece"), Price = 139.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "DENSO ŚWIECA ZAPŁONOWA K16TT BENZYNA LPG", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Świece"), Price = 10.50, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "ŚWIECA ŻAROWA Z CZUJNIKIEM OPEL INSIGNIA 2.0 CDTI", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Świece"), Price = 327.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "N10579202 N10579201 0100226474 0250202046 BOSCH", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Świece"), Price = 24.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "OEM Siemens VDO Air Flap Motor VW Mk5 Golf Tiguan Audi A3 A4 2.0 TDI 03L128063AF", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Air Bypass Valves"), Price = 127.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Genuine Ford Pass Throttle Air By Valve 4383663", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Air Bypass Valves"), Price = 130.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Genuine Ford Throttle Air By Pass Valve 1030996", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Air Bypass Valves"), Price = 141.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "TŁUMIK SPORTOWY BASOWY Z SILENCEREM- MUGEN fi90 M2", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Układ wydechowy"), Price = 139.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Bazaltowa taśma termoizolacyjna TURBO 10m 1.5mm+op", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Układ wydechowy"), Price = 40.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "TŁUMIK SPORTOWY BASOWY WM 2x80 np. BMW VW + OPASKA", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Układ wydechowy"), Price = 214.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "FIT VW BEETLE GOLF JETTA PASSAT TOUAREG SECONDARY AIR INJECTION PUMP 06A959253B", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Smog & Air Pumps"), Price = 35.80, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "NEW SECONDARY AIR PUMP FOR VW GOLF MK4 BORA PASSAT AUDI A3 A4 A6 TT 078906601D", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Smog & Air Pumps"), Price = 49.80, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "BREATHER UNIT Petrol PCV Pressure Relief Control Valve VW 06F129101N EAP", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Smog & Air Pumps"), Price = 19.39, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Gwint Gwintowane BMW E46 GOLD EDITION MTS Eibach", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Układ zawieszenia"), Price = 1188.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "GWINT MTS-technik Audi A3 8P VW Golf 5 Scirocco 3", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Układ zawieszenia"), Price = 1244.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Sprężyny z regulacją coilover HONDA civic 88-00r", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Układ zawieszenia"), Price = 259.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "12 Inch 80W Electric Radiator Intercooler 12V Slimline Cooling Fan New", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Fans & Fan Parts"), Price = 16.98, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Universal Electric Radiator Fan Fitting Kit Stainless Steel Cooling Mounting", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Fans & Fan Parts"), Price = 7.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "FORD TRANSIT 2.4 RWD MK6 MK7 2000 TO 2014 VISCOUS FAN BLADE COUPLING 4406277", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Fans & Fan Parts"), Price = 45.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Universal Electric Cooling Radiator Fan Ties Fitting Kit Classic & Modern Car", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Fans & Fan Parts"), Price = 3.74, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "CZUJNIK ABS TYŁ AUDI 80 B3 B4 COUPE 893927807D", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Czujniki ABS"), Price = 125.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "CZUJNIK ABS TYŁ L = P 34526756376 BMW 5 E39", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Czujniki ABS"), Price = 39.90, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "PIERŚCIEŃ KORONKA ABS TYŁ BMW E46 E81 E82 E87 E90", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Czujniki ABS"), Price = 22.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "CZUJNIK ABS TYŁ PRAWY Renault Megane Scenic", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Czujniki ABS"), Price = 44.90, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "HONDA CR-V/CRV 2.0 95-20 RADIATOR PETROL 2 YEAR WARRANTY FOR MANUAL VEHICLES NEW", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Radiators"), Price = 29.40, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "PEUGEOT 206 1.1 1.4 1.6 1.9 2.0 1998>ON AUTOMATIC / MANUAL RADIATOR *BRAND NEW*", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Radiators"), Price = 24.50, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Radiator for Mini Cooper One 1.6 Petrol R50 R53 2001>2006 Brazing 26MM in UK", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Radiators"), Price = 38.80, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "CZUJNIK CIŚNIENIA ABS ESP 0 265 005 303 BOSCH", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Czujniki ESP"), Price = 119.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "czujnik ciśnienia abs esp 0265005303 Bosch AUDI A6*", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Czujniki ESP"), Price = 99.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "MODUŁ SENSOR ESP GOLF V TOURAN OCTAVIA 1K090755C", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Czujniki ESP"), Price = 30.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "LAND ROVER DEFENDER DISCOVERY 1 300TDI WATER PUMP, GASKET & BOLT SET - PEB500090", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Water Pumps"), Price = 20.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "BRAKE VACUUM WATER PUMP GASKET SET FOR FORD TRANSIT LTI TXII LDV CONVOY 2.4", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Water Pumps"), Price = 6.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "FOR BMW E46 328i 328 330Ci 330 PETROL ENGINE COOLANT WATER PUMP MEYLE GERMANY", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Water Pumps"), Price = 26.89, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "MITSUBISHI SHOGUN PAJERO 2.8 DT 3.2 TD WATER PUMP FAI OE QUALITY 1994-06 WP6371", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Water Pumps"), Price = 23.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "IVECO DAILY 2012 POMPA ABS 5801312794 0265242097", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy hamulcowe"), Price = 700.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Szczęki recznego sprężynki Opel Vectra B ZZ3", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy hamulcowe"), Price = 39.90, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "POMPA ABS IVECO DAILY FIAT DUCATO 1999-2006r", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy hamulcowe"), Price = 600.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Renault Laguna II Pompa ABS", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy hamulcowe"), Price = 120.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "Febi Bilstein Timing Chain Kit 33985", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Chains"), Price = 122.21, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Blue Print ADT37311 Injection Pump Belt Kit", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Chains"), Price = 72.80, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "DAEWOO MATIZ Przekładnia kierownicza Maglownica", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Przekładnie kierownicze"), Price = 209.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "BMW E46 Przekładnia kierownicza maglownica SKAWINA", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Przekładnie kierownicze"), Price = 1000.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "FUEL PRESSURE REGULATOR 93188745/0445010033 FOR RENAULT VAUXHALL 1.9/ 2.2/2.5", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Valves"), Price = 23.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "FOR RENAULT TRAFIC 7700109099 OE QUALITY TURBO BOOST PRESSURE SOLENOID VALVE", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Valves"), Price = 18.80, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "NEW! BMW 1 3 5 6 7 SERIES X5 X3 TIMING VANOS SOLENOID VALVE CAMSHAFT ADJUSTMENT", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Valves"), Price = 29.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "NEW GENUINE LEXUS IS220D IS250 IS350 EGR VALVE 25620-26102 4 PC KIT C/W GASKETS", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Valves"), Price = 209.90, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Exhaust Valve fits TOYOTA CAMRY V1 1.8D 83 to 88 1C-TL AE 1371564040 Quality New", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Valves"), Price = 15.82, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "RENAULT CLIO Mk2 1.2 Inlet Valve 2001 on AE 7701472986 8200343407 Quality New", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Valves"), Price = 12.65, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "VW JETTA Mk2 1.8 Valve Guide 86 to 91 AE 027103415 VOLKSWAGEN Quality New", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Engine Valves"), Price = 6.48, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "POMPA WSPOMAGANIA BMW E36 E38 E39 E46 LUK LF-30", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy wspomagania"), Price = 230.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "POMPA WSPOMAGANIA AUDI A4 A6 A8 100 PASSAT B5 nowa", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy wspomagania"), Price = 249.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "POMPA WSPOMAGANIA 7D0422155 VW T4 LT 2,4 D 2,5 TDi", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy wspomagania"), Price = 179.90, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Wspomaganie Punto Grande EPS 12m-cy gw FV NOWE", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy wspomagania"), Price = 800.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "POMPA WSPOMAGANIA PEUGEOT 407 GWARANCJA 24 MIES.", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy wspomagania"), Price = 600.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "POMPA WSPOMAGANIA Ibiza Toledo Golf Sharan Passat", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy wspomagania"), Price = 158.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "POMPA WSPOMAGANIA ELEK. PEUGEOT 407 GW.24mc -200zł", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy wspomagania"), Price = 650.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "120W LED Flood Spot Light Bar Driving Work Lamp Off-Road SUV VAN Boat Truck 12V", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Headlight Assemblies"), Price = 29.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "New Hella 5DV 008 290 00 D2S D2R Xenon Headlight Unit Ballast 5DV00829000", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Headlight Assemblies"), Price = 28.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "NAO H7 380W CREE COB LED Headlight Bulb Car Driving Light Kit Replace Halogen UK", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Headlight Assemblies"), Price = 15.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "9012 HIR2 90W 20000LM LED Headlight Kit Bulb High Low Beam Conversion Kit 6000K", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Headlight Assemblies"), Price = 23.89, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "iveco dyferencjał wkład mostu mechanizm różnicowy", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Dyferencjały"), Price = 299.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "KOŁO ZĘBATKA REDUKTORA SKRZYNI BMW E83 E53 E70 E71", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Dyferencjały"), Price = 65.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "MERCEDES SPRINTER 906-VW CRAFTER DYFER TYŁ 46:11", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Dyferencjały"), Price = 1900.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "RENAULT MAGNUM DXI MOST MS17X MERITOR 2.85 / 2.64", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Dyferencjały"), Price = 6765.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "VW Passat Golf MK3 MK4 Fox Polo T5 Bora Sharan Black Side Indicators Repeaters", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Indicator Assemblies"), Price = 12.90, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Land Rover discovery 3-4 Smoked Side Indicators and bulbs / Repeater lights", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Indicator Assemblies"), Price = 10.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Iveco daily most napędowy dyfer 2006- bliźniak 35C", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Mosty"), Price = 2500.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Tylny most dyferencjał mercedes 124,190 Gwar 12Mcy", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Mosty"), Price = 990.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "Opel Vauxhall 24 SMD LED Licence Number Plate Light Insignia Astra H J Vectra C", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Number Plate Lights"), Price = 12.80, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "LED License Number Plate Light Lamp Bulbs For BMW E39 E60 E82 E70 E90 E92 X3/5/6", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Number Plate Lights"), Price = 11.98, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "2x BMW E46 Canbus Error Free License Number Plate Light 3528 SMD LED Lamp Bulbs", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Number Plate Lights"), Price = 12.25, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "ELEKTROZAWÓR USZCZELKI SKRZYNI AUTOMAT RENAULT DP0", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Skrzynie biegów"), Price = 267.98, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "MISKA OLEJOWA FILTR SKRZYNI USZCZELKA ZF BMW 6HP26", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Skrzynie biegów"), Price = 349.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "OLEJ ZF LIFEGUARD FLUID 6 MISKA TULEJA SERWIS BMW", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Skrzynie biegów"), Price = 899.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "HELLA TYPE LED FLUSH FIT KELSA LIGHT BAR MARKER LAMP LIGHT 12v 24v WHITE LAML003", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Side Marker Lights"), Price = 9.50, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "55W HID Xenon Ballast Conversion H7 Kit Car Headlights Lights Bulbs Super Bright", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Side Marker Lights"), Price = 14.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "FORD TRANSIT MK6 MK7 SIDE MARKER LIGHT LAMP LENS 2000-2014 1671689", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Side Marker Lights"), Price = 7.92, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "SPRZĘGŁO DAEWOO TICO MATIZ KOMPLETNE NOWE", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Sprzęgła"), Price = 139.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "KOŁO DWUMASOWE SPRZĘGŁO SACHS AUDI A4 B8 2.0 TDI", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Sprzęgła"), Price = 2199.50, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "ŻUK NYSA UAZ GAZ69 WARSZAWA TARCZA SPRZĘGŁA TANIO!", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Sprzęgła"), Price = 52.50, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "AccuSpark Distributor cap HT Lead rubber boot set X 5 boots", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Electronic Ignition Kits"), Price = 4.95, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "Lumenition Fitting Kit-Lucas 43D6,44D6,45D6,48D6,54D6 Distributors 6 Cylinder", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Electronic Ignition Kits"), Price = 9.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "PŁYWAK GAZNIKA FIAT 126P MALUCH", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Gaźniki"), Price = 11.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "PODUSZKA GAŹNIKA VW PASSAT 79- GOLF II JETTA II", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Gaźniki"), Price = 72.70, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "1x Champion Copper Plus Spark Plug RC12YC", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Spark Plugs"), Price = 2.59, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "FOUR ( x4 ) GENUINE NGK SPARK PLUGS NGK7822 / BPR6ES", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Spark Plugs"), Price = 6.94, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "1 x CHAMPION SPARK PLUG Part No RDJ8J New Genuine Champion Sparkplug RDJ8J", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Spark Plugs"), Price = 2.99, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "FOUR ( x4 ) GENUINE NGK SPARK PLUGS XX FREE POSTAGE XX NGK 4548 / CR9EK", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Spark Plugs"), Price = 23.78, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "New! Spark Plug Removal Pliers 300mm to Remove Deep-Seated Plugs Sealey VS867", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Spark Plugs"), Price = 11.44, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "RĘCZNA POMPKA POMPA PALIWA GRUSZKA DO OLEJU 8mm", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy paliwa"), Price = 13.45, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "POMPA DO PALIWA 12V ELEKTRYCZNA 30l/min", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy paliwa"), Price = 46.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "Vacum Pompa 2.0TDI 03G145209C D Gwarancja!", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy paliwa"), Price = 200.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "POMPA PALIWA VACUM AUDI SEAT VW SKODA 1.9TDI BOSCH", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy paliwa"), Price = 580.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "VW SEAT SKODA 1.9SDI 1.9TDI vacum pompa 038145101B", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Pompy paliwa"), Price = 120.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "Vauxhall Astra H (04-10) Front Lower Wishbone Suspension Arm Ball Joint - Left", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Control Arms & Parts"), Price = 23.40, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "For NISSAN QASHQAI & +2 07-14 FRONT LOWER WISHBONE ARMS & STABILISER LINK BARS", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Control Arms & Parts"), Price = 64.90, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "BMW ( 330d e46 ) wishbone ball joint track control arm TC1727 FRONT LOWER LEFT", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Control Arms & Parts"), Price = 35.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "SPRĘŻYNY TYŁ VW TRANSPORTER T5 MULTIVAN 2003-", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Sprężyny zawieszenia"), Price = 71.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "ZAWIESZENIE GWINTOWANE GWINT BMW E46 98-06R 2 4D", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Sprężyny zawieszenia"), Price = 799.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "SPRĘŻYNY TYŁ FORD MONDEO MK3 KOMBI 00-07 WZMACNIANE", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Sprężyny zawieszenia"), Price = 66.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
                 
-                new Product() {Name = "GENUINE FORD ESCORT Mk4 RS TURBO S2 XR3i CABRIO~STEERING COLUMN BEARING & BUSH", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Steering Columns"), Price = 8.80, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
-                new Product() {Name = "LAND ROVER DEFENDER LOWER STEERING SHAFT UNIVERSAL JOINT UJ - NEW JOINT NRC7704", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Steering Columns"), Price = 12.24, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "WAHACZE ŁĄCZNIKI KOŃC MASTER SPORT PEUGEOT 206", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Wahacze"), Price = 225.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
+                new Product() {Name = "WAHACZ DOLNY PRAWY AUDI A4 A6 A8 VW PASSAT B5 SKV", Subcategory = context.Subcategories.FirstOrDefault(c => c.Name == "Wahacze"), Price = 85.00, ItemsAvailable = (random.Next(0,5) != 0)?random.Next(1, 20):0},
             };
 
             products.ForEach(p => context.Products.Add(p));

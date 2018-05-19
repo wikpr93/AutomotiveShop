@@ -10,15 +10,15 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Your orders:
+            Twoje zamówienia:
         </dt>
         @if (Model.Orders.Count == 0)
         {
             <dd>
-                You don't have any orders
+                Nie masz żadnych zamówień
             </dd>
             <dd>
-                @Html.ActionLink("Check our products and buy something to fill this section!", "Index", "Home", null, new { @class = "btn btn-primary btn-xs" })
+                @Html.ActionLink("Zrób zakupy aby uzupełnić tę sekcję!", "Index", "Home", null, new { @class = "btn btn-primary btn-xs" })
             </dd>
         }
         @foreach (var order in Model.Orders)
@@ -49,12 +49,12 @@
         }
         <dt></dt><dd>&nbsp;</dd>
         <dt>
-            Your addresses:
+            Twoje adresy:
         </dt>
         @if (Model.DeliveryAddresses.Count == 0)
         {
             <dd>
-                You don't have any addresses
+                Nie dodałeś żadnych adresów
             </dd>
         }
         @foreach (var address in Model.DeliveryAddresses)
@@ -102,7 +102,7 @@
         <dd>
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Change your password", "ChangePassword", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Zmień hasło", "ChangePassword", null, new { @class = "btn btn-default" })
             }
             else
             {

@@ -5,7 +5,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Your cart</h2>
+<h2>Twój koszyk</h2>
 
 <div>
     @if (Model.Items.Count > 0)
@@ -36,14 +36,14 @@
                 <td></td>
                 <td></td>
                 <td>
-                    @Html.ActionLink("Buy", "ChooseDeliveryAddress", "Orders", null, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Do kasy", "ChooseDeliveryAddress", "Orders", null, new { @class = "btn btn-primary btn-xs" })
                 </td>
             </tr>
         </table>
     }
     else
     {
-        @Html.Raw("Cart is empty")
+        @Html.Raw("Koszyk jest pusty")
         <div>
             &nbsp;
         </div>
@@ -53,8 +53,8 @@
 <p>
     @if (Model.Items.Count > 0)
     {
-        @Html.ActionLink("Empty cart", "EmptyCart", null, new { @class = "btn btn-primary btn-xs" }) 
+        @Html.ActionLink("Wyczyść koszyk", "EmptyCart", null, new { @class = "btn btn-primary btn-xs" }) 
         @Html.Raw(" | ")
     }
-    @Html.ActionLink("Back to list", "Index", "Home", null, new { @class = "btn btn-primary btn-xs" })
+    @Html.ActionLink("Powrót do listy", "Index", "Home", null, new { @class = "btn btn-primary btn-xs" })
 </p>

@@ -59,10 +59,10 @@
             </dd>
 
             <dt>
-                @Html.Raw("Availability")
+                @Html.Raw("Dostępność")
             </dt>
             <dd>
-                @(Model.ItemsAvailable > 0 ? Html.Raw("In stock (" + @Model.ItemsAvailable + " item(s) available" + ((Model.ItemsInCart > 0) ? (", " + Model.ItemsInCart + " in your cart") : ("")) + ")") : Html.Raw("Unavailable"))
+                @(Model.ItemsAvailable > 0 ? Html.Raw("W magazynie (" + @Model.ItemsAvailable + " przedmioty(ów) dostępnych" + ((Model.ItemsInCart > 0) ? (", " + Model.ItemsInCart + " w koszyku") : ("")) + ")") : Html.Raw("Niedostępny"))
             </dd>
         </dl>
     </div>
@@ -75,7 +75,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add to cart" class="btn btn-default" />
+                <input type="submit" value="Dodaj do koszyka" class="btn btn-default" />
             </div>
         </div>
         @*@Html.ActionLink("Add to cart", "AddToCart", "Orders", new { productId = Model.ProductId, copiesToBuy = Model.CopiesToBuy }, null)*@
@@ -89,9 +89,9 @@ else
     @Html.Raw("|")
 }
 
-        @Html.ActionLink("Edit", "Edit", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
-        @Html.ActionLink("Add Image", "AddImage", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
-        @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-primary btn-xs" })
+        @Html.ActionLink("Edytuj", "Edit", "Edit", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
+        @Html.ActionLink("Dodaj miniaturę", "AddImage", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
+        @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-primary btn-xs" })
     </p>
 }
 

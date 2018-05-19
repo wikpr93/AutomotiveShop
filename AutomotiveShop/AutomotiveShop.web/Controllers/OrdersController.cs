@@ -104,7 +104,7 @@ namespace AutomotiveShop.web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             
-            TempData["ItemsBought"] = "Thank you for your purchase. You can pay for items now";
+            TempData["ItemsBought"] = "Dziękujemy za zakupy :) Możesz za nie zapłacić w dolnej sekcji na tej stronie";
 
             return RedirectToAction("Details", new { orderId });
         }
@@ -147,6 +147,24 @@ namespace AutomotiveShop.web.Controllers
                 DisplayedDateOfPurchase = order.DateOfPurchase.Year.ToString("0000") + "-" + order.DateOfPurchase.Month.ToString("00") + "-" + order.DateOfPurchase.Day.ToString("00") + " " + order.DateOfPurchase.Hour.ToString("00") + ":" + order.DateOfPurchase.Minute.ToString("00"),
                 OrderState = order.OrderState
             };
+            switch ((int)model.OrderState)
+            {
+                case 0:
+                    model.DisplayedOrderState = "Nowe";
+                    break;
+                case 1:
+                    model.DisplayedOrderState = "Opłacone";
+                    break;
+                case 2:
+                    model.DisplayedOrderState = "Wysłane";
+                    break;
+                case 3:
+                    model.DisplayedOrderState = "Dostarczone";
+                    break;
+                default:
+                    model.DisplayedOrderState = "Anulowane";
+                    break;
+            }
             DeliveryAddress address = _orderService.FindDeliveryAddressById(order.DeliveryAddressId);
             model.DeliveryAddress.CompanyName = address.CompanyName;
             model.DeliveryAddress.Name = address.Name;
@@ -159,16 +177,16 @@ namespace AutomotiveShop.web.Controllers
             switch ((int)model.OrderState)
             {
                 case 0:
-                    model.NextAction = "Pay for order";
+                    model.NextAction = "Zapłać za zamówienie";
                     break;
                 case 1:
-                    model.NextAction = "Mark as sent (as an administrator)";
+                    model.NextAction = "Oznacz jako wysłane (jako administrator)";
                     break;
                 case 2:
-                    model.NextAction = "Mark as received (as a client)";
+                    model.NextAction = "Oznacz jako dostarczone (jako klient)";
                     break;
                 case 3:
-                    model.NextAction = "Cancel order";
+                    model.NextAction = "Anuluj zamówienie";
                     break;
                 default:
                     model.NextAction = String.Empty;

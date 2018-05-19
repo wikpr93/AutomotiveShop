@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List of categories</h2>
+<h2>Lista kategorii</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs" })
+    @Html.ActionLink("Utwórz", "Create", null, new { @class = "btn btn-primary btn-xs" })
 </p>
 <table class="table">
     <tr>
@@ -24,9 +24,9 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { categoryId=item.CategoryId }, new { @class = "btn btn-primary btn-xs" }) |
-            @Html.ActionLink("Details", "Details", new { categoryId = item.CategoryId }, new { @class = "btn btn-primary btn-xs" }) |
-            @Html.ActionLink("Delete", "Delete", new { categoryId = item.CategoryId }, new { @class = "btn btn-primary btn-xs" })
+            @Html.ActionLink("Edytuj", "Edit", "Edit", new { categoryId=item.CategoryId }, new { @class = "btn btn-primary btn-xs" }) |
+            @Html.ActionLink("Szczegóły", "Details", new { categoryId = item.CategoryId }, new { @class = "btn btn-primary btn-xs" }) |
+            @Html.ActionLink("Usuń", "Delete", new { categoryId = item.CategoryId }, new { @class = "btn btn-primary btn-xs" })
         </td>
     </tr>
 }

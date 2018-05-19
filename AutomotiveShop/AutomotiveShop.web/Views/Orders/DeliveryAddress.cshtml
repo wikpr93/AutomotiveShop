@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    <h1>Choose delivery address</h1>
+    <h1>Wybierz adres dostawy</h1>
     @foreach (var address in Model.Addresses)
             {
         <a href=@Url.Action("Create", "Orders", new { deliveryAddressId = address.DeliveryAddressId })>
@@ -52,10 +52,10 @@
         @Html.DropDownList(
             "Name",
             new SelectList(Model.ParcelLockers, "Displayed", "Displayed"),
-            "Select parcel locker",
+            "Wybierz paczkomat",
             new { @class = "center-block" })
     </div>
-        <button class="addressButton" type="button" class="btn center-block">@Html.ActionLink("Add new", "CreateDeliveryAddress")</button>
+        <button class="addressButton" type="button" class="btn center-block">@Html.ActionLink("Dodaj nowy", "CreateDeliveryAddress")</button>
     </div>
     @*@foreach(var address in Model)
          {

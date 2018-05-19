@@ -8,11 +8,11 @@ namespace AutomotiveShop.service.ViewModels.Orders
 {
     public class ParcelLockerAddressViewModel
     {
-        [Display(Name = "Street")]
+        [Display(Name = "Ulica")]
         public string Street { get; set; }
-        [Display(Name = "Postcode")]
+        [Display(Name = "Kod pocztowy")]
         public string Postcode { get; set; }
-        [Display(Name = "City")]
+        [Display(Name = "Miasto")]
         public string City { get; set; }
         public string Displayed { get; set; }
     }

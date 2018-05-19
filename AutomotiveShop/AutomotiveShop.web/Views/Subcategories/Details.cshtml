@@ -42,10 +42,10 @@
 <p>
     @if (isAdministrator)
     {
-        @Html.ActionLink("Create product", "Create", "Products", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" })
+        @Html.ActionLink("Utwórz produkt", "Create", "Products", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" })
         @Html.Raw(" |")
     }
-    @Html.ActionLink("Edit", "Edit", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
-    @Html.ActionLink("Delete", "Delete", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
-    @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-primary btn-xs" })
+    @Html.ActionLink("Edytuj", "Edit", "Edit", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Usuń", "Delete", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-primary btn-xs" })
 </p>

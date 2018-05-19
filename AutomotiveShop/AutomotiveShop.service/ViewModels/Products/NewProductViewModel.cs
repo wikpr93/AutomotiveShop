@@ -10,11 +10,13 @@ namespace AutomotiveShop.service.ViewModels.Products
     {
         public Guid ProductId { get; set; }
 
+        [Display(Name = "Nazwa")]
         public string Name { get; set; }
 
+        [Display(Name = "Cena")]
         public double Price { get; set; }
 
-        [Display(Name = "Items available")]
+        [Display(Name = "Dostępnych produktów")]
         public int ItemsAvailable { get; set; }
         
         public Guid SubcategoryId { get; set; }

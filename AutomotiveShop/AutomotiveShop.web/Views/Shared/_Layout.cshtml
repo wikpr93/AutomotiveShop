@@ -49,7 +49,7 @@
                     <ol>
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>
-                            @Html.ActionLink("Categories", "Index", "Categories")
+                            @Html.ActionLink("Kategorie", "Index", "Categories")
                             <ul>
                                 @using (var ctx = new AutomotiveShopDbContext())
                                 {
@@ -62,8 +62,8 @@
                                 }
                             </ul>
                         </li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("O nas", "About", "Home")</li>
+                        <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                     </ol>
 
                 </div>

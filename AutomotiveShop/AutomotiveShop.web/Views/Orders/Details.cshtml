@@ -76,14 +76,14 @@
 
 </table>
 
-<h2>Status: @Model.OrderState</h2>
+<h2>Status: @Model.DisplayedOrderState</h2>
 @if (!Model.NextAction.IsEmpty() && Model.OrderState != AutomotiveShop.model.OrderState.Completed)
 {
     @Html.ActionLink(Model.NextAction, "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState, toCancellation = false }, new { @class = "btn btn-primary" })
     <div></div>
 }
 
-@if (Model.OrderState != AutomotiveShop.model.OrderState.Cancelled)
+@if (Model.OrderState != AutomotiveShop.model.OrderState.Completed && Model.OrderState != AutomotiveShop.model.OrderState.Cancelled)
 {
-    @Html.ActionLink("Cancel order", "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState, toCancellation = true }, new { @class = "btn btn-default btn-xs" })
+    @Html.ActionLink("Anuluj zamówienie", "ProcessOrder", "Orders", new { orderId = Model.OrderId, orderState = Model.OrderState, toCancellation = true }, new { @class = "btn btn-default btn-xs" })
 }
