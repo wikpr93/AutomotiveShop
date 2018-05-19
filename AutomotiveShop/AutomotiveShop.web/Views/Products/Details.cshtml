@@ -4,6 +4,18 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Raw(" ")
+        </dt>
+        <dd>
+            <img src="@Model.Image" />
+        </dd>
+    </dl>
+</div>
 @using (Html.BeginForm("AddToCart", "Orders"))
 {
     @Html.HiddenFor(model => model.ProductId)
@@ -50,7 +62,7 @@
                 @Html.Raw("Availability")
             </dt>
             <dd>
-                @(Model.ItemsAvailable > 0 ? Html.Raw("In stock (" + @Model.ItemsAvailable + " item(s) available" + ((Model.ItemsInCart > 0)?(", " + Model.ItemsInCart + " in your cart"):("")) + ")"): Html.Raw("Unavailable"))
+                @(Model.ItemsAvailable > 0 ? Html.Raw("In stock (" + @Model.ItemsAvailable + " item(s) available" + ((Model.ItemsInCart > 0) ? (", " + Model.ItemsInCart + " in your cart") : ("")) + ")") : Html.Raw("Unavailable"))
             </dd>
         </dl>
     </div>
@@ -59,7 +71,7 @@
     {
         <div class="col-md-10">
             @Html.EditorFor(model => model.CopiesToBuy, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger"})
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -78,6 +90,7 @@ else
 }
 
         @Html.ActionLink("Edit", "Edit", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
+        @Html.ActionLink("Add Image", "AddImage", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
         @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-primary btn-xs" })
     </p>
 }

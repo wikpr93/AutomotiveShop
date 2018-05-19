@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -21,6 +22,10 @@ namespace AutomotiveShop.web.Controllers
             List<Product> products = _productService.GetProducts();
             Random rnd = new Random();
 
+            byte[] img = products.FirstOrDefault(p => p.Image != null).Image;
+            var base64 = Convert.ToBase64String(img);
+            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
             for (int i = 0; i < _numberOfProductsOnIndexPage; i++)
             {
                 if(products.Count == 0)
@@ -36,6 +41,7 @@ namespace AutomotiveShop.web.Controllers
                         ProductId = randomProduct.ProductId,
                         Name = randomProduct.Name,
                         Price = randomProduct.Price.ToString("C", new CultureInfo("en-GB")),
+                        Image = imgSrc, //(randomProduct.Image != null)?(_productService.ByteArrayToImage(randomProduct.Image)):null,
                         CategoryId = randomProduct.Subcategory.Category.CategoryId,
                         CategoryName = randomProduct.Subcategory.Category.Name,
                         SubcategoryId = randomProduct.Subcategory.SubcategoryId,

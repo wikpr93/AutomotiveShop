@@ -47,6 +47,10 @@ namespace AutomotiveShop.web.Controllers
             List<ItemInCartViewModel> cart = _orderService.GetCart();
             ItemInCartViewModel item = cart.Find(p => p.Product.ProductId == productId);
 
+            byte[] img = _productService.GetProducts().FirstOrDefault(p => p.Image != null).Image;
+            var base64 = Convert.ToBase64String(img);
+            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
             ProductToBuyViewModel model = new ProductToBuyViewModel()
             {
                 ProductId = product.ProductId,
@@ -54,6 +58,7 @@ namespace AutomotiveShop.web.Controllers
                 CategoryName = product.Subcategory.Category.Name,
                 SubcategoryName = product.Subcategory.Name,
                 Price = product.Price,
+                Image = imgSrc,
                 ItemsAvailable = product.ItemsAvailable,
                 ItemsInCart = (item != null)?item.Quantity:0,
                 AlreadyBought = product.Copies.Count
@@ -209,6 +214,47 @@ namespace AutomotiveShop.web.Controllers
                 Name = productToBuy.Name
             };
             return View("Bought", model);
+        }
+
+
+        public ActionResult AddImage(Guid? productId)
+        {
+            if (productId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Product product = _productService.GetProductById(productId);
+
+            AddImageViewModel model = new AddImageViewModel()
+            {
+                ProductId = (Guid)productId
+            };
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public ActionResult AddImage(AddImageViewModel model, HttpPostedFileBase image1)
+        {
+            //if (productId == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            
+            //_productService.AddImage(productId, img);
+            if(image1 != null && 
+                (image1.ContentType.Equals("image/png") || image1.ContentType.Equals("image/gif") 
+                || image1.ContentType.Equals("image/jpg") || image1.ContentType.Equals("image/jpeg")))
+            {
+                model.ByteImage = new byte[image1.InputStream.Length];
+                image1.InputStream.Read(model.ByteImage, 0, image1.ContentLength);
+                _productService.AddImage(model);
+            }
+
+
+            return View("Index", "Home");
         }
 
     }

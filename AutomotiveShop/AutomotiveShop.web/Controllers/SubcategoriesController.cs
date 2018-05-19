@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -20,6 +21,7 @@ namespace AutomotiveShop.web.Controllers
     {
         private SubcategoryService _subcategoryService = new SubcategoryService();
         private CategoryService _categoryService = new CategoryService();
+        private ProductService _productService = new ProductService();
 
         // GET: Subcategories
         [AllowAnonymous]

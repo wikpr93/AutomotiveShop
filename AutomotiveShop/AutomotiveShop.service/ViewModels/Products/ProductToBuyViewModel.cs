@@ -11,6 +11,7 @@ namespace AutomotiveShop.service.ViewModels.Products
         public Guid ProductId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
+        public string Image { get; set; }
         [Display(Name = "Bought")]
         public int AlreadyBought { get; set; }
         public int ItemsAvailable { get; set; }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AutomotiveShop.service.Service;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +12,7 @@ namespace AutomotiveShop.service.ViewModels.Products
         public Guid ProductId { get; set; }
         public string Name { get; set; }
         public string Price { get; set; }
+        public string Image { get; set; }
         public Guid CategoryId { get; set; }
         public string CategoryName { get; set; }
         public Guid SubcategoryId { get; set; }

@@ -9,7 +9,8 @@
     {
         <a href="~/Products/Details/?productId=@product.ProductId">
             <div style="height: 200px; width: 100%; align-content:center; color:white; font-size: 20px;">
-                <div style="height:200px; width:20%; border: solid 1px black; float:left">
+                <div id="imagediv" style="height:200px; width:20%; border: solid 1px black; float:left">
+                    <img id="imageimg" src="@product.Image" />
                 </div>
 
                 <div style="padding-left: 10px; padding-right: 10px; height: 150px; width:70%; border: solid 1px black; float:left">

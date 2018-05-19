@@ -8,6 +8,21 @@ a{
     color: white !important;
 }
 
+#imagediv{
+    position: relative;
+    overflow: hidden;
+}
+
+#imageimg {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    right: -9999px;
+    bottom: -9999px;
+    margin: auto;
+}
+
+
 #container {
     width: 100%;
 }
