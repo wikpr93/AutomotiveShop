@@ -19,79 +19,84 @@
 @using (Html.BeginForm("AddToCart", "Orders"))
 {
     @Html.HiddenFor(model => model.ProductId)
-    <div>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CategoryName)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CategoryName)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.SubcategoryName)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.SubcategoryName)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SubcategoryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SubcategoryName)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.AlreadyBought)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.AlreadyBought)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.AlreadyBought)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.AlreadyBought)
+        </dd>
 
-            <dt>
-                @Html.Raw("Dostępność")
-            </dt>
-            <dd>
-                @(Model.ItemsAvailable > 0 ? Html.Raw("W magazynie (" + @Model.ItemsAvailable + " przedmioty(ów) dostępnych" + ((Model.ItemsInCart > 0) ? (", " + Model.ItemsInCart + " w koszyku") : ("")) + ")") : Html.Raw("Niedostępny"))
-            </dd>
-        </dl>
-    </div>
-    <p>
-        @if (Model.ItemsAvailable > 0)
+        <dt>
+            @Html.Raw("Dostępność")
+        </dt>
+        <dd>
+            @(Model.ItemsAvailable > 0 ? Html.Raw("W magazynie (" + @Model.ItemsAvailable + " przedmioty(ów) dostępnych" + ((Model.ItemsInCart > 0) ? (", " + Model.ItemsInCart + " w koszyku") : ("")) + ")") : Html.Raw("Niedostępny"))
+        </dd>
+    </dl>
+    @if (Model.ItemsAvailable > 0)
     {
-        <div class="col-md-10">
+    <div style="overflow:hidden;">
+
+        <div class="col-md-10"style="float:right;">
             @Html.EditorFor(model => model.CopiesToBuy, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
+        <div class="form-group" style="float: right;">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Dodaj do koszyka" class="btn btn-default" />
             </div>
         </div>
+        <div style="clear:both"></div>
+    </div>
         @*@Html.ActionLink("Add to cart", "AddToCart", "Orders", new { productId = Model.ProductId, copiesToBuy = Model.CopiesToBuy }, null)*@
         <div>
             &nbsp;
         </div>
-}
-else
-{
-    @Html.Raw("Item unavailable")
-    @Html.Raw("|")
-}
+    }
+    else
+    {
+        @Html.Raw("Item unavailable")
+        @Html.Raw("|")
+    }
 
-        @Html.ActionLink("Edytuj", "Edit", "Edit", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
-        @Html.ActionLink("Dodaj miniaturę", "AddImage", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
-        @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-primary btn-xs" })
-    </p>
-}
 
+    @Html.ActionLink("Edytuj", "Edit", "Edit", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Dodaj miniaturę", "AddImage", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-primary btn-xs" })
+
+</div>
+
+
+}
