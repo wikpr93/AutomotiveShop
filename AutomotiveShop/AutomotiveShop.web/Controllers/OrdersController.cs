@@ -224,6 +224,7 @@ namespace AutomotiveShop.web.Controllers
             //return View(order);
         }
 
+        [AllowAnonymous]
         public ActionResult EmptyCart()
         {
             _orderService.EmptyCart();

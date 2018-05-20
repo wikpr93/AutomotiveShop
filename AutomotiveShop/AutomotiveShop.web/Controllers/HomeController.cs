@@ -40,7 +40,7 @@ namespace AutomotiveShop.web.Controllers
                     {
                         ProductId = randomProduct.ProductId,
                         Name = randomProduct.Name,
-                        Price = randomProduct.Price.ToString("C", new CultureInfo("en-GB")),
+                        Price = randomProduct.Price.ToString("C", new CultureInfo("pl-PL")),
                         Image = imgSrc, //(randomProduct.Image != null)?(_productService.ByteArrayToImage(randomProduct.Image)):null,
                         CategoryId = randomProduct.Subcategory.Category.CategoryId,
                         CategoryName = randomProduct.Subcategory.Category.Name,

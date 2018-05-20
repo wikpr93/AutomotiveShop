@@ -18,10 +18,10 @@
                         @Html.ActionLink(item.Product.Name, "Details", "Products", new {productId = item.Product.ProductId}, null)
                     </td>
                     <td>
-                        |   @item.Quantity item(s) |
+                        @Html.Raw(" | " + item.Quantity + " przedmioty(ów) | ")
                     </td>
                     <td>
-                        @item.Value PLN (@item.Product.Price PLN each)
+                        @Html.Raw(item.Value + "zł (" + item.Product.Price + "zł za sztukę)")
                     </td>
                 </tr>
             }
@@ -29,7 +29,7 @@
                 <td></td>
                 <td></td>
                 <td class="summary">
-                    Total: @Model.Price PLN
+                    @Html.Raw("Łącznie: " + @Model.Price + "zł")
                 </td>
             </tr>
             <tr>

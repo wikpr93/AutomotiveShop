@@ -56,7 +56,7 @@ namespace AutomotiveShop.web.Controllers
                 {
                     ProductId = p.ProductId,
                     Name = p.Name,
-                    Price = p.Price.ToString("C", new CultureInfo("en-GB")),
+                    Price = p.Price.ToString("C", new CultureInfo("pl-PL")),
                     CategoryId = p.Subcategory.Category.CategoryId,
                     CategoryName = p.Subcategory.Category.Name,
                     SubcategoryId = p.Subcategory.SubcategoryId,
