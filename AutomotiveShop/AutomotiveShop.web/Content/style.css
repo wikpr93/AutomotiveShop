@@ -1,11 +1,11 @@
 ﻿body {
-    background-color: #660000 !important;
+    background-color: #9e9e9e !important;
     color: white !important;
 }
 
 a{
     text-decoration: none !important;
-    color: white !important;
+    color: black !important;
 }
 
 #imagediv{
@@ -46,9 +46,9 @@ a{
     width: 100%;
     padding: 5px 0;
     font-family: 'Patua One', cursive;
-    background-color: black;
-    border-top: 1px solid #0e65f1;
-    border-bottom: 1px solid #0e65f1;
+    background-color: white;
+    border-top: 2px solid #0e65f1;
+    border-bottom: 2px solid #0e65f1;
     opacity: 0.9;
 }
 
@@ -111,7 +111,7 @@ a{
 
         #nav > #menu > div > ol > li:hover,
         #nav > #menu > div > form > ol > li:hover {
-            background-color: #660000;
+            background-color: gray;
         }
 
             #nav > #menu > div > ol > li:hover > a,
@@ -145,7 +145,7 @@ a{
         #nav > #menu > div > ol > li > ul > li,
         #nav > #menu > div > form > ol > li > ul > li,
         #nav > #menu > div > form > ol > li > ul > li > input {
-            background-color: #87b2f8;
+            background-color: lightgray;
             position: relative;
             z-index: 100;
             border-top: 1px dashed #0e65f1;
