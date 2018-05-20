@@ -5,7 +5,10 @@
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-<link href="~/Content/style.css?v=@DateTime.Now.ToString()" rel="stylesheet" /><link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+<link href="~/Content/style.css?v=@DateTime.Now.ToString()" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Black+Ops+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 <link href="~/Content/Bootstrap.min.css?v=@DateTime.Now.ToString()" rel="stylesheet" />
 <link href="~/Content/fontello/css/fontello.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
@@ -38,14 +41,14 @@
     <button onclick="topFunction()" id="myBtn" title="Go to top">Back to the top</button>
     <div id="container">
         <div id="header">
-            <div id="logo">
+            <div id="logo" style="align-items: center;">
                 <div style="float: left; line-height: 170%; text-align:center;"><span class="logofont">A</span><span style="color: blue">utomotive</span><span class="logofont">S</span><span style="color: blue">hop</span></div>
                 <div style="clear:both"></div>
             </div>
         </div>
         <div id="nav">
             <div id="menu">
-                <div id="leftmenu" style="width: 600px;">
+                <div id="leftmenu">
                     <ol>
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>
@@ -67,7 +70,7 @@
                     </ol>
 
                 </div>
-                <div id="login" style="width: 400px;">
+                <div id="login">
                     @Html.Partial("_LoginPartial")
                 </div>
                 <div style="clear: both"></div>
@@ -87,7 +90,7 @@
                 document.getElementById("myBtn").style.display = "none";
             }
         }
-        
+
         function topFunction() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;

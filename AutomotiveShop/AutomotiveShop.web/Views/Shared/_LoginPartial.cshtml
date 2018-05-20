@@ -14,24 +14,15 @@
         @Html.ActionLink("Witaj " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = @linkStyle })
         @if (User.IsInRole("Administrator"))
         {
-            <ul>
-                <li style="border-top: 2px solid black; border-bottom: 2px solid black;">
-                    @Html.Raw("Manage:")
-                </li>
-                <li style="border-top: none;">
-
-                </li>
+            <ul style="margin: 0; padding: 0">
                 <li>
-
+                    <input type="submit" value="Wyloguj się"/>
                 </li>
             </ul>
 
         }
     </li>
     <li id="cartButton">@Html.ActionLink("Koszyk", "Index", "Orders")</li>
-    <li>
-        <input type="submit" value="Wyloguj się" style="width: 100px" />
-    </li>
 </ol>
     }
 }
