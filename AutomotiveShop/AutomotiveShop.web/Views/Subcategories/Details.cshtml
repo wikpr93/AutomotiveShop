@@ -6,21 +6,22 @@
     bool isAdministrator = User.IsInRole("Administrator");
 }
 
-<h2>@Model.SubcategoryName</h2>
+<h1>@Model.SubcategoryName</h1>
 
 <div id="index" class="jumbotron" style="background-color:transparent">
     @foreach (var product in Model.Products)
     {
         <a href="#">
             <div style="height: 200px; width: 100%; align-content:center; color:white; font-size: 20px;">
-                <div style="height:200px; width:20%; border: solid 1px black; float:left">
+                <div id="imagediv" style="height:200px; width:20%; border: solid 1px black; float:left">
+                    <img id="imageimg" src="@product.Image" />
                 </div>
 
-                <div style="padding-left: 10px; padding-right: 10px; height: 150px; width:70%; border: solid 1px black; float:left">
+                <div style="padding-left: 10px; padding-right: 10px; height: 150px; width:65%; border: solid 1px black; float:left">
                     <span>@product.Name</span>
                 </div>
 
-                <div style="padding-right: 10px; height: 150px; width:10%; border: solid 1px black; float:left; text-align:right;">
+                <div style="padding-right: 10px; height: 150px; width:15%; border: solid 1px black; float:left; text-align:right;">
                     <span>@product.Price</span>
                 </div>
 
@@ -45,7 +46,7 @@
         @Html.ActionLink("Utwórz produkt", "Create", "Products", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" })
         @Html.Raw(" |")
     }
-    @Html.ActionLink("Edytuj", "Edit", "Edit", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Edytuj", "Edit", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
     @Html.ActionLink("Usuń", "Delete", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
     @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-primary btn-xs" })
 </p>

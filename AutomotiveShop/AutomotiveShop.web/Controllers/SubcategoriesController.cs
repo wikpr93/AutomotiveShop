@@ -44,6 +44,11 @@ namespace AutomotiveShop.web.Controllers
                 return HttpNotFound();
             }
 
+            List<Product> products = _productService.GetProducts();
+            byte[] img = products.FirstOrDefault(p => p.Image != null).Image;
+            var base64 = Convert.ToBase64String(img);
+            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
             SubcategoryDetailsViewModel model = new SubcategoryDetailsViewModel()
             {
                 SubcategoryId = subcategory.SubcategoryId,
@@ -60,7 +65,8 @@ namespace AutomotiveShop.web.Controllers
                     CategoryId = p.Subcategory.Category.CategoryId,
                     CategoryName = p.Subcategory.Category.Name,
                     SubcategoryId = p.Subcategory.SubcategoryId,
-                    SubcategoryName = p.Subcategory.Name
+                    SubcategoryName = p.Subcategory.Name,
+                    Image = imgSrc
                 });
             });
 

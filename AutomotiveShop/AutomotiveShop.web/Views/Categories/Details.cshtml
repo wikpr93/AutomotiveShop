@@ -1,4 +1,4 @@
-﻿@model AutomotiveShop.model.Category
+﻿@model AutomotiveShop.service.ViewModels.Categories.CategoryDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -7,22 +7,19 @@
 }
 
 
-<h2>@Model.Name</h2>
-
-<ul>
+<h2>@Model.CategoryName</h2>
+<table class="categoryTable">
     @foreach (var subcategory in Model.Subcategories)
     {
-        <li>
-            @Html.ActionLink(@subcategory.Name, "Details", "Subcategories", new { subcategoryId = subcategory.SubcategoryId }, null)
-            <ul>
-                @foreach (var product in subcategory.Products)
-                {
-                    <li>@Html.ActionLink(@product.Name, "Details", "Products", new { productId = product.ProductId }, null)</li>
-                }
-            </ul>
-        </li>
+        <tr>
+            <td onclick="location.href='../../Subcategories/Details/?subcategoryId=@subcategory.SubcategoryId'" class="subcategoryInCategory">
+                @subcategory.SubcategoryName
+            </td>
+        </tr>
     }
-</ul>
+</table>
+<div>&nbsp;</div>
+
 
 <p>
     @if (isAdministrator)
@@ -31,6 +28,6 @@
         @Html.Raw(" |")
     }
 
-    @Html.ActionLink("Edytuj", "Edit", "Edit", new { categoryId = Model.CategoryId }, new { @class="btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Edytuj", "Edit", new { categoryId = Model.CategoryId }, new { @class = "btn btn-primary btn-xs" }) |
     @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-primary btn-xs" })
 </p>

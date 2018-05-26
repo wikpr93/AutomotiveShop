@@ -137,6 +137,7 @@
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\SubcategoryService.cs" />
     <Compile Include="Service\UserService.cs" />
+    <Compile Include="ViewModels\Categories\CategoryDetailsViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoryToEditViewModel.cs" />
     <Compile Include="ViewModels\Categories\NewCategoryViewModel.cs" />
     <Compile Include="ViewModels\Orders\AddressesToChooseViewModel.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="ViewModels\Products\ProductViewModel.cs" />
     <Compile Include="ViewModels\Subcategories\NewSubcategoryViewModel.cs" />
     <Compile Include="ViewModels\Subcategories\SubcategoryDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Subcategories\SubcategoryInCategoryViewModel.cs" />
     <Compile Include="ViewModels\Subcategories\SubcategoryToEditViewModel.cs" />
     <Compile Include="ViewModels\Users\AccountViewModels.cs" />
     <Compile Include="ViewModels\Users\ManageViewModels.cs" />

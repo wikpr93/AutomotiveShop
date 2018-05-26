@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using AutomotiveShop.model;
 using AutomotiveShop.service.Service;
 using AutomotiveShop.service.ViewModels.Categories;
+using AutomotiveShop.service.ViewModels.Subcategories;
 
 namespace AutomotiveShop.web.Controllers
 {
@@ -37,7 +38,18 @@ namespace AutomotiveShop.web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(category);
+
+            CategoryDetailsViewModel model = new CategoryDetailsViewModel()
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.Name
+            };
+            category.Subcategories.ForEach(s => model.Subcategories.Add(new SubcategoryInCategoryViewModel()
+            {
+                SubcategoryId = s.SubcategoryId,
+                SubcategoryName = s.Name 
+            }));
+            return View(model);
         }
 
         // GET: Categories/Create

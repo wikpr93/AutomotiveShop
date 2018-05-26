@@ -92,7 +92,7 @@
     }
 
 
-    @Html.ActionLink("Edytuj", "Edit", "Edit", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
+    @Html.ActionLink("Edytuj", "Edit", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
     @Html.ActionLink("Dodaj miniaturę", "AddImage", new { productId = Model.ProductId }, new { @class = "btn btn-primary btn-xs" }) |
     @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-primary btn-xs" })
 
