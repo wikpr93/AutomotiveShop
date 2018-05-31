@@ -267,7 +267,12 @@ h1, h2 {
         text-decoration: none;
         color: black;
     }
-    
+
+.parcelLockerList {
+    width: 250px;
+    display: inline-block;
+}
+
 #productList {
     padding-bottom: 20px;
     padding:0;

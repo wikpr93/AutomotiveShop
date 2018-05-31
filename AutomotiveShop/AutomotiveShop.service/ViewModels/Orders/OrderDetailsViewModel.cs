@@ -19,6 +19,8 @@ namespace AutomotiveShop.service.ViewModels.Orders
 
         [Display(Name = "Cena")]
         public double Price { get; set; }
+
+        public bool IsOwner { get; set; }
         public OrderState OrderState { get; set; }
 
         public string DisplayedOrderState { get; set; }

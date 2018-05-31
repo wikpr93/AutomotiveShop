@@ -159,7 +159,8 @@ namespace AutomotiveShop.web.Controllers
                 OrderId = order.OrderId,
                 DateOfPurchase = order.DateOfPurchase,
                 DisplayedDateOfPurchase = order.DateOfPurchase.Year.ToString("0000") + "-" + order.DateOfPurchase.Month.ToString("00") + "-" + order.DateOfPurchase.Day.ToString("00") + " " + order.DateOfPurchase.Hour.ToString("00") + ":" + order.DateOfPurchase.Minute.ToString("00"),
-                OrderState = order.OrderState
+                OrderState = order.OrderState,
+                IsOwner = _userService.ReturnUserByUsername(User.Identity.Name).Id == order.UserId
             };
             switch ((int)model.OrderState)
             {
@@ -194,10 +195,10 @@ namespace AutomotiveShop.web.Controllers
                     model.NextAction = "Zapłać za zamówienie";
                     break;
                 case 1:
-                    model.NextAction = "Oznacz jako wysłane (jako administrator)";
+                    model.NextAction = "Oznacz jako wysłane";
                     break;
                 case 2:
-                    model.NextAction = "Oznacz jako dostarczone (jako klient)";
+                    model.NextAction = "Oznacz jako dostarczone";
                     break;
                 case 3:
                     model.NextAction = "Anuluj zamówienie";
