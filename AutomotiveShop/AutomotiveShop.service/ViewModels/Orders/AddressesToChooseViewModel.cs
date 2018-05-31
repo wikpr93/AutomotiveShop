@@ -10,6 +10,8 @@ namespace AutomotiveShop.service.ViewModels.Orders
         public List<DeliveryAddressViewModel> Addresses { get; set; }
         public List<ParcelLockerAddressViewModel> ParcelLockers { get; set; }
 
+        public string SelectedParcel { get; set; }
+
         public AddressesToChooseViewModel()
         {
             Addresses = new List<DeliveryAddressViewModel>();

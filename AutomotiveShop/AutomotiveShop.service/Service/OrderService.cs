@@ -72,6 +72,67 @@ namespace AutomotiveShop.service.Service
 
         }
 
+        public Guid Create(ParcelLockerAddressViewModel parcel, ApplicationUser user)
+        {
+            DeliveryAddress address = _dbContext.DeliveryAddresses.FirstOrDefault(a => a.StreetName == parcel.Street && a.City == parcel.Street && a.Postcode == parcel.Postcode);
+            
+            if (address == null)
+            {
+                address = new DeliveryAddress()
+                {
+                    StreetName = parcel.Street,
+                    Postcode = parcel.Postcode,
+                    City = parcel.City
+                };
+                _dbContext.DeliveryAddresses.Add(address);
+                _dbContext.SaveChanges();
+            }
+
+            List<Product> products = new List<Product>();
+            foreach (ItemInCartViewModel item in GetCart())
+            {
+                if (item.Quantity <= item.Product.ItemsAvailable)
+                {
+                    for (int i = 0; i < item.Quantity; i++)
+                    {
+                        products.Add(item.Product);
+                    }
+                }
+                else
+                {
+                    throw new Exception("Not enough products in stock");
+                }
+            }
+            Order newOrder = new Order();
+            newOrder.OrderId = Guid.NewGuid();
+            newOrder.DateOfPurchase = DateTime.Now;
+            newOrder.OrderState = OrderState.New;
+            newOrder.DeliveryAddressId = address.DeliveryAddressId;
+            newOrder.UserId = user.Id;
+            _dbContext.Orders.Add(newOrder);
+
+            foreach (Product product in products)
+            {
+                Product tempProd = _dbContext.Products.FirstOrDefault(p => p.ProductId == product.ProductId);
+                if (tempProd.ItemsAvailable > 0)
+                {
+                    ProductCopy newCopy = new ProductCopy();
+                    newCopy.ProductCopyId = Guid.NewGuid();
+                    newCopy.ProductId = product.ProductId;
+                    newCopy.Price = product.Price;
+                    newCopy.OrderId = newOrder.OrderId;
+                    _dbContext.ProductsCopies.Add(newCopy);
+                    tempProd.ItemsAvailable--;
+                    _dbContext.Entry(tempProd).Property(p => p.ItemsAvailable).IsModified = true;
+                    _dbContext.SaveChanges();
+                }
+            }
+            _dbContext.SaveChanges();
+            EmptyCart();
+            return newOrder.OrderId;
+
+        }
+
         public List<ItemInCartViewModel> GetCart()
         {
             List<ItemInCartViewModel> cart;

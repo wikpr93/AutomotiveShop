@@ -95,6 +95,20 @@ namespace AutomotiveShop.web.Controllers
             return View("DeliveryAddress", model);
         }
 
+        [HttpPost]
+        public ActionResult ChosenParcelLocker(AddressesToChooseViewModel model)
+        {
+            Guid orderId = _orderService.Create(model.ParcelLockers.FirstOrDefault(p => p.Displayed.Equals(model.SelectedParcel)), _userService.ReturnUserByUsername(User.Identity.Name));
+            if (orderId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            TempData["ItemsBought"] = "Dziękujemy za zakupy :) Możesz za nie zapłacić w dolnej sekcji na tej stronie";
+
+            return RedirectToAction("Details", new { orderId });
+        }
+
         public ActionResult Create(Guid deliveryAddressId)
         {
             Guid orderId = _orderService.Create(deliveryAddressId, _userService.ReturnUserByUsername(User.Identity.Name));

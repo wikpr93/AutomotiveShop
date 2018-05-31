@@ -6,24 +6,17 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
-<ol>
-    @{
-        string linkStyle = User.IsInRole("Administrator") ? "color: #00ff00;" : "color:#ffffff";
-    }
-    <li style="width: 290px;">
-        @Html.ActionLink("Witaj " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = @linkStyle })
-        @if (User.IsInRole("Administrator"))
-        {
-            <ul style="margin: 0; padding: 0">
-                <li>
-                    <input type="submit" value="Wyloguj się"/>
-                </li>
-            </ul>
-
-        }
-    </li>
-    <li id="cartButton">@Html.ActionLink("Koszyk", "Index", "Orders")</li>
-</ol>
+        <ol>
+            <li style="width: 290px;">
+                @Html.ActionLink("Witaj " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                <ul style="margin: 0; padding: 0; align-content:center;">
+                    <li style="width:290px; padding:0;">
+                        <input style="width:300px; padding: 0; border: 0;" type="submit" value="Wyloguj się" />
+                    </li>
+                </ul>
+            </li>
+            <li id="cartButton">@Html.ActionLink("Koszyk", "Index", "Orders")</li>
+        </ol>
     }
 }
 else
