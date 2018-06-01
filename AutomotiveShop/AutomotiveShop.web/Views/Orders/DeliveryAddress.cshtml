@@ -11,7 +11,7 @@
     @foreach (var address in Model.Addresses)
     {
         <a href=@Url.Action("Create", "Orders", new { deliveryAddressId = address.DeliveryAddressId })>
-            <button class="addressButton" class="btn btn-default center-block">
+            <button class="addressButton btn btn-default center-block">
                 @if (!address.CompanyName.IsEmpty())
                 {
                     <div>@address.CompanyName</div>
@@ -50,7 +50,7 @@
             &nbsp;
         </div>
     }
-    <button class="addressButton" type="button" class="btn center-block">@Html.ActionLink("Dodaj nowy", "CreateDeliveryAddress")</button>
+    <button class="addressButton btn center-block" type="button">@Html.ActionLink("Dodaj nowy", "CreateDeliveryAddress")</button>
     <div>&nbsp;</div>
     @using (Html.BeginForm("ChosenParcelLocker", "Orders", FormMethod.Post))
     {

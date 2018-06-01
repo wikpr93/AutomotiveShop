@@ -154,11 +154,11 @@ namespace AutomotiveShop.service.Service
             return _dbContext.DeliveryAddresses.Where(o => o.UserId == user.Id).ToList();
         }
 
-        public void AddToCart(Guid? productId, int newQuantity)
+        public bool AddToCart(Guid? productId, int newQuantity)
         {
             if (productId == null)
             {
-                return;
+                return false;
             }
 
             bool newItem = false;
@@ -178,13 +178,13 @@ namespace AutomotiveShop.service.Service
 
                 if(item.Product == null)
                 {
-                    return;
+                    return false;
                 }
             }
 
             if (item != null && item.Quantity + newQuantity > _productService.GetProductById(productId).ItemsAvailable)
             {
-                throw new Exception("Not enough items in stock");
+                return false;
             }
             else if (item != null)
             {
@@ -198,6 +198,8 @@ namespace AutomotiveShop.service.Service
             }
 
             _sessionManager.Set(Consts.CartSessionKey, cart);
+
+            return true;
         }
 
         public void ProcessOrder(Guid orderId, OrderState orderState, bool toCancellation)

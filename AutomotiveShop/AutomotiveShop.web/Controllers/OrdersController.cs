@@ -131,7 +131,11 @@ namespace AutomotiveShop.web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            _orderService.AddToCart(productId, copiesToBuy);
+            if (!_orderService.AddToCart(productId, copiesToBuy))
+            {
+                TempData["AddingToCartFailed"] = "Nie udało się dodać produktu do koszyka. Sprawdź, czy posiadamy wystarczającą ilość!";
+                return RedirectToAction("Details", "Products", new { productId = productId });
+            };
             return RedirectToAction("Index");
         }
 
