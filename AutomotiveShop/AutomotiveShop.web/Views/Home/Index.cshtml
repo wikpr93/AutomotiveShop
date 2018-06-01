@@ -7,6 +7,14 @@
 <div id="index" class="jumbotron" style="background-color:transparent">
     @foreach (var product in Model)
     {
+
+        <a href="~/Subcategories/Details/?subcategoryId=@product.SubcategoryId">
+            <div>
+                <b>
+                    <span>@product.CategoryName, @product.SubcategoryName</span>
+                </b>
+            </div>
+        </a>
         <a href="~/Products/Details/?productId=@product.ProductId">
             <div style="height: 200px; width: 100%; align-content:center; color:white; font-size: 20px;">
                 <div id="imagediv" style="height:200px; width:20%; border: solid 1px black; float:left">

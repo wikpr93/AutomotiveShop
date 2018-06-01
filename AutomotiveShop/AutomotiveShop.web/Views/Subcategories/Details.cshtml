@@ -11,30 +11,30 @@
 <div id="index" class="jumbotron" style="background-color:transparent">
     @foreach (var product in Model.Products)
     {
-        <a href="#">
-            <div style="height: 200px; width: 100%; align-content:center; color:white; font-size: 20px;">
-                <div id="imagediv" style="height:200px; width:20%; border: solid 1px black; float:left">
-                    <img id="imageimg" src="@product.Image" />
-                </div>
-
-                <div style="padding-left: 10px; padding-right: 10px; height: 150px; width:65%; border: solid 1px black; float:left">
-                    <span>@product.Name</span>
-                </div>
-
-                <div style="padding-right: 10px; height: 150px; width:15%; border: solid 1px black; float:left; text-align:right;">
-                    <span>@product.Price</span>
-                </div>
-
-                <a href="#">
-                    <div style="padding-left: 10px; padding-right: 10px; height: 50px; width: 80%; border: solid 1px black;font-size: 10px; float:left;">
-                        <span>@product.CategoryName, @product.SubcategoryName</span>
-                    </div>
-                </a>
-
-                <div style="clear:both"></div>
-
+    <a href="~/Products/Details/?productId=@product.ProductId">
+        <div style="height: 200px; width: 100%; align-content:center; color:white; font-size: 20px;">
+            <div id="imagediv" style="height:200px; width:20%; border: solid 1px black; float:left">
+                <img id="imageimg" src="@product.Image" />
             </div>
-        </a>
+
+            <div style="padding-left: 10px; padding-right: 10px; height: 150px; width:65%; border: solid 1px black; float:left">
+                <span>@product.Name</span>
+            </div>
+
+            <div style="padding-right: 10px; height: 150px; width:15%; border: solid 1px black; float:left; text-align:right;">
+                <span>@product.Price</span>
+            </div>
+
+            <a href="#">
+                <div style="padding-left: 10px; padding-right: 10px; height: 50px; width: 80%; border: solid 1px black;font-size: 10px; float:left;">
+                    <span>@product.CategoryName, @product.SubcategoryName</span>
+                </div>
+            </a>
+
+            <div style="clear:both"></div>
+
+        </div>
+    </a>
         <div style="height:30px">
 
         </div>
