@@ -44,9 +44,11 @@
     @if (isAdministrator)
     {
         @Html.ActionLink("Utwórz produkt", "Create", "Products", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" })
-        @Html.Raw(" |")
+        @Html.Raw(" | ")
+        @Html.ActionLink("Edytuj", "Edit", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" })
+        @Html.Raw(" | ")
+        @Html.ActionLink("Usuń", "Delete", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) 
+        @Html.Raw(" | ")
     }
-    @Html.ActionLink("Edytuj", "Edit", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
-    @Html.ActionLink("Usuń", "Delete", new { subcategoryId = Model.SubcategoryId }, new { @class = "btn btn-primary btn-xs" }) |
     @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-primary btn-xs" })
 </p>

@@ -25,9 +25,10 @@
     @if (isAdministrator)
     {
         @Html.ActionLink("Utwórz podkategorię", "Create", "Subcategories", new { categoryId = Model.CategoryId }, new { @class = "btn btn-primary btn-xs" })
-        @Html.Raw(" |")
+        @Html.Raw(" | ")
+        @Html.ActionLink("Edytuj", "Edit", new { categoryId = Model.CategoryId }, new { @class = "btn btn-primary btn-xs" })
+        @Html.Raw(" | ")
     }
 
-    @Html.ActionLink("Edytuj", "Edit", new { categoryId = Model.CategoryId }, new { @class = "btn btn-primary btn-xs" }) |
     @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-primary btn-xs" })
 </p>
