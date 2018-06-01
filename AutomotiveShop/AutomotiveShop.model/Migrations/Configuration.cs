@@ -260,8 +260,8 @@ namespace AutomotiveShop.model.Migrations
 
             var addresses = new List<DeliveryAddress>()
             {
-                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "City", StreetName = "Street", Postcode = "55-555", UserId = admin.Id },
-                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "City2", StreetName = "Street2", Postcode = "66-666", UserId = admin.Id }
+                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "Rzeszow", StreetName = "al. Powstańców Warszawy 12", Postcode = "35-959", UserId = admin.Id },
+                new DeliveryAddress() {DeliveryAddressId = Guid.NewGuid(), City = "Rzeszow", StreetName = "Wincentego Pola 2", Postcode = "35-021", UserId = admin.Id }
 
             };
             addresses.ForEach(a => context.DeliveryAddresses.Add(a));
