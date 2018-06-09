@@ -43,7 +43,7 @@ namespace AutomotiveShop.web.Controllers
                     Postcode = address.Postcode,
                     City = address.City,
                     PhoneNumber = address.PhoneNumber,
-                    AdditionalInfo = address.PhoneNumber
+                    AdditionalInfo = address.AdditionalInfo
                 });
             }
             
