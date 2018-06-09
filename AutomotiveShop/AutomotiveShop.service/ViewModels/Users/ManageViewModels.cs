@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using AutomotiveShop.model;
+using AutomotiveShop.service.ViewModels.Orders;
 
 namespace AutomotiveShop.service.ViewModels.Users
 {
@@ -14,11 +15,11 @@ namespace AutomotiveShop.service.ViewModels.Users
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public List<OrderIndexViewModel> Orders { get; set; }
-        public List<DeliveryAddress> DeliveryAddresses { get; set; }
+        public List<DeliveryAddressViewModel> DeliveryAddresses { get; set; }
         public IndexViewModel()
         {
             Orders = new List<OrderIndexViewModel>();
-            DeliveryAddresses = new List<DeliveryAddress>();
+            DeliveryAddresses = new List<DeliveryAddressViewModel>();
         }
     }
 

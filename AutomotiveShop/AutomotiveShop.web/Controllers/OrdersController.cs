@@ -37,11 +37,9 @@ namespace AutomotiveShop.web.Controllers
                 {
                     DeliveryAddressId = address.DeliveryAddressId,
                     CompanyName = address.CompanyName,
-                    Name = address.Name,
-                    Surname = address.Surname,
+                    Name = (address.Name != null && address.Surname != null)?address.Name + " " + address.Surname:address.Name??address.Surname,
                     StreetName = address.StreetName,
-                    Postcode = address.Postcode,
-                    City = address.City,
+                    City = (address.Postcode != null && address.City != null) ? address.Postcode + " " + address.City : address.Postcode ?? address.City,
                     PhoneNumber = address.PhoneNumber,
                     AdditionalInfo = address.AdditionalInfo
                 });
@@ -186,13 +184,12 @@ namespace AutomotiveShop.web.Controllers
             }
             DeliveryAddress address = _orderService.FindDeliveryAddressById(order.DeliveryAddressId);
             model.DeliveryAddress.CompanyName = address.CompanyName;
-            model.DeliveryAddress.Name = address.Name;
-            model.DeliveryAddress.Surname = address.Surname;
+            model.DeliveryAddress.Name = (address.Name != null && address.Surname != null) ? address.Name + " " + address.Surname : address.Name ?? address.Surname;
             model.DeliveryAddress.StreetName = address.StreetName;
-            model.DeliveryAddress.Postcode = address.Postcode;
-            model.DeliveryAddress.City = address.City;
+            model.DeliveryAddress.City = (address.Postcode != null && address.City != null) ? address.Postcode + " " + address.City : address.Postcode ?? address.City;
             model.DeliveryAddress.PhoneNumber = address.PhoneNumber;
             model.DeliveryAddress.AdditionalInfo = address.AdditionalInfo;
+
             switch ((int)model.OrderState)
             {
                 case 0:

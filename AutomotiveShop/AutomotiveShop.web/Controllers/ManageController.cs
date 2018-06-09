@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AutomotiveShop.service.Service;
 using System.Collections.Generic;
+using AutomotiveShop.model;
+using AutomotiveShop.service.ViewModels.Orders;
 
 namespace AutomotiveShop.web.Controllers
 {
@@ -75,8 +77,21 @@ namespace AutomotiveShop.web.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                DeliveryAddresses = _orderService.GetDeliveryAddressesByUser(_userService.ReturnUserByUsername(User.Identity.Name))
             };
+
+            foreach (DeliveryAddress address in _orderService.GetDeliveryAddressesByUser(_userService.ReturnUserByUsername(User.Identity.Name)))
+            {
+                model.DeliveryAddresses.Add(new DeliveryAddressViewModel()
+                {
+                    DeliveryAddressId = address.DeliveryAddressId,
+                    CompanyName = address.CompanyName,
+                    Name = (address.Name != null && address.Surname != null) ? address.Name + " " + address.Surname : address.Name ?? address.Surname,
+                    StreetName = address.StreetName,
+                    City = (address.Postcode != null && address.City != null) ? address.Postcode + " " + address.City : address.Postcode ?? address.City,
+                    PhoneNumber = address.PhoneNumber,
+                    AdditionalInfo = address.AdditionalInfo
+                });
+            }
 
             model.Orders = new List<OrderIndexViewModel>();
             foreach(var order in _orderService.GetOrdersByUser(_userService.ReturnUserByUsername(User.Identity.Name)))

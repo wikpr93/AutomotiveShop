@@ -14,18 +14,11 @@ namespace AutomotiveShop.service.ViewModels.Orders
         public string CompanyName { get; set; }
 
 
-        [Display(Name = "Imię")]
+        [Display(Name = "Imię i nazwisko")]
         public string Name { get; set; }
-
-        [Display(Name = "Nazwisko")]
-        public string Surname { get; set; }
-
 
         [Display(Name = "Ulica")]
         public string StreetName { get; set; }
-
-        [Display(Name = "Kod pocztowy")]
-        public string Postcode { get; set; }
 
         [Display(Name = "Miasto")]
         public string City { get; set; }

@@ -43,19 +43,9 @@
         <dd>@Model.DeliveryAddress.Name</dd>
     }
 
-    @if (!Model.DeliveryAddress.Surname.IsEmpty())
-    {
-        <dd>@Model.DeliveryAddress.Surname</dd>
-    }
-
     @if (!Model.DeliveryAddress.StreetName.IsEmpty())
     {
         <dd>@Model.DeliveryAddress.StreetName</dd>
-    }
-
-    @if (!Model.DeliveryAddress.Postcode.IsEmpty())
-    {
-        <dd>@Model.DeliveryAddress.Postcode</dd>
     }
 
     @if (!Model.DeliveryAddress.City.IsEmpty())
