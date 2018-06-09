@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -65,7 +66,7 @@ namespace AutomotiveShop.web.Controllers
                 Name = product.Name,
                 CategoryName = product.Subcategory.Category.Name,
                 SubcategoryName = product.Subcategory.Name,
-                Price = product.Price,
+                Price = product.Price.ToString("C", new CultureInfo("pl-PL")),
                 Image = imgSrc,
                 ItemsAvailable = product.ItemsAvailable,
                 ItemsInCart = (item != null)?item.Quantity:0,

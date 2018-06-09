@@ -14,7 +14,7 @@ namespace AutomotiveShop.service.ViewModels.Products
         public string Name { get; set; }
 
         [Display(Name = "Cena")]
-        public double Price { get; set; }
+        public string Price { get; set; }
         public string Image { get; set; }
 
         [Display(Name = "Kupionych")]
