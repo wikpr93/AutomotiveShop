@@ -10,7 +10,7 @@ namespace AutomotiveShop.service.ViewModels.Orders
     {
         public Guid DeliveryAddressId { get; set; }
 
-        [Display(Name="Company name")]
+        [Display(Name="Nazwa firmy")]
         public string CompanyName { get; set; }
 
         [Display(Name = "Imię")]
