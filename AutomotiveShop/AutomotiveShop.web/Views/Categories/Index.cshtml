@@ -18,17 +18,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edytuj", "Edit", new { categoryId=item.CategoryId }, new { @class = "btn btn-primary btn-xs" }) |
-            @Html.ActionLink("Szczegóły", "Details", new { categoryId = item.CategoryId }, new { @class = "btn btn-primary btn-xs" }) |
-            @Html.ActionLink("Usuń", "Delete", new { categoryId = item.CategoryId }, new { @class = "btn btn-primary btn-xs" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Szczegóły", "Details", new { categoryId = item.CategoryId }, new { @class = "btn btn-primary btn-xs" })
 
+                @if (User.IsInRole("Administrator"))
+                {
+
+                    @Html.Raw(" | ")
+                    @Html.ActionLink("Edytuj", "Edit", new { categoryId = item.CategoryId }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.Raw(" | ")
+                    @Html.ActionLink("Usuń", "Delete", new { categoryId = item.CategoryId }, new { @class = "btn btn-primary btn-xs" })
+                }
+            </td>
+        </tr>
+    }
 </table>
