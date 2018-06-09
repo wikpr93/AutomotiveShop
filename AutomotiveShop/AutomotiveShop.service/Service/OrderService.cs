@@ -319,7 +319,7 @@ namespace AutomotiveShop.service.Service
             DeliveryAddress newAddress = new DeliveryAddress()
             {
                 CompanyName = deliveryAddress.CompanyName,
-                Name = deliveryAddress.CompanyName,
+                Name = deliveryAddress.Name,
                 Surname = deliveryAddress.Surname,
                 StreetName = deliveryAddress.StreetName,
                 Postcode = deliveryAddress.Postcode,
