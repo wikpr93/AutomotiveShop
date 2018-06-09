@@ -6,10 +6,13 @@
 }
 
 <h2>Lista kategorii</h2>
+@if (User.IsInRole("Administrator"))
+{
+    <p>
+        @Html.ActionLink("Utwórz", "Create", null, new { @class = "btn btn-primary btn-xs" })
+    </p>
+}
 
-<p>
-    @Html.ActionLink("Utwórz", "Create", null, new { @class = "btn btn-primary btn-xs" })
-</p>
 <table class="table">
     <tr>
         <th>
