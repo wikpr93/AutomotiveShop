@@ -27,19 +27,19 @@
                 @switch (order.OrderState)
                 {
                     case AutomotiveShop.model.OrderState.New:
-                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default" })
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderButton" })
                         break;
                     case AutomotiveShop.model.OrderState.Paid:
-                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderPaid" })
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderButton orderPaid" })
                         break;
                     case AutomotiveShop.model.OrderState.Sent:
-                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, null)
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderButton" })
                         break;
                     case AutomotiveShop.model.OrderState.Completed:
-                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderCompleted" })
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderButton orderCompleted" })
                         break;
                     case AutomotiveShop.model.OrderState.Cancelled:
-                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderCancelled" })
+                        @Html.ActionLink(order.OrderNumber, "Details", "Orders", new { orderId = order.OrderId }, new { @class = "btn btn-default orderButton orderCancelled" })
                         break;
                 }
 
