@@ -16,9 +16,15 @@ namespace AutomotiveShop.service.ViewModels.Products
         [Display(Name = "Cena")]
         public double Price { get; set; }
 
-        [Display(Name = "Dostępnych produktów")]
+        [Display(Name = "Ilość")]
         public int ItemsAvailable { get; set; }
         
         public Guid SubcategoryId { get; set; }
+
+        [Display(Name = "Nazwa kategorii")]
+        public string CategoryName { get; set; }
+
+        [Display(Name = "Nazwa podkategorii")]
+        public string SubcategoryName { get; set; }
     }
 }

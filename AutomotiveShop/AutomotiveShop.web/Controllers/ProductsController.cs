@@ -94,12 +94,12 @@ namespace AutomotiveShop.web.Controllers
             {
                 return HttpNotFound();
             }
-            else
+
+            NewProductViewModel productToCreate = new NewProductViewModel()
             {
-                TempData["CurrentCategory"] = currentCategory.Name;
-                TempData["CurrentSubcategory"] = currentSubcategory.Name;
-            }
-            NewProductViewModel productToCreate = new NewProductViewModel();
+                CategoryName = currentCategory.Name,
+                SubcategoryName = currentSubcategory.Name
+            };
 
             productToCreate.SubcategoryId = (Guid)subcategoryId;
 
