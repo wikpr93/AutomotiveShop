@@ -14,5 +14,8 @@ namespace AutomotiveShop.service.ViewModels.Subcategories
         public string Name { get; set; }
 
         public Guid CategoryId { get; set; }
+
+        [Display(Name="Nazwa kategorii")]
+        public string CategoryName { get; set; }
     }
 }

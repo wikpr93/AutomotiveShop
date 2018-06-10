@@ -82,15 +82,12 @@ namespace AutomotiveShop.web.Controllers
             {
                 return HttpNotFound();
             }
-            else
+
+            NewSubcategoryViewModel model = new NewSubcategoryViewModel()
             {
-                TempData["CurrentCategory"] = currentCategory.Name;
-            }
-            NewCategoryViewModel categoryToCreate = new NewCategoryViewModel()
-            {
-                CategoryId = currentCategory.CategoryId
+                CategoryName = currentCategory.Name
             };
-            return View();
+            return View(model);
         }
 
         // POST: Subcategories/Create
