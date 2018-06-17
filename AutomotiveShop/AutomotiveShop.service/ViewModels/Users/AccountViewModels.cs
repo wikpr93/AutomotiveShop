@@ -58,7 +58,7 @@ namespace AutomotiveShop.service.ViewModels.Users
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Zapamiętać logowanie?")]
         public bool RememberMe { get; set; }
     }
 
